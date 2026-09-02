@@ -147,3 +147,26 @@ export async function fetchPromoCode(code: string): Promise<PromoCode | null> {
   const result = await client.fetch<PromoCode | null>(PROMO_CODE_QUERY, { code });
   return result ?? null;
 }
+
+export type CommissionStep = {
+  stepNumber: number;
+  title: LocaleString;
+  description: LocaleText;
+};
+
+export type CommissionPageContent = {
+  heroTitle?: LocaleString;
+  heroBody?: LocaleText;
+  steps?: CommissionStep[];
+};
+
+/** Returns null if Sanity isn't configured yet, or the singleton hasn't been created — callers fall back to static copy. */
+export async function getCommissionPage(): Promise<CommissionPageContent | null> {
+  const client = getSanityClient();
+  if (!client) return null;
+
+  const result = await client.fetch<CommissionPageContent | null>(
+    `*[_type == "commissionPage"][0]{ heroTitle, heroBody, steps }`,
+  );
+  return result ?? null;
+}

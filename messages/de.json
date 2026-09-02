@@ -20,7 +20,38 @@
   },
   "commission": {
     "title": "Maßanfertigung",
-    "description": "Gestalte deinen einzigartigen Fursuit von Grund auf, passgenau nach deinen Maßen."
+    "description": "Gestalte deinen einzigartigen Fursuit von Grund auf, passgenau nach deinen Maßen.",
+    "cta": "Angebot anfragen",
+    "steps": {
+      "heading": "So funktioniert's",
+      "items": [
+        { "title": "Angebot anfragen", "description": "Erzähl uns von deinem Charakter und deinem Budget." },
+        { "title": "Details besprechen", "description": "Wir verfeinern gemeinsam Design, Materialien und Zeitplan." },
+        { "title": "Zahlen und Maße angeben", "description": "Eine Anzahlung sichert deinen Platz; wir nehmen deine Maße auf." },
+        { "title": "Wir fertigen in Etappen", "description": "Basis, Fell, Details — jede Etappe wird von Hand gefertigt." },
+        { "title": "Du gibst laufend Feedback", "description": "Wir teilen Fortschrittsfotos, damit du Rückmeldung geben kannst." },
+        { "title": "Versand und Freude", "description": "Dein fertiger Fursuit wird sorgfältig verpackt und verschickt." }
+      ]
+    },
+    "quote": {
+      "title": "Angebot anfragen",
+      "description": "Erzähl uns von deinem Wunsch-Fursuit, wir melden uns bei dir.",
+      "form": {
+        "name": "Name",
+        "email": "E-Mail",
+        "country": "Land",
+        "characterDescription": "Beschreibe deinen Charakter",
+        "characterDescriptionPlaceholder": "Spezies, Farben, Persönlichkeit, Referenzdetails...",
+        "referenceLinks": "Links zu Referenzbildern (optional)",
+        "referenceLinksPlaceholder": "Links zu Referenzbildern (Google Drive, Imgur, etc.)",
+        "budget": "Budgetrahmen",
+        "timeline": "Gewünschter Zeitrahmen",
+        "submit": "Angebot anfragen",
+        "submitting": "Wird gesendet...",
+        "success": "Danke! Wir haben deine Anfrage erhalten und melden uns bald.",
+        "error": "Beim Senden ist etwas schiefgelaufen. Bitte versuche es erneut."
+      }
+    }
   },
   "shop": {
     "title": "Fertige Fursuits",
@@ -32,7 +63,17 @@
   },
   "contact": {
     "title": "Kontakt",
-    "description": "Hast du eine Frage? Wir freuen uns, von dir zu hören."
+    "description": "Hast du eine Frage? Wir freuen uns, von dir zu hören.",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "submit": "Nachricht senden",
+      "submitting": "Wird gesendet...",
+      "success": "Danke! Wir haben deine Nachricht erhalten und melden uns bald.",
+      "error": "Beim Senden ist etwas schiefgelaufen. Bitte versuche es erneut."
+    }
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten."

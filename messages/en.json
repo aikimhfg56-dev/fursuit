@@ -20,7 +20,38 @@
   },
   "commission": {
     "title": "Custom Commission",
-    "description": "Design your one-of-a-kind fursuit from scratch, made to your measurements."
+    "description": "Design your one-of-a-kind fursuit from scratch, made to your measurements.",
+    "cta": "Start a Quote Request",
+    "steps": {
+      "heading": "How It Works",
+      "items": [
+        { "title": "Submit a quote request", "description": "Tell us about your character and budget." },
+        { "title": "Discuss the details", "description": "We refine the design, materials, and timeline together." },
+        { "title": "Pay and share measurements", "description": "A deposit secures your spot; we take your measurements." },
+        { "title": "We build it in stages", "description": "Base, fur, and details — each stage is handmade with care." },
+        { "title": "You approve along the way", "description": "We share progress photos so you can give feedback." },
+        { "title": "Ship and enjoy", "description": "Your finished fursuit is packed carefully and shipped to you." }
+      ]
+    },
+    "quote": {
+      "title": "Request a Quote",
+      "description": "Tell us about the fursuit you have in mind and we'll get back to you.",
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "country": "Country",
+        "characterDescription": "Describe your character",
+        "characterDescriptionPlaceholder": "Species, colors, personality, any reference details...",
+        "referenceLinks": "Reference image links (optional)",
+        "referenceLinksPlaceholder": "Paste links to reference images (Google Drive, Imgur, etc.)",
+        "budget": "Budget range",
+        "timeline": "Desired timeline",
+        "submit": "Send Quote Request",
+        "submitting": "Sending...",
+        "success": "Thanks! We've received your request and will be in touch soon.",
+        "error": "Something went wrong sending your request. Please try again."
+      }
+    }
   },
   "shop": {
     "title": "Ready-Made Fursuits",
@@ -32,7 +63,17 @@
   },
   "contact": {
     "title": "Contact Us",
-    "description": "Have a question? We'd love to hear from you."
+    "description": "Have a question? We'd love to hear from you.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Thanks! We've received your message and will reply soon.",
+      "error": "Something went wrong sending your message. Please try again."
+    }
   },
   "footer": {
     "rights": "All rights reserved."

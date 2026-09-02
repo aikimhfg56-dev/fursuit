@@ -1,4 +1,5 @@
-type MessageTree = { [key: string]: string | MessageTree };
+type MessageValue = string | MessageTree | MessageValue[];
+type MessageTree = { [key: string]: MessageValue };
 
 function isPlainObject(value: unknown): value is MessageTree {
   return typeof value === "object" && value !== null && !Array.isArray(value);

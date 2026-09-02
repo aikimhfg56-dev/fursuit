@@ -20,7 +20,38 @@
   },
   "commission": {
     "title": "オーダーメイド",
-    "description": "あなたのサイズにぴったり合わせた、世界に一つだけのファースーツをゼロからデザイン。"
+    "description": "あなたのサイズにぴったり合わせた、世界に一つだけのファースーツをゼロからデザイン。",
+    "cta": "見積もりを依頼する",
+    "steps": {
+      "heading": "ご依頼の流れ",
+      "items": [
+        { "title": "見積もりフォームを送信", "description": "キャラクターのイメージとご予算をお知らせください。" },
+        { "title": "詳細を打ち合わせ", "description": "デザイン・素材・納期を一緒に詰めていきます。" },
+        { "title": "お支払いと採寸", "description": "デポジットで制作枠を確保し、採寸情報をいただきます。" },
+        { "title": "段階的に製作", "description": "ベース・毛・ディテールと、各工程を丁寧に手作業で仕上げます。" },
+        { "title": "進捗をご確認いただきます", "description": "制作途中の写真を共有し、フィードバックをいただきます。" },
+        { "title": "発送してお届け", "description": "完成したファースーツを丁寧に梱包して発送します。" }
+      ]
+    },
+    "quote": {
+      "title": "見積もりを依頼する",
+      "description": "ご希望のファースーツについてお聞かせください。担当者よりご連絡します。",
+      "form": {
+        "name": "お名前",
+        "email": "メールアドレス",
+        "country": "お住まいの国",
+        "characterDescription": "キャラクターの説明",
+        "characterDescriptionPlaceholder": "種族・カラー・性格・参考にしたい要素など",
+        "referenceLinks": "参考画像のリンク(任意)",
+        "referenceLinksPlaceholder": "参考画像のリンクを貼り付けてください(Google Drive、Imgurなど)",
+        "budget": "ご予算の目安",
+        "timeline": "ご希望の納期",
+        "submit": "見積もりを送信",
+        "submitting": "送信中...",
+        "success": "ありがとうございます。お問い合わせを受け付けました。追ってご連絡いたします。",
+        "error": "送信中にエラーが発生しました。もう一度お試しください。"
+      }
+    }
   },
   "shop": {
     "title": "完成品ファースーツ",
@@ -32,7 +63,17 @@
   },
   "contact": {
     "title": "お問い合わせ",
-    "description": "ご質問はお気軽にお問い合わせください。"
+    "description": "ご質問はお気軽にお問い合わせください。",
+    "form": {
+      "name": "お名前",
+      "email": "メールアドレス",
+      "subject": "件名",
+      "message": "メッセージ",
+      "submit": "送信する",
+      "submitting": "送信中...",
+      "success": "ありがとうございます。メッセージを受け付けました。追ってご返信いたします。",
+      "error": "送信中にエラーが発生しました。もう一度お試しください。"
+    }
   },
   "footer": {
     "rights": "All rights reserved."

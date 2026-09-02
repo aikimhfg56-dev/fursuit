@@ -20,7 +20,38 @@
   },
   "commission": {
     "title": "Encargo a medida",
-    "description": "Diseña tu fursuit único desde cero, hecho a tus medidas."
+    "description": "Diseña tu fursuit único desde cero, hecho a tus medidas.",
+    "cta": "Solicitar presupuesto",
+    "steps": {
+      "heading": "Cómo funciona",
+      "items": [
+        { "title": "Envía una solicitud de presupuesto", "description": "Cuéntanos sobre tu personaje y tu presupuesto." },
+        { "title": "Hablamos de los detalles", "description": "Afinamos juntos el diseño, los materiales y los plazos." },
+        { "title": "Pago y medidas", "description": "Un depósito reserva tu plaza; tomamos tus medidas." },
+        { "title": "Lo fabricamos por etapas", "description": "Base, pelaje, detalles — cada etapa se hace a mano." },
+        { "title": "Vas aprobando el proceso", "description": "Compartimos fotos del avance para que nos des tu opinión." },
+        { "title": "Envío y disfrute", "description": "Tu fursuit terminado se empaqueta con cuidado y se envía." }
+      ]
+    },
+    "quote": {
+      "title": "Solicitar presupuesto",
+      "description": "Cuéntanos sobre el fursuit que tienes en mente y te responderemos pronto.",
+      "form": {
+        "name": "Nombre",
+        "email": "Correo electrónico",
+        "country": "País",
+        "characterDescription": "Describe tu personaje",
+        "characterDescriptionPlaceholder": "Especie, colores, personalidad, cualquier detalle de referencia...",
+        "referenceLinks": "Enlaces a imágenes de referencia (opcional)",
+        "referenceLinksPlaceholder": "Pega enlaces a imágenes de referencia (Google Drive, Imgur, etc.)",
+        "budget": "Presupuesto",
+        "timeline": "Plazo deseado",
+        "submit": "Enviar solicitud",
+        "submitting": "Enviando...",
+        "success": "¡Gracias! Hemos recibido tu solicitud y te contactaremos pronto.",
+        "error": "Algo salió mal al enviar tu solicitud. Inténtalo de nuevo."
+      }
+    }
   },
   "shop": {
     "title": "Fursuits listos",
@@ -32,7 +63,17 @@
   },
   "contact": {
     "title": "Contáctanos",
-    "description": "¿Tienes alguna pregunta? Nos encantaría saber de ti."
+    "description": "¿Tienes alguna pregunta? Nos encantaría saber de ti.",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "submit": "Enviar mensaje",
+      "submitting": "Enviando...",
+      "success": "¡Gracias! Hemos recibido tu mensaje y te responderemos pronto.",
+      "error": "Algo salió mal al enviar tu mensaje. Inténtalo de nuevo."
+    }
   },
   "footer": {
     "rights": "Todos los derechos reservados."
