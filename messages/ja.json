@@ -74,5 +74,45 @@
     "errors": {
       "generic": "エラーが発生しました。もう一度お試しください。"
     }
+  },
+  "product": {
+    "stockStatus": {
+      "in_stock": "在庫あり",
+      "low_stock": "残りわずか",
+      "sold_out": "売り切れ"
+    },
+    "flags": {
+      "new_arrival": "新着",
+      "flash_sale": "タイムセール",
+      "clearance": "クリアランス"
+    },
+    "preorderStatus": {
+      "open": "予約受付中",
+      "closing_soon": "受付終了間近",
+      "closed": "予約終了",
+      "in_production": "製作中"
+    },
+    "expectedShip": "発送予定: {range}",
+    "filters": {
+      "all": "すべて"
+    },
+    "empty": "まだ商品がありません。近日公開をお待ちください。",
+    "catalogNotConnected": {
+      "description": "商品カタログはまだ接続されていません。"
+    }
+  },
+  "trustBadges": {
+    "shipping": {
+      "title": "グローバル配送",
+      "description": "世界中へ配送業者経由でお届けします"
+    },
+    "payment": {
+      "title": "安全な決済",
+      "description": "カード・PayPal・銀行振込に対応"
+    },
+    "support": {
+      "title": "サポート",
+      "description": "ご不明な点はお気軽にお問い合わせください"
+    }
   }
 }

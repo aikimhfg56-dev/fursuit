@@ -74,5 +74,45 @@
     "errors": {
       "generic": "Algo salió mal. Inténtalo de nuevo."
     }
+  },
+  "product": {
+    "stockStatus": {
+      "in_stock": "En stock",
+      "low_stock": "Pocas unidades",
+      "sold_out": "Agotado"
+    },
+    "flags": {
+      "new_arrival": "Novedad",
+      "flash_sale": "Venta flash",
+      "clearance": "Liquidación"
+    },
+    "preorderStatus": {
+      "open": "Reserva abierta",
+      "closing_soon": "Cierra pronto",
+      "closed": "Reserva cerrada",
+      "in_production": "En producción"
+    },
+    "expectedShip": "Envío estimado: {range}",
+    "filters": {
+      "all": "Todo"
+    },
+    "empty": "Todavía no hay productos — vuelve pronto.",
+    "catalogNotConnected": {
+      "description": "El catálogo de productos aún no está conectado."
+    }
+  },
+  "trustBadges": {
+    "shipping": {
+      "title": "Envío internacional",
+      "description": "Enviamos a todo el mundo por mensajería"
+    },
+    "payment": {
+      "title": "Pago seguro",
+      "description": "Aceptamos tarjeta, PayPal y transferencia bancaria"
+    },
+    "support": {
+      "title": "Atención al cliente",
+      "description": "Estamos aquí para ayudarte con cualquier duda"
+    }
   }
 }
