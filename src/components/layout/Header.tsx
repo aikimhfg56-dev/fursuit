@@ -2,6 +2,8 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getPreferredCurrency } from "@/lib/currency/preference";
+import { isClerkConfigured } from "@/lib/env";
+import AuthNav from "./AuthNav";
 import CurrencySwitcher from "./CurrencySwitcher";
 import LocaleSwitcher from "./LocaleSwitcher";
 
@@ -23,6 +25,7 @@ export default async function Header() {
           <Link href="/contact">{t("contact")}</Link>
         </nav>
         <div className="flex items-center gap-3">
+          {isClerkConfigured() && <AuthNav />}
           <CurrencySwitcher currentCurrency={currency} />
           <LocaleSwitcher />
         </div>

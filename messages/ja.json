@@ -18,6 +18,41 @@
     "ctaCommission": "オーダーメイドを始める",
     "ctaShop": "完成品を見る"
   },
+  "account": {
+    "signIn": "ログイン",
+    "myAccount": "マイアカウント",
+    "notConfigured": "アカウント機能は準備中です。近日公開をお待ちください。",
+    "completeProfile": {
+      "title": "プロフィールを完成させてください",
+      "description": "ご購入や決済方法の管理を行う前に、あと少し情報が必要です。"
+    },
+    "profileForm": {
+      "dateOfBirth": "生年月日",
+      "addressLine1": "住所1",
+      "addressLine2": "住所2(任意)",
+      "city": "市区町村",
+      "postalCode": "郵便番号",
+      "country": "国",
+      "countryPlaceholder": "国を選択してください",
+      "save": "保存する",
+      "saving": "保存中...",
+      "error": "プロフィールの保存中にエラーが発生しました。もう一度お試しください。"
+    },
+    "overview": {
+      "title": "マイアカウント",
+      "profileHeading": "プロフィール",
+      "name": "お名前",
+      "email": "メールアドレス",
+      "dateOfBirth": "生年月日",
+      "address": "住所",
+      "paymentHeading": "決済方法",
+      "paymentDescription": "保存されたカード情報の追加・削除はStripeの安全な画面で行います。カード情報を当店側で保存することはありません。",
+      "managePayment": "決済方法を管理する",
+      "billingLoading": "開いています...",
+      "ordersHeading": "注文履歴",
+      "noOrders": "まだご注文はありません。"
+    }
+  },
   "commission": {
     "title": "オーダーメイド",
     "description": "あなたのサイズにぴったり合わせた、世界に一つだけのファースーツをゼロからデザイン。",

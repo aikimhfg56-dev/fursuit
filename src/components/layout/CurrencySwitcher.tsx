@@ -13,7 +13,7 @@ export default function CurrencySwitcher({ currentCurrency }: CurrencySwitcherPr
   const router = useRouter();
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    document.cookie = `${CURRENCY_COOKIE}=${event.target.value}; path=/; max-age=${60 * 60 * 24 * 365}`;
+    document.cookie = `${CURRENCY_COOKIE}=${event.target.value}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
     router.refresh();
   }
 

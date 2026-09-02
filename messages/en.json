@@ -18,6 +18,41 @@
     "ctaCommission": "Start a Custom Commission",
     "ctaShop": "Browse Ready-Made Suits"
   },
+  "account": {
+    "signIn": "Sign in",
+    "myAccount": "My Account",
+    "notConfigured": "Accounts aren't set up yet — check back soon.",
+    "completeProfile": {
+      "title": "Complete your profile",
+      "description": "We need a couple more details before you can check out or manage payment methods."
+    },
+    "profileForm": {
+      "dateOfBirth": "Date of birth",
+      "addressLine1": "Address line 1",
+      "addressLine2": "Address line 2 (optional)",
+      "city": "City",
+      "postalCode": "Postal code",
+      "country": "Country",
+      "countryPlaceholder": "Select a country",
+      "save": "Save",
+      "saving": "Saving...",
+      "error": "Something went wrong saving your profile. Please try again."
+    },
+    "overview": {
+      "title": "My Account",
+      "profileHeading": "Profile",
+      "name": "Name",
+      "email": "Email",
+      "dateOfBirth": "Date of birth",
+      "address": "Address",
+      "paymentHeading": "Payment methods",
+      "paymentDescription": "Add or remove saved cards securely through Stripe — we never store your card details ourselves.",
+      "managePayment": "Manage payment methods",
+      "billingLoading": "Opening...",
+      "ordersHeading": "Order history",
+      "noOrders": "No orders yet."
+    }
+  },
   "commission": {
     "title": "Custom Commission",
     "description": "Design your one-of-a-kind fursuit from scratch, made to your measurements.",

@@ -18,6 +18,41 @@
     "ctaCommission": "Démarrer une commande sur mesure",
     "ctaShop": "Voir les suits prêts à porter"
   },
+  "account": {
+    "signIn": "Se connecter",
+    "myAccount": "Mon compte",
+    "notConfigured": "Les comptes ne sont pas encore disponibles — revenez bientôt.",
+    "completeProfile": {
+      "title": "Complétez votre profil",
+      "description": "Il nous manque quelques informations avant que vous puissiez commander ou gérer vos moyens de paiement."
+    },
+    "profileForm": {
+      "dateOfBirth": "Date de naissance",
+      "addressLine1": "Adresse (ligne 1)",
+      "addressLine2": "Adresse (ligne 2, optionnel)",
+      "city": "Ville",
+      "postalCode": "Code postal",
+      "country": "Pays",
+      "countryPlaceholder": "Sélectionnez un pays",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "error": "Une erreur est survenue lors de l'enregistrement de votre profil. Merci de réessayer."
+    },
+    "overview": {
+      "title": "Mon compte",
+      "profileHeading": "Profil",
+      "name": "Nom",
+      "email": "E-mail",
+      "dateOfBirth": "Date de naissance",
+      "address": "Adresse",
+      "paymentHeading": "Moyens de paiement",
+      "paymentDescription": "Ajoutez ou supprimez vos cartes enregistrées en toute sécurité via Stripe — nous ne stockons jamais vos données de carte nous-mêmes.",
+      "managePayment": "Gérer les moyens de paiement",
+      "billingLoading": "Ouverture...",
+      "ordersHeading": "Historique des commandes",
+      "noOrders": "Aucune commande pour le moment."
+    }
+  },
   "commission": {
     "title": "Commande sur mesure",
     "description": "Concevez votre fursuit unique de A à Z, ajusté à vos mesures.",

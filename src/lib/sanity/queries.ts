@@ -170,3 +170,27 @@ export async function getCommissionPage(): Promise<CommissionPageContent | null>
   );
   return result ?? null;
 }
+
+export type OrderSummary = {
+  _id: string;
+  referenceCode?: string;
+  paymentMethod: string;
+  paymentStatus: string;
+  shippingStatus: string;
+  amountTotal?: number;
+  currency?: string;
+  createdAt?: string;
+};
+
+/** Order history for the account page — returns [] until Sanity is connected or the shopper has no orders yet. */
+export async function fetchOrdersByEmail(email: string): Promise<OrderSummary[]> {
+  const client = getSanityClient();
+  if (!client) return [];
+
+  return client.fetch(
+    `*[_type == "order" && customerEmail == $email] | order(createdAt desc){
+      _id, referenceCode, paymentMethod, paymentStatus, shippingStatus, amountTotal, currency, createdAt
+    }`,
+    { email },
+  );
+}

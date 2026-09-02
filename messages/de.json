@@ -18,6 +18,41 @@
     "ctaCommission": "Maßanfertigung starten",
     "ctaShop": "Fertige Suits ansehen"
   },
+  "account": {
+    "signIn": "Anmelden",
+    "myAccount": "Mein Konto",
+    "notConfigured": "Konten sind noch nicht eingerichtet — schau bald wieder vorbei.",
+    "completeProfile": {
+      "title": "Profil vervollständigen",
+      "description": "Wir brauchen noch ein paar Angaben, bevor du bestellen oder Zahlungsmethoden verwalten kannst."
+    },
+    "profileForm": {
+      "dateOfBirth": "Geburtsdatum",
+      "addressLine1": "Adresse Zeile 1",
+      "addressLine2": "Adresse Zeile 2 (optional)",
+      "city": "Stadt",
+      "postalCode": "Postleitzahl",
+      "country": "Land",
+      "countryPlaceholder": "Land auswählen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "error": "Beim Speichern deines Profils ist etwas schiefgelaufen. Bitte versuche es erneut."
+    },
+    "overview": {
+      "title": "Mein Konto",
+      "profileHeading": "Profil",
+      "name": "Name",
+      "email": "E-Mail",
+      "dateOfBirth": "Geburtsdatum",
+      "address": "Adresse",
+      "paymentHeading": "Zahlungsmethoden",
+      "paymentDescription": "Füge gespeicherte Karten sicher über Stripe hinzu oder entferne sie — wir speichern deine Kartendaten niemals selbst.",
+      "managePayment": "Zahlungsmethoden verwalten",
+      "billingLoading": "Wird geöffnet...",
+      "ordersHeading": "Bestellhistorie",
+      "noOrders": "Noch keine Bestellungen."
+    }
+  },
   "commission": {
     "title": "Maßanfertigung",
     "description": "Gestalte deinen einzigartigen Fursuit von Grund auf, passgenau nach deinen Maßen.",

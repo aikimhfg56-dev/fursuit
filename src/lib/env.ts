@@ -29,3 +29,8 @@ export function isResendConfigured(): boolean {
 export function isFxRatesConfigured(): boolean {
   return Boolean(process.env.EXCHANGE_RATE_API_KEY);
 }
+
+/** Also read directly (not through this function) in proxy.ts, since middleware needs it at module-eval time. */
+export function isClerkConfigured(): boolean {
+  return Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && process.env.CLERK_SECRET_KEY);
+}
