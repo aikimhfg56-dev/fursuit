@@ -36,5 +36,43 @@
   },
   "footer": {
     "rights": "All rights reserved."
+  },
+  "checkout": {
+    "title": "Choose how to pay",
+    "paymentMethod": "Payment method",
+    "methods": {
+      "card": "Card",
+      "paypal": "PayPal",
+      "alipay": "Alipay",
+      "revolutPay": "Revolut Pay",
+      "wise": "Bank transfer (Wise)"
+    },
+    "promo": {
+      "label": "Promo code",
+      "placeholder": "Enter code",
+      "apply": "Apply",
+      "applied": "Code applied",
+      "invalid": "This code isn't valid",
+      "expired": "This code has expired",
+      "belowMinimum": "Your order total is below the minimum for this code"
+    },
+    "summary": {
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "total": "Total"
+    },
+    "payButton": "Pay now",
+    "wise": {
+      "instructions": "Send a bank transfer to the account below and include the reference so we can match your payment.",
+      "accountHolder": "Account holder",
+      "iban": "IBAN",
+      "bic": "BIC / SWIFT",
+      "reference": "Reference",
+      "notConfigured": "Bank transfer details aren't set up yet."
+    },
+    "notConfigured": "This payment method isn't connected yet.",
+    "errors": {
+      "generic": "Something went wrong. Please try again."
+    }
   }
 }

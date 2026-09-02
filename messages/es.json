@@ -36,5 +36,43 @@
   },
   "footer": {
     "rights": "Todos los derechos reservados."
+  },
+  "checkout": {
+    "title": "Elige cómo pagar",
+    "paymentMethod": "Método de pago",
+    "methods": {
+      "card": "Tarjeta",
+      "paypal": "PayPal",
+      "alipay": "Alipay",
+      "revolutPay": "Revolut Pay",
+      "wise": "Transferencia bancaria (Wise)"
+    },
+    "promo": {
+      "label": "Código promocional",
+      "placeholder": "Introduce el código",
+      "apply": "Aplicar",
+      "applied": "Código aplicado",
+      "invalid": "Este código no es válido",
+      "expired": "Este código ha caducado",
+      "belowMinimum": "El total del pedido está por debajo del mínimo para este código"
+    },
+    "summary": {
+      "subtotal": "Subtotal",
+      "discount": "Descuento",
+      "total": "Total"
+    },
+    "payButton": "Pagar ahora",
+    "wise": {
+      "instructions": "Realiza una transferencia a la cuenta indicada abajo e incluye la referencia para que podamos identificar tu pago.",
+      "accountHolder": "Titular de la cuenta",
+      "iban": "IBAN",
+      "bic": "BIC / SWIFT",
+      "reference": "Referencia",
+      "notConfigured": "Los datos bancarios aún no están configurados."
+    },
+    "notConfigured": "Este método de pago aún no está conectado.",
+    "errors": {
+      "generic": "Algo salió mal. Inténtalo de nuevo."
+    }
   }
 }

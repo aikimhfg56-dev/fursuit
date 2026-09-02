@@ -36,5 +36,43 @@
   },
   "footer": {
     "rights": "Tous droits réservés."
+  },
+  "checkout": {
+    "title": "Choisissez votre mode de paiement",
+    "paymentMethod": "Mode de paiement",
+    "methods": {
+      "card": "Carte",
+      "paypal": "PayPal",
+      "alipay": "Alipay",
+      "revolutPay": "Revolut Pay",
+      "wise": "Virement bancaire (Wise)"
+    },
+    "promo": {
+      "label": "Code promo",
+      "placeholder": "Saisir le code",
+      "apply": "Appliquer",
+      "applied": "Code appliqué",
+      "invalid": "Ce code n'est pas valide",
+      "expired": "Ce code a expiré",
+      "belowMinimum": "Le total de la commande est inférieur au minimum requis pour ce code"
+    },
+    "summary": {
+      "subtotal": "Sous-total",
+      "discount": "Réduction",
+      "total": "Total"
+    },
+    "payButton": "Payer maintenant",
+    "wise": {
+      "instructions": "Envoyez un virement au compte ci-dessous en indiquant la référence afin que nous puissions identifier votre paiement.",
+      "accountHolder": "Titulaire du compte",
+      "iban": "IBAN",
+      "bic": "BIC / SWIFT",
+      "reference": "Référence",
+      "notConfigured": "Les coordonnées bancaires ne sont pas encore configurées."
+    },
+    "notConfigured": "Ce mode de paiement n'est pas encore activé.",
+    "errors": {
+      "generic": "Une erreur est survenue. Merci de réessayer."
+    }
   }
 }

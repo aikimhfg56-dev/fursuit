@@ -36,5 +36,43 @@
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten."
+  },
+  "checkout": {
+    "title": "Zahlungsart wählen",
+    "paymentMethod": "Zahlungsart",
+    "methods": {
+      "card": "Karte",
+      "paypal": "PayPal",
+      "alipay": "Alipay",
+      "revolutPay": "Revolut Pay",
+      "wise": "Banküberweisung (Wise)"
+    },
+    "promo": {
+      "label": "Gutscheincode",
+      "placeholder": "Code eingeben",
+      "apply": "Anwenden",
+      "applied": "Code angewendet",
+      "invalid": "Dieser Code ist ungültig",
+      "expired": "Dieser Code ist abgelaufen",
+      "belowMinimum": "Der Bestellwert liegt unter dem Mindestwert für diesen Code"
+    },
+    "summary": {
+      "subtotal": "Zwischensumme",
+      "discount": "Rabatt",
+      "total": "Gesamt"
+    },
+    "payButton": "Jetzt bezahlen",
+    "wise": {
+      "instructions": "Überweise den Betrag auf das unten stehende Konto und gib die Referenz an, damit wir deine Zahlung zuordnen können.",
+      "accountHolder": "Kontoinhaber",
+      "iban": "IBAN",
+      "bic": "BIC / SWIFT",
+      "reference": "Referenz",
+      "notConfigured": "Die Bankverbindung ist noch nicht eingerichtet."
+    },
+    "notConfigured": "Diese Zahlungsart ist noch nicht angebunden.",
+    "errors": {
+      "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    }
   }
 }

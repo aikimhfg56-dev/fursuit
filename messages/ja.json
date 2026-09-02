@@ -36,5 +36,43 @@
   },
   "footer": {
     "rights": "All rights reserved."
+  },
+  "checkout": {
+    "title": "お支払い方法を選択",
+    "paymentMethod": "支払い方法",
+    "methods": {
+      "card": "カード",
+      "paypal": "PayPal",
+      "alipay": "Alipay",
+      "revolutPay": "Revolut Pay",
+      "wise": "銀行振込(Wise)"
+    },
+    "promo": {
+      "label": "プロモーションコード",
+      "placeholder": "コードを入力",
+      "apply": "適用",
+      "applied": "コードを適用しました",
+      "invalid": "このコードは無効です",
+      "expired": "このコードは有効期限が切れています",
+      "belowMinimum": "このコードの適用には最低注文金額に達していません"
+    },
+    "summary": {
+      "subtotal": "小計",
+      "discount": "割引",
+      "total": "合計"
+    },
+    "payButton": "支払う",
+    "wise": {
+      "instructions": "下記口座へ参照番号を添えてお振込みください。参照番号でお支払いを確認します。",
+      "accountHolder": "口座名義",
+      "iban": "IBAN",
+      "bic": "BIC / SWIFT",
+      "reference": "参照番号",
+      "notConfigured": "銀行振込情報はまだ設定されていません。"
+    },
+    "notConfigured": "この支払い方法はまだ利用できません。",
+    "errors": {
+      "generic": "エラーが発生しました。もう一度お試しください。"
+    }
   }
 }
