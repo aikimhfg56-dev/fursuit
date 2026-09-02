@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import type { SupportedCurrency } from "@/lib/currency/constants";
+import { convertFromUsd } from "@/lib/currency/rates";
 import { isStripeConfigured } from "@/lib/env";
 import { createStripeCheckoutSession, type StripePaymentMethod } from "@/lib/payments/stripe";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
@@ -17,6 +19,7 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const productName = typeof body?.productName === "string" ? body.productName : "";
   const amountUsd = Number(body?.amountUsd);
+  const shippingUsd = Number(body?.shippingUsd) || 0;
   const currency = typeof body?.currency === "string" ? body.currency.toLowerCase() : "usd";
   const promoCode = typeof body?.promoCode === "string" ? body.promoCode.trim() : "";
   const successUrl = typeof body?.successUrl === "string" ? body.successUrl : "";
@@ -33,20 +36,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
-  let finalAmountUsd = amountUsd;
+  let discountedSubtotalUsd = amountUsd;
   if (promoCode) {
     const promoResult = await validatePromoCode(promoCode, amountUsd);
     if (promoResult.valid) {
-      finalAmountUsd = promoResult.amountAfterDiscount;
+      discountedSubtotalUsd = promoResult.amountAfterDiscount;
     }
   }
+
+  const finalAmountUsd = discountedSubtotalUsd + shippingUsd;
+  const finalAmountInCurrency = await convertFromUsd(finalAmountUsd, currency.toUpperCase() as SupportedCurrency);
 
   const referenceCode = generateReferenceCode();
 
   try {
     const session = await createStripeCheckoutSession({
       productName,
-      unitAmount: finalAmountUsd,
+      unitAmount: finalAmountInCurrency,
       currency: currency as "usd" | "gbp" | "eur" | "aud" | "jpy",
       paymentMethods: paymentMethodsRequested.length > 0 ? paymentMethodsRequested : ["card"],
       referenceCode,

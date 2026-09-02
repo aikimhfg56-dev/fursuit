@@ -99,6 +99,7 @@
     },
     "summary": {
       "subtotal": "Subtotal",
+      "shipping": "Shipping",
       "discount": "Discount",
       "total": "Total"
     },
@@ -154,6 +155,48 @@
     "support": {
       "title": "Support",
       "description": "Here to help with any questions"
+    }
+  },
+  "checkoutResult": {
+    "title": "Payment received",
+    "description": "Thank you — your order is confirmed. We'll email you the details shortly.",
+    "pendingTitle": "We're confirming your payment",
+    "pendingDescription": "This can take a moment. If this page doesn't update, please contact us with your reference code.",
+    "reference": "Reference: {code}"
+  },
+  "legal": {
+    "disclaimer": "This page is a template for reference only — have it reviewed by a qualified lawyer before launch.",
+    "footerNav": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "shipping": "Shipping & Customs",
+      "returns": "Returns & Refunds"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "content": "We collect the information you provide when you request a quote, place an order, or contact us — including your name, email address, shipping address, and any character details or reference images you share with us. We use this information to process your order, communicate with you about your commission or purchase, and provide customer support. We do not sell your personal information.\n\nTo process payments, we share limited order information with our payment providers (Stripe, PayPal, and, for bank transfers, Wise). To send order and quote confirmations, we use Resend. To manage our product catalog and commission page content, we use Sanity. Each of these providers processes your data only as needed to provide their service to us.\n\nYou can request a copy of the personal information we hold about you, ask us to correct it, or ask us to delete it, subject to any records we're required to keep for accounting or legal purposes. Contact us using the details on our Contact page to make a request.\n\nThis policy may be updated from time to time as our services change. We'll post the current version on this page."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "content": "By placing an order or submitting a commission quote request, you agree to these terms. Prices are shown in your selected currency for convenience; the amount charged is confirmed at checkout.\n\nCustom commissions are made to order based on the details you provide. A deposit may be required to begin work, and the remaining balance is due before your order ships, as described during the quote process. Once production has started, deposits are generally non-refundable — see our Returns & Refunds policy for details.\n\nAll character designs, artwork, and product photography on this site are the property of Fursuit Studio or our artists and may not be reproduced without permission. Custom character designs created for you remain your character, but our patterns, techniques, and construction methods remain ours.\n\nWe aim to accurately describe every product and commission process, but we don't guarantee the site will be error-free or uninterrupted, and we're not liable for indirect or incidental damages arising from your use of the site, to the fullest extent permitted by law."
+    },
+    "shipping": {
+      "title": "Shipping & Customs",
+      "content": "We ship worldwide by courier. Shipping is calculated as a flat rate based on your delivery region, shown below and added to your order total at checkout.\n\nInternational orders may be subject to customs duties, import taxes, or handling fees charged by your country upon arrival. These charges are the responsibility of the recipient and are not included in your order total — please check your local customs rules before ordering.\n\nProduction and shipping timelines vary by product: ready-made items ship promptly after purchase, pre-order items ship within the window shown on the product page, and custom commissions follow the timeline agreed during your quote.",
+      "rates": {
+        "heading": "Flat-Rate Shipping",
+        "regions": {
+          "US": "United States",
+          "EU": "European Union",
+          "UK": "United Kingdom",
+          "AU": "Australia",
+          "OTHER": "Rest of world"
+        }
+      }
+    },
+    "returns": {
+      "title": "Returns & Refunds",
+      "content": "Ready-made items can be returned within 14 days of delivery if unworn and in original condition; contact us to arrange a return. Return shipping costs are the responsibility of the customer unless the item arrived damaged or defective.\n\nPre-order items follow the same return policy once delivered. Because pre-orders reserve a production slot, deposits may be non-refundable if you cancel after production has begun — details are provided on the product page.\n\nCustom commissions are made specifically for you, so once work has started they are generally not eligible for a refund. If there's an issue with the quality or accuracy of a finished commission, contact us and we'll work with you to make it right.\n\nTo start a return or refund request, contact us with your order reference and we'll guide you through the next steps."
     }
   }
 }

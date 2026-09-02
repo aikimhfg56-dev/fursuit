@@ -2,16 +2,20 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import type { SupportedCurrency } from "@/lib/currency/constants";
 import PaymentMethodSelector, { type PaymentMethodId } from "./PaymentMethodSelector";
 import PromoCodeInput, { type PromoStatus } from "./PromoCodeInput";
 import WiseBankTransferPanel from "./WiseBankTransferPanel";
 import type { WiseBankDetails } from "@/lib/payments/wise";
 
-type SupportedCurrency = "USD" | "GBP" | "EUR" | "AUD" | "JPY";
-
 type CheckoutPanelProps = {
   productName: string;
+  /** Base product price in USD — sent to the checkout APIs, which re-validate any promo and convert currency server-side. */
   amountUsd: number;
+  /** Same price already converted to `currency`, for on-screen display only. */
+  displayAmount: number;
+  /** Flat shipping fee in USD for the shopper's region (see lib/shipping/rates.ts). */
+  shippingUsd: number;
   currency: SupportedCurrency;
   configuredMethods: PaymentMethodId[];
 };
@@ -19,6 +23,8 @@ type CheckoutPanelProps = {
 export default function CheckoutPanel({
   productName,
   amountUsd,
+  displayAmount,
+  shippingUsd,
   currency,
   configuredMethods,
 }: CheckoutPanelProps) {
@@ -35,8 +41,14 @@ export default function CheckoutPanel({
     bankDetails: WiseBankDetails | null;
   } | null>(null);
 
-  const discountAmount = appliedPromo?.discountAmount ?? 0;
-  const totalUsd = Math.max(amountUsd - discountAmount, 0);
+  // displayAmount is amountUsd already converted to `currency`; reuse that
+  // ratio so the discount/shipping lines convert consistently without a
+  // second client-side rate fetch.
+  const conversionRate = amountUsd > 0 ? displayAmount / amountUsd : 1;
+  const discountAmountUsd = appliedPromo?.discountAmount ?? 0;
+  const discountDisplay = discountAmountUsd * conversionRate;
+  const shippingDisplay = shippingUsd * conversionRate;
+  const totalDisplay = Math.max(displayAmount - discountDisplay, 0) + shippingDisplay;
 
   async function handleApplyPromo() {
     if (!promoInput) return;
@@ -69,6 +81,10 @@ export default function CheckoutPanel({
     setSubmitting(true);
     setErrorMessage(null);
 
+    const origin = window.location.origin;
+    const successUrl = `${origin}/${locale}/checkout/success`;
+    const cancelUrl = `${origin}${window.location.pathname}?status=cancelled`;
+
     try {
       if (method === "card" || method === "alipay" || method === "revolutPay") {
         const paymentMethods =
@@ -80,11 +96,13 @@ export default function CheckoutPanel({
           body: JSON.stringify({
             productName,
             amountUsd,
+            shippingUsd,
             currency: currency.toLowerCase(),
             promoCode: appliedPromo?.code,
             paymentMethods,
-            successUrl: `${window.location.origin}${window.location.pathname}?status=success`,
-            cancelUrl: `${window.location.origin}${window.location.pathname}?status=cancelled`,
+            // Stripe substitutes this literal placeholder with the real session id.
+            successUrl: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
+            cancelUrl,
           }),
         });
         const data = await response.json();
@@ -100,10 +118,11 @@ export default function CheckoutPanel({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             amountUsd,
+            shippingUsd,
             currency,
             promoCode: appliedPromo?.code,
-            returnUrl: `${window.location.origin}${window.location.pathname}?status=success`,
-            cancelUrl: `${window.location.origin}${window.location.pathname}?status=cancelled`,
+            returnUrl: successUrl,
+            cancelUrl,
           }),
         });
         const data = await response.json();
@@ -117,7 +136,7 @@ export default function CheckoutPanel({
         const response = await fetch("/api/checkout/wise", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amountUsd, currency, promoCode: appliedPromo?.code }),
+          body: JSON.stringify({ amountUsd, shippingUsd, currency, promoCode: appliedPromo?.code }),
         });
         const data = await response.json();
 
@@ -152,17 +171,21 @@ export default function CheckoutPanel({
       <dl className="space-y-1 border-t border-black/10 pt-4 text-sm dark:border-white/10">
         <div className="flex justify-between">
           <dt>{t("summary.subtotal")}</dt>
-          <dd>{currencyFormatter.format(amountUsd)}</dd>
+          <dd>{currencyFormatter.format(displayAmount)}</dd>
         </div>
-        {discountAmount > 0 && (
+        <div className="flex justify-between">
+          <dt>{t("summary.shipping")}</dt>
+          <dd>{currencyFormatter.format(shippingDisplay)}</dd>
+        </div>
+        {discountDisplay > 0 && (
           <div className="flex justify-between text-green-600 dark:text-green-400">
             <dt>{t("summary.discount")}</dt>
-            <dd>-{currencyFormatter.format(discountAmount)}</dd>
+            <dd>-{currencyFormatter.format(discountDisplay)}</dd>
           </div>
         )}
         <div className="flex justify-between text-base font-semibold">
           <dt>{t("summary.total")}</dt>
-          <dd>{currencyFormatter.format(totalUsd)}</dd>
+          <dd>{currencyFormatter.format(totalDisplay)}</dd>
         </div>
       </dl>
 

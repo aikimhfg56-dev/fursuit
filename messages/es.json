@@ -99,6 +99,7 @@
     },
     "summary": {
       "subtotal": "Subtotal",
+      "shipping": "Envío",
       "discount": "Descuento",
       "total": "Total"
     },
@@ -154,6 +155,48 @@
     "support": {
       "title": "Atención al cliente",
       "description": "Estamos aquí para ayudarte con cualquier duda"
+    }
+  },
+  "checkoutResult": {
+    "title": "Pago recibido",
+    "description": "Gracias — tu pedido está confirmado. Te enviaremos los detalles por correo en breve.",
+    "pendingTitle": "Estamos confirmando tu pago",
+    "pendingDescription": "Esto puede tardar un momento. Si esta página no se actualiza, contáctanos con tu código de referencia.",
+    "reference": "Referencia: {code}"
+  },
+  "legal": {
+    "disclaimer": "Esta página es una plantilla de referencia — haz que un profesional legal cualificado la revise antes del lanzamiento.",
+    "footerNav": {
+      "privacy": "Política de privacidad",
+      "terms": "Términos y condiciones",
+      "shipping": "Envíos y aduanas",
+      "returns": "Devoluciones y reembolsos"
+    },
+    "privacy": {
+      "title": "Política de privacidad",
+      "content": "Recopilamos la información que nos proporcionas al solicitar un presupuesto, realizar un pedido o contactarnos — incluyendo tu nombre, correo electrónico, dirección de envío y cualquier detalle del personaje o imágenes de referencia que compartas. Usamos esta información para procesar tu pedido, comunicarnos contigo sobre tu encargo o compra, y ofrecerte atención al cliente. No vendemos tus datos personales.\n\nPara procesar los pagos, compartimos información limitada del pedido con nuestros proveedores de pago (Stripe, PayPal y, para transferencias bancarias, Wise). Para enviar confirmaciones de pedidos y presupuestos, usamos Resend. Para gestionar nuestro catálogo de productos y el contenido de la página de encargos, usamos Sanity. Cada uno de estos proveedores procesa tus datos solo en la medida necesaria para prestarnos su servicio.\n\nPuedes solicitar una copia de los datos personales que tenemos sobre ti, pedirnos que los corrijamos o que los eliminemos, sujeto a las obligaciones de conservación legales o contables que debamos cumplir. Contáctanos usando los datos de nuestra página de contacto para hacer una solicitud.\n\nEsta política puede actualizarse ocasionalmente conforme cambien nuestros servicios. Publicaremos la versión vigente en esta página."
+    },
+    "terms": {
+      "title": "Términos y condiciones",
+      "content": "Al realizar un pedido o enviar una solicitud de presupuesto, aceptas estos términos. Los precios se muestran en la moneda que elijas por comodidad; el importe cobrado se confirma al finalizar la compra.\n\nLos encargos a medida se fabrican según los detalles que nos proporciones. Puede requerirse un depósito para comenzar el trabajo, y el saldo restante se paga antes del envío, según lo indicado durante el proceso de presupuesto. Una vez iniciada la producción, los depósitos generalmente no son reembolsables — consulta nuestra política de devoluciones y reembolsos para más detalles.\n\nTodos los diseños de personajes, ilustraciones y fotografías de producto de este sitio son propiedad de Fursuit Studio o de nuestros artistas y no pueden reproducirse sin permiso. Los diseños de personaje creados para ti siguen siendo tu personaje, pero nuestros patrones, técnicas y métodos de construcción siguen siendo nuestros.\n\nNos esforzamos por describir con precisión cada producto y proceso de encargo, pero no garantizamos que el sitio esté libre de errores o sea ininterrumpido, y no somos responsables de daños indirectos o incidentales derivados del uso del sitio, en la medida permitida por la ley."
+    },
+    "shipping": {
+      "title": "Envíos y aduanas",
+      "content": "Enviamos a todo el mundo por mensajería. El envío se calcula como una tarifa fija según tu región de entrega, mostrada abajo y añadida al total de tu pedido al finalizar la compra.\n\nLos pedidos internacionales pueden estar sujetos a aranceles, impuestos de importación o cargos de gestión aplicados por tu país al llegar. Estos cargos son responsabilidad del destinatario y no están incluidos en el total del pedido — por favor revisa la normativa aduanera de tu país antes de comprar.\n\nLos plazos de producción y envío varían según el producto: los artículos listos se envían con rapidez tras la compra, los artículos en reserva se envían dentro del plazo indicado en la ficha de producto, y los encargos a medida siguen el plazo acordado durante el presupuesto.",
+      "rates": {
+        "heading": "Tarifas de envío fijas",
+        "regions": {
+          "US": "Estados Unidos",
+          "EU": "Unión Europea",
+          "UK": "Reino Unido",
+          "AU": "Australia",
+          "OTHER": "Resto del mundo"
+        }
+      }
+    },
+    "returns": {
+      "title": "Devoluciones y reembolsos",
+      "content": "Los artículos listos para enviar pueden devolverse dentro de los 14 días posteriores a la entrega si no se han usado y están en su estado original; contáctanos para gestionar la devolución. Los costes de envío de la devolución corren a cargo del cliente, salvo que el artículo llegara dañado o defectuoso.\n\nLos artículos en reserva siguen la misma política de devolución una vez entregados. Como las reservas apartan un puesto de producción, los depósitos pueden no ser reembolsables si cancelas después de que la producción haya comenzado — los detalles se indican en la ficha de producto.\n\nLos encargos a medida se fabrican específicamente para ti, por lo que, una vez iniciado el trabajo, generalmente no son elegibles para reembolso. Si hay algún problema con la calidad o el ajuste de un encargo terminado, contáctanos y buscaremos una solución juntos.\n\nPara iniciar una solicitud de devolución o reembolso, contáctanos con la referencia de tu pedido y te guiaremos en los siguientes pasos."
     }
   }
 }

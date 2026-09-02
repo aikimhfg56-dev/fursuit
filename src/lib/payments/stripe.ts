@@ -64,3 +64,16 @@ export async function createStripeCheckoutSession(input: CreateStripeCheckoutSes
     cancel_url: input.cancelUrl,
   });
 }
+
+/** Used by the checkout success page to confirm payment and read back the reference code. */
+export async function retrieveStripeCheckoutSession(sessionId: string) {
+  const stripe = getStripeClient();
+  if (!stripe) return null;
+
+  try {
+    return await stripe.checkout.sessions.retrieve(sessionId);
+  } catch (error) {
+    console.error("Failed to retrieve Stripe checkout session", error);
+    return null;
+  }
+}

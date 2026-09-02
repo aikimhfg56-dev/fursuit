@@ -1,9 +1,14 @@
-import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
+import { getPreferredCurrency } from "@/lib/currency/preference";
+import CurrencySwitcher from "./CurrencySwitcher";
 import LocaleSwitcher from "./LocaleSwitcher";
 
-export default function Header() {
-  const t = useTranslations("nav");
+export default async function Header() {
+  const t = await getTranslations("nav");
+  const locale = (await getLocale()) as Locale;
+  const currency = await getPreferredCurrency(locale);
 
   return (
     <header className="border-b border-black/10 dark:border-white/10">
@@ -17,7 +22,10 @@ export default function Header() {
           <Link href="/preorder">{t("preorder")}</Link>
           <Link href="/contact">{t("contact")}</Link>
         </nav>
-        <LocaleSwitcher />
+        <div className="flex items-center gap-3">
+          <CurrencySwitcher currentCurrency={currency} />
+          <LocaleSwitcher />
+        </div>
       </div>
     </header>
   );

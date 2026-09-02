@@ -99,6 +99,7 @@
     },
     "summary": {
       "subtotal": "Zwischensumme",
+      "shipping": "Versand",
       "discount": "Rabatt",
       "total": "Gesamt"
     },
@@ -154,6 +155,48 @@
     "support": {
       "title": "Support",
       "description": "Wir helfen gerne bei Fragen weiter"
+    }
+  },
+  "checkoutResult": {
+    "title": "Zahlung erhalten",
+    "description": "Danke — deine Bestellung ist bestätigt. Wir schicken dir die Details in Kürze per E-Mail.",
+    "pendingTitle": "Wir bestätigen deine Zahlung",
+    "pendingDescription": "Das kann einen Moment dauern. Falls sich diese Seite nicht aktualisiert, kontaktiere uns bitte mit deinem Referenzcode.",
+    "reference": "Referenz: {code}"
+  },
+  "legal": {
+    "disclaimer": "Diese Seite ist nur eine Vorlage — lass sie vor dem Launch von einer qualifizierten Rechtsberatung prüfen.",
+    "footerNav": {
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "shipping": "Versand & Zoll",
+      "returns": "Rückgabe & Erstattung"
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "content": "Wir erfassen die Informationen, die du uns bei einer Angebotsanfrage, einer Bestellung oder einer Kontaktaufnahme gibst — etwa Name, E-Mail-Adresse, Lieferadresse sowie Charakterdetails oder Referenzbilder. Diese Daten nutzen wir, um deine Bestellung zu bearbeiten, mit dir über deine Anfertigung oder deinen Kauf zu kommunizieren und Support zu leisten. Wir verkaufen deine personenbezogenen Daten nicht.\n\nFür die Zahlungsabwicklung teilen wir begrenzte Bestelldaten mit unseren Zahlungsanbietern (Stripe, PayPal und, bei Banküberweisungen, Wise). Für Bestell- und Angebotsbestätigungen nutzen wir Resend. Für die Verwaltung unseres Produktkatalogs und der Inhalte der Anfertigungsseite nutzen wir Sanity. Jeder dieser Anbieter verarbeitet deine Daten nur in dem Umfang, der für die Erbringung seiner Leistung an uns nötig ist.\n\nDu kannst eine Kopie der bei uns gespeicherten personenbezogenen Daten anfordern, ihre Berichtigung verlangen oder ihre Löschung verlangen, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Nutze dazu die Kontaktdaten auf unserer Kontaktseite.\n\nDiese Erklärung kann gelegentlich aktualisiert werden, wenn sich unsere Leistungen ändern. Die jeweils aktuelle Version findest du auf dieser Seite."
+    },
+    "terms": {
+      "title": "Allgemeine Geschäftsbedingungen",
+      "content": "Mit einer Bestellung oder einer Angebotsanfrage stimmst du diesen Bedingungen zu. Preise werden zur Orientierung in deiner gewählten Währung angezeigt; der tatsächlich abgerechnete Betrag wird beim Checkout bestätigt.\n\nMaßanfertigungen werden nach den von dir angegebenen Details gefertigt. Für den Arbeitsbeginn kann eine Anzahlung erforderlich sein; der Restbetrag ist vor Versand fällig, wie im Angebotsprozess beschrieben. Sobald die Produktion begonnen hat, sind Anzahlungen in der Regel nicht erstattungsfähig — Details dazu in unserer Rückgabe- & Erstattungsrichtlinie.\n\nAlle Charakterdesigns, Kunstwerke und Produktfotos auf dieser Seite gehören Fursuit Studio oder unseren Künstler:innen und dürfen ohne Erlaubnis nicht reproduziert werden. Individuell für dich erstellte Charakterdesigns bleiben dein Charakter, unsere Schnittmuster, Techniken und Konstruktionsmethoden bleiben jedoch unser Eigentum.\n\nWir bemühen uns, jedes Produkt und jeden Anfertigungsprozess korrekt zu beschreiben, garantieren aber keine fehlerfreie oder unterbrechungsfreie Nutzung der Seite und haften, soweit gesetzlich zulässig, nicht für mittelbare oder Folgeschäden aus der Nutzung der Seite."
+    },
+    "shipping": {
+      "title": "Versand & Zoll",
+      "content": "Wir versenden weltweit per Kurier. Der Versand wird als Pauschale je nach Lieferregion berechnet, siehe unten, und beim Checkout zur Bestellsumme addiert.\n\nBei internationalen Bestellungen können bei Ankunft Zollgebühren, Einfuhrsteuern oder Bearbeitungsgebühren deines Landes anfallen. Diese trägt der Empfänger; sie sind nicht in der Bestellsumme enthalten — bitte informiere dich vor der Bestellung über die Zollbestimmungen deines Landes.\n\nProduktions- und Versandzeiten variieren je nach Produkt: Fertige Artikel werden nach dem Kauf zügig versendet, Vorbestellungen im auf der Produktseite genannten Zeitfenster, und Maßanfertigungen nach dem im Angebotsprozess vereinbarten Zeitplan.",
+      "rates": {
+        "heading": "Versandpauschalen",
+        "regions": {
+          "US": "USA",
+          "EU": "Europäische Union",
+          "UK": "Vereinigtes Königreich",
+          "AU": "Australien",
+          "OTHER": "Restliche Welt"
+        }
+      }
+    },
+    "returns": {
+      "title": "Rückgabe & Erstattung",
+      "content": "Fertige Artikel können innerhalb von 14 Tagen nach Lieferung zurückgegeben werden, sofern ungetragen und im Originalzustand; kontaktiere uns, um eine Rückgabe zu vereinbaren. Die Rücksendekosten trägt die kundenseitige Partei, außer der Artikel kam beschädigt oder fehlerhaft an.\n\nFür Vorbestellungen gilt nach Lieferung dieselbe Rückgaberegelung. Da Vorbestellungen einen Produktionsplatz reservieren, sind Anzahlungen bei Stornierung nach Produktionsbeginn unter Umständen nicht erstattungsfähig — Details dazu auf der jeweiligen Produktseite.\n\nMaßanfertigungen werden speziell für dich angefertigt und sind nach Arbeitsbeginn in der Regel von der Erstattung ausgeschlossen. Bei Qualitäts- oder Passgenauigkeitsproblemen einer fertigen Anfertigung kontaktiere uns bitte — wir finden gemeinsam eine Lösung.\n\nUm eine Rückgabe oder Erstattung zu beantragen, kontaktiere uns mit deiner Bestellreferenz; wir begleiten dich durch die nächsten Schritte."
     }
   }
 }

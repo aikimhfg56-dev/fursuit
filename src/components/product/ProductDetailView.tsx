@@ -2,11 +2,14 @@ import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import CheckoutPanel from "@/components/checkout/CheckoutPanel";
 import type { PaymentMethodId } from "@/components/checkout/PaymentMethodSelector";
-import { localeConfig, type Locale } from "@/i18n/routing";
+import type { Locale } from "@/i18n/routing";
+import { getPreferredCurrency } from "@/lib/currency/preference";
+import { convertFromUsd } from "@/lib/currency/rates";
 import { isPaypalConfigured, isStripeConfigured, isWiseConfigured } from "@/lib/env";
 import { pickLocaleValue } from "@/lib/i18n/pickLocaleValue";
 import { urlForImage } from "@/lib/sanity/image";
 import type { PreorderProductDetail, ProductDetail } from "@/lib/sanity/queries";
+import { getShippingRateUsd, getShippingRegionForCurrency } from "@/lib/shipping/rates";
 import PriceDisplay from "./PriceDisplay";
 
 type ProductDetailViewProps = {
@@ -29,6 +32,10 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
     ...(isPaypalConfigured() ? (["paypal"] as const) : []),
     ...(isWiseConfigured() ? (["wise"] as const) : []),
   ];
+
+  const currency = await getPreferredCurrency(locale);
+  const displayAmount = await convertFromUsd(product.basePrice, currency);
+  const shippingUsd = getShippingRateUsd(getShippingRegionForCurrency(currency));
 
   const preorder = kind === "preorder" ? (product as PreorderProductDetail) : null;
   const dateFormatter = new Intl.DateTimeFormat(locale, { year: "numeric", month: "short" });
@@ -65,7 +72,9 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
           <CheckoutPanel
             productName={name}
             amountUsd={product.basePrice}
-            currency={localeConfig[locale].defaultCurrency}
+            displayAmount={displayAmount}
+            shippingUsd={shippingUsd}
+            currency={currency}
             configuredMethods={configuredMethods}
           />
         </div>

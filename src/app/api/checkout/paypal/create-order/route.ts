@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import type { SupportedCurrency } from "@/lib/currency/constants";
+import { convertFromUsd } from "@/lib/currency/rates";
 import { isPaypalConfigured } from "@/lib/env";
 import { createPaypalOrder } from "@/lib/payments/paypal";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
@@ -14,6 +16,7 @@ export async function POST(request: Request) {
 
   const body = await request.json().catch(() => null);
   const amountUsd = Number(body?.amountUsd);
+  const shippingUsd = Number(body?.shippingUsd) || 0;
   const currency = typeof body?.currency === "string" ? body.currency.toUpperCase() : "USD";
   const promoCode = typeof body?.promoCode === "string" ? body.promoCode.trim() : "";
   const returnUrl = typeof body?.returnUrl === "string" ? body.returnUrl : "";
@@ -23,22 +26,28 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
-  let finalAmountUsd = amountUsd;
+  let discountedSubtotalUsd = amountUsd;
   if (promoCode) {
     const promoResult = await validatePromoCode(promoCode, amountUsd);
     if (promoResult.valid) {
-      finalAmountUsd = promoResult.amountAfterDiscount;
+      discountedSubtotalUsd = promoResult.amountAfterDiscount;
     }
   }
 
+  const finalAmountUsd = discountedSubtotalUsd + shippingUsd;
+  const finalAmountInCurrency = await convertFromUsd(finalAmountUsd, currency as SupportedCurrency);
+
   const referenceCode = generateReferenceCode();
+  // PayPal appends its own token/PayerID params when redirecting back — ours
+  // rides along so the success page can show a human-readable reference.
+  const returnUrlWithReference = `${returnUrl}${returnUrl.includes("?") ? "&" : "?"}reference=${encodeURIComponent(referenceCode)}`;
 
   try {
     const order = await createPaypalOrder({
-      amount: finalAmountUsd,
+      amount: finalAmountInCurrency,
       currency: currency as "USD" | "GBP" | "EUR" | "AUD" | "JPY",
       referenceCode,
-      returnUrl,
+      returnUrl: returnUrlWithReference,
       cancelUrl,
     });
 

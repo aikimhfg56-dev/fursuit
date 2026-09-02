@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import type { SupportedCurrency } from "@/lib/currency/constants";
+import { convertFromUsd } from "@/lib/currency/rates";
 import { isWiseConfigured } from "@/lib/env";
 import { getWiseBankDetails } from "@/lib/payments/wise";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
@@ -16,6 +18,7 @@ export async function POST(request: Request) {
 
   const body = await request.json().catch(() => null);
   const amountUsd = Number(body?.amountUsd);
+  const shippingUsd = Number(body?.shippingUsd) || 0;
   const currency = typeof body?.currency === "string" ? body.currency.toUpperCase() : "USD";
   const promoCode = typeof body?.promoCode === "string" ? body.promoCode.trim() : "";
   const customerEmail = typeof body?.customerEmail === "string" ? body.customerEmail : undefined;
@@ -24,13 +27,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
-  let finalAmountUsd = amountUsd;
+  let discountedSubtotalUsd = amountUsd;
   if (promoCode) {
     const promoResult = await validatePromoCode(promoCode, amountUsd);
     if (promoResult.valid) {
-      finalAmountUsd = promoResult.amountAfterDiscount;
+      discountedSubtotalUsd = promoResult.amountAfterDiscount;
     }
   }
+
+  const finalAmountUsd = discountedSubtotalUsd + shippingUsd;
+  const finalAmountInCurrency = await convertFromUsd(finalAmountUsd, currency as SupportedCurrency);
 
   const referenceCode = generateReferenceCode();
 
@@ -38,14 +44,14 @@ export async function POST(request: Request) {
     paymentMethod: "wise",
     paymentStatus: "awaiting_bank_transfer",
     referenceCode,
-    amountTotal: finalAmountUsd,
+    amountTotal: finalAmountInCurrency,
     currency,
     customerEmail,
   });
 
   await sendNotificationEmail({
     subject: `Wise bank transfer expected — ${referenceCode}`,
-    text: `A shopper chose bank transfer via Wise for ${finalAmountUsd} ${currency}. Watch for a transfer referencing ${referenceCode} and mark the order paid once received.`,
+    text: `A shopper chose bank transfer via Wise for ${finalAmountInCurrency.toFixed(2)} ${currency}. Watch for a transfer referencing ${referenceCode} and mark the order paid once received.`,
   });
 
   return NextResponse.json({ referenceCode, bankDetails: getWiseBankDetails() });
