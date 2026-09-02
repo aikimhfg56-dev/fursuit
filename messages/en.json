@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Home",
+    "commission": "Custom Commission",
+    "shop": "Shop",
+    "preorder": "Pre-Order",
+    "contact": "Contact"
+  },
+  "common": {
+    "language": "Language",
+    "currency": "Currency",
+    "color": "Color",
+    "comingSoon": "Coming soon"
+  },
+  "home": {
+    "title": "Bring Your Fursona to Life",
+    "subtitle": "Handcrafted fursuits, made to order and ready to ship, for fursuiters around the world.",
+    "ctaCommission": "Start a Custom Commission",
+    "ctaShop": "Browse Ready-Made Suits"
+  },
+  "commission": {
+    "title": "Custom Commission",
+    "description": "Design your one-of-a-kind fursuit from scratch, made to your measurements."
+  },
+  "shop": {
+    "title": "Ready-Made Fursuits",
+    "description": "Completed suits available to purchase and ship right away."
+  },
+  "preorder": {
+    "title": "Pre-Order",
+    "description": "Reserve a suit that's already designed but not yet made, ahead of production."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have a question? We'd love to hear from you."
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

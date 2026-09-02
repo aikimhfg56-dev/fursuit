@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "commission": "Maßanfertigung",
+    "shop": "Shop",
+    "preorder": "Vorbestellung",
+    "contact": "Kontakt"
+  },
+  "common": {
+    "language": "Sprache",
+    "currency": "Währung",
+    "color": "Farbe",
+    "comingSoon": "Demnächst verfügbar"
+  },
+  "home": {
+    "title": "Erwecke dein Fursona zum Leben",
+    "subtitle": "Handgefertigte Fursuits, individuell angefertigt oder sofort versandbereit, für Fursuiter auf der ganzen Welt.",
+    "ctaCommission": "Maßanfertigung starten",
+    "ctaShop": "Fertige Suits ansehen"
+  },
+  "commission": {
+    "title": "Maßanfertigung",
+    "description": "Gestalte deinen einzigartigen Fursuit von Grund auf, passgenau nach deinen Maßen."
+  },
+  "shop": {
+    "title": "Fertige Fursuits",
+    "description": "Fertiggestellte Suits, die sofort gekauft und versandt werden können."
+  },
+  "preorder": {
+    "title": "Vorbestellung",
+    "description": "Reserviere einen bereits designten, aber noch nicht gefertigten Suit vor Produktionsbeginn."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "description": "Hast du eine Frage? Wir freuen uns, von dir zu hören."
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten."
+  }
+}

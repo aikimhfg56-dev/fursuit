@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "commission": "Encargo a medida",
+    "shop": "Tienda",
+    "preorder": "Reserva",
+    "contact": "Contacto"
+  },
+  "common": {
+    "language": "Idioma",
+    "currency": "Moneda",
+    "color": "Color",
+    "comingSoon": "Próximamente"
+  },
+  "home": {
+    "title": "Dale vida a tu fursona",
+    "subtitle": "Fursuits artesanales, a medida o listos para enviar, para fursuiters de todo el mundo.",
+    "ctaCommission": "Iniciar un encargo a medida",
+    "ctaShop": "Ver trajes listos para enviar"
+  },
+  "commission": {
+    "title": "Encargo a medida",
+    "description": "Diseña tu fursuit único desde cero, hecho a tus medidas."
+  },
+  "shop": {
+    "title": "Fursuits listos",
+    "description": "Trajes ya terminados, disponibles para comprar y enviar de inmediato."
+  },
+  "preorder": {
+    "title": "Reserva",
+    "description": "Reserva un traje ya diseñado pero aún no fabricado, antes de que entre en producción."
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "description": "¿Tienes alguna pregunta? Nos encantaría saber de ti."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "commission": "オーダーメイド",
+    "shop": "ショップ",
+    "preorder": "予約商品",
+    "contact": "お問い合わせ"
+  },
+  "common": {
+    "language": "言語",
+    "currency": "通貨",
+    "color": "カラー",
+    "comingSoon": "近日公開"
+  },
+  "home": {
+    "title": "あなたのファースォナに命を吹き込む",
+    "subtitle": "受注生産から即発送の完成品まで、世界中のファースーターへ届ける手作りファースーツ。",
+    "ctaCommission": "オーダーメイドを始める",
+    "ctaShop": "完成品を見る"
+  },
+  "commission": {
+    "title": "オーダーメイド",
+    "description": "あなたのサイズにぴったり合わせた、世界に一つだけのファースーツをゼロからデザイン。"
+  },
+  "shop": {
+    "title": "完成品ファースーツ",
+    "description": "すでに完成しており、購入後すぐに発送できるスーツです。"
+  },
+  "preorder": {
+    "title": "予約商品",
+    "description": "デザインは完成しているものの、まだ製作前の商品を製作開始前に予約できます。"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "description": "ご質問はお気軽にお問い合わせください。"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

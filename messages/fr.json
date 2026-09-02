@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "commission": "Commande sur mesure",
+    "shop": "Boutique",
+    "preorder": "Précommande",
+    "contact": "Contact"
+  },
+  "common": {
+    "language": "Langue",
+    "currency": "Devise",
+    "color": "Couleur",
+    "comingSoon": "Bientôt disponible"
+  },
+  "home": {
+    "title": "Donnez vie à votre fursona",
+    "subtitle": "Des fursuits fabriqués à la main, sur mesure ou prêts à expédier, pour les fursuiters du monde entier.",
+    "ctaCommission": "Démarrer une commande sur mesure",
+    "ctaShop": "Voir les suits prêts à porter"
+  },
+  "commission": {
+    "title": "Commande sur mesure",
+    "description": "Concevez votre fursuit unique de A à Z, ajusté à vos mesures."
+  },
+  "shop": {
+    "title": "Fursuits prêts à porter",
+    "description": "Des suits déjà terminés, disponibles à l'achat et à l'expédition immédiate."
+  },
+  "preorder": {
+    "title": "Précommande",
+    "description": "Réservez un suit déjà conçu mais pas encore fabriqué, avant sa mise en production."
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Une question ? N'hésitez pas à nous écrire."
+  },
+  "footer": {
+    "rights": "Tous droits réservés."
+  }
+}
