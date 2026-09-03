@@ -5,8 +5,16 @@ import { isPaypalConfigured } from "@/lib/env";
 import { createPaypalOrder } from "@/lib/payments/paypal";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
 import { validatePromoCode } from "@/lib/promo/validatePromoCode";
+import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
+
+const rateLimiter = getRateLimiter("checkout-paypal", 10, "1 m");
 
 export async function POST(request: Request) {
+  const { success: withinLimit } = await rateLimiter.limit(getClientIp(request));
+  if (!withinLimit) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
+
   if (!isPaypalConfigured()) {
     return NextResponse.json(
       { error: "PayPal is not configured yet. Add PAYPAL_CLIENT_ID/SECRET to .env.local." },

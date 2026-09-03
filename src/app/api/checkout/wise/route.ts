@@ -7,8 +7,16 @@ import { generateReferenceCode } from "@/lib/orders/referenceCode";
 import { createOrder } from "@/lib/orders/createOrder";
 import { validatePromoCode } from "@/lib/promo/validatePromoCode";
 import { sendNotificationEmail } from "@/lib/email/resend";
+import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
+
+const rateLimiter = getRateLimiter("checkout-wise", 10, "1 m");
 
 export async function POST(request: Request) {
+  const { success: withinLimit } = await rateLimiter.limit(getClientIp(request));
+  if (!withinLimit) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
+
   if (!isWiseConfigured()) {
     return NextResponse.json(
       { error: "Wise bank details are not configured yet. Add WISE_* vars to .env.local." },

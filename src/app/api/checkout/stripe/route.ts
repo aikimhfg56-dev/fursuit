@@ -5,10 +5,18 @@ import { isStripeConfigured } from "@/lib/env";
 import { createStripeCheckoutSession, type StripePaymentMethod } from "@/lib/payments/stripe";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
 import { validatePromoCode } from "@/lib/promo/validatePromoCode";
+import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
 
 const STRIPE_METHODS: StripePaymentMethod[] = ["card", "alipay", "revolut_pay"];
+// Also guards against card-testing abuse (many rapid checkout attempts from one IP).
+const rateLimiter = getRateLimiter("checkout-stripe", 10, "1 m");
 
 export async function POST(request: Request) {
+  const { success: withinLimit } = await rateLimiter.limit(getClientIp(request));
+  if (!withinLimit) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
+
   if (!isStripeConfigured()) {
     return NextResponse.json(
       { error: "Stripe is not configured yet. Add STRIPE_SECRET_KEY to .env.local." },

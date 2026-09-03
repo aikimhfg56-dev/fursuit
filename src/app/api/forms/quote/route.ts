@@ -1,7 +1,15 @@
 import { NextResponse } from "next/server";
 import { sendNotificationEmail } from "@/lib/email/resend";
+import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
+
+const rateLimiter = getRateLimiter("forms-quote", 3, "10 m");
 
 export async function POST(request: Request) {
+  const { success } = await rateLimiter.limit(getClientIp(request));
+  if (!success) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
+
   const body = await request.json().catch(() => null);
 
   const name = typeof body?.name === "string" ? body.name.trim() : "";

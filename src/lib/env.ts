@@ -34,3 +34,8 @@ export function isFxRatesConfigured(): boolean {
 export function isClerkConfigured(): boolean {
   return Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && process.env.CLERK_SECRET_KEY);
 }
+
+/** Without this, public API routes fall back to a per-process in-memory rate limiter (see lib/rateLimit.ts). */
+export function isRateLimitConfigured(): boolean {
+  return Boolean(process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN);
+}
