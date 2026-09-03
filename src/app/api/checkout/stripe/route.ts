@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import type { SupportedCurrency } from "@/lib/currency/constants";
 import { convertFromUsd } from "@/lib/currency/rates";
 import { isStripeConfigured } from "@/lib/env";
-import { createStripeCheckoutSession, type StripePaymentMethod } from "@/lib/payments/stripe";
+import {
+  createStripeCheckoutSession,
+  filterEligibleStripeMethods,
+  type StripePaymentMethod,
+} from "@/lib/payments/stripe";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
 import { validatePromoCode } from "@/lib/promo/validatePromoCode";
 import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
@@ -56,13 +60,17 @@ export async function POST(request: Request) {
   const finalAmountInCurrency = await convertFromUsd(finalAmountUsd, currency.toUpperCase() as SupportedCurrency);
 
   const referenceCode = generateReferenceCode();
+  const eligibleMethods = filterEligibleStripeMethods(
+    paymentMethodsRequested.length > 0 ? paymentMethodsRequested : ["card"],
+    currency.toUpperCase() as SupportedCurrency,
+  );
 
   try {
     const session = await createStripeCheckoutSession({
       productName,
       unitAmount: finalAmountInCurrency,
       currency: currency as "usd" | "gbp" | "eur" | "aud" | "jpy",
-      paymentMethods: paymentMethodsRequested.length > 0 ? paymentMethodsRequested : ["card"],
+      paymentMethods: eligibleMethods,
       referenceCode,
       successUrl,
       cancelUrl,
