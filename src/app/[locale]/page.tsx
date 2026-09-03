@@ -1,5 +1,17 @@
+import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { buildAlternateLanguages } from "@/lib/seo/alternates";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("home");
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: { languages: buildAlternateLanguages("") },
+  };
+}
 
 export default function HomePage() {
   const t = useTranslations("home");

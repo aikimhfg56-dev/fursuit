@@ -1,10 +1,17 @@
+import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import LegalPageLayout from "@/components/legal/LegalPageLayout";
 import type { Locale } from "@/i18n/routing";
 import { formatPrice } from "@/lib/currency/format";
 import { getPreferredCurrency } from "@/lib/currency/preference";
 import { convertFromUsd } from "@/lib/currency/rates";
+import { buildAlternateLanguages } from "@/lib/seo/alternates";
 import { SHIPPING_REGIONS, getShippingRateUsd } from "@/lib/shipping/rates";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("legal.shipping");
+  return { title: t("title"), alternates: { languages: buildAlternateLanguages("/legal/shipping") } };
+}
 
 export default async function ShippingPolicyPage() {
   const locale = (await getLocale()) as Locale;

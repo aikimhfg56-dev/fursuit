@@ -5,9 +5,14 @@ import { notFound } from "next/navigation";
 import { Geist, Geist_Mono } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { isClerkConfigured } from "@/lib/env";
+import { getSiteUrl } from "@/lib/seo/site";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "../globals.css";
+
+const SITE_NAME = "Fursuit Studio";
+const SITE_DESCRIPTION =
+  "Handcrafted fursuits, made to order and ready to ship, for fursuiters around the world.";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,8 +25,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fursuit Studio",
-  description: "Handcrafted fursuits, made to order and ready to ship, for fursuiters around the world.",
+  metadataBase: new URL(getSiteUrl()),
+  title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
 };
 
 export function generateStaticParams() {

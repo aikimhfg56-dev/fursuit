@@ -1,5 +1,16 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import InquiryForm from "@/components/forms/InquiryForm";
+import { buildAlternateLanguages } from "@/lib/seo/alternates";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("contact");
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: { languages: buildAlternateLanguages("/contact") },
+  };
+}
 
 export default async function ContactPage() {
   const t = await getTranslations("contact");

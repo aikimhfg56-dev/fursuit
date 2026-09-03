@@ -1,9 +1,20 @@
+import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import ProcessSteps from "@/components/commission/ProcessSteps";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { pickLocaleValue } from "@/lib/i18n/pickLocaleValue";
+import { buildAlternateLanguages } from "@/lib/seo/alternates";
 import { getCommissionPage } from "@/lib/sanity/queries";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("commission");
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: { languages: buildAlternateLanguages("/commission") },
+  };
+}
 
 export default async function CommissionPage() {
   const locale = (await getLocale()) as Locale;

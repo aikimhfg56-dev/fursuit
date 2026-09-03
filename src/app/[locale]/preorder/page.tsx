@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import FilterFacets from "@/components/product/FilterFacets";
 import ProductGrid from "@/components/product/ProductGrid";
@@ -5,6 +6,16 @@ import PagePlaceholder from "@/components/shared/PagePlaceholder";
 import TrustBadges from "@/components/shared/TrustBadges";
 import { isSanityConfigured } from "@/lib/env";
 import { listCategories, listPreorderProducts, listStyleTags } from "@/lib/sanity/queries";
+import { buildAlternateLanguages } from "@/lib/seo/alternates";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("preorder");
+  return {
+    title: t("title"),
+    description: t("description"),
+    alternates: { languages: buildAlternateLanguages("/preorder") },
+  };
+}
 
 type PreorderPageProps = {
   searchParams: Promise<{ category?: string; style?: string }>;
