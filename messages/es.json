@@ -116,7 +116,28 @@
     }
   },
   "footer": {
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "brandHeading": "Fursuit Studio",
+    "helpHeading": "Ayuda",
+    "legalHeading": "Legal",
+    "nav": {
+      "faq": "Preguntas frecuentes",
+      "fursuitCare": "Cuidado del traje",
+      "about": "Sobre nosotros",
+      "contact": "Contacto"
+    }
+  },
+  "about": {
+    "title": "Sobre Fursuit Studio",
+    "content": "Fursuit Studio es un pequeño taller de encargos que fabrica trajes a medida, listos para llevar y en reserva para clientes de todo el mundo. Empezamos haciendo trajes para amigos del fandom y nos convertimos en un taller a tiempo completo sin perder lo que más nos importaba: una fabricación cuidada, una comunicación honesta y personajes que realmente se sienten como quienes los llevan.\n\nCada encargo a medida se fabrica a mano según tus indicaciones, a partir de las referencias y medidas que nos proporcionas. Los artículos listos para llevar y las reservas siguen el mismo proceso, solo que según nuestro propio calendario en lugar del tuyo — así puedes conseguir un traje terminado sin la espera de una fabricación totalmente a medida.\n\nEnviamos a todo el mundo y damos soporte a clientes en Estados Unidos, Reino Unido, la UE y Australia, con precios mostrados en tu moneda local y atención en varios idiomas. Si tienes dudas antes de encargar, nuestra página de Contacto es la forma más rápida de contactarnos."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "content": "Respuestas a las preguntas que más recibimos. Si no encuentras lo que buscas, contáctanos y te ayudaremos directamente.\n\n## ¿Cómo funciona el proceso de encargo a medida?\nComienza con una solicitud de presupuesto describiendo tu personaje, con imágenes de referencia y cualquier detalle sobre cuernos, cola o preferencias de diseño. La revisaremos y te responderemos con el precio y un plazo estimado. Una vez aceptes el presupuesto y pagues el depósito, comenzamos a trabajar.\n\n## ¿Qué métodos de pago aceptáis?\nAceptamos tarjetas de crédito y débito, Alipay y Revolut Pay a través de Stripe, así como PayPal y transferencia bancaria mediante Wise. Los precios se muestran en la moneda que elijas, y el importe cobrado se confirma al finalizar la compra o en tu factura.\n\n## ¿Cuánto tarda un encargo a medida?\nLa mayoría de los encargos a medida tardan entre 3 y 6 meses desde el inicio del trabajo hasta el envío, según la complejidad y nuestra cola actual. Confirmaremos una estimación más precisa junto con tu presupuesto. Los artículos listos se envían rápidamente, y las reservas dentro del plazo indicado en la ficha del producto.\n\n## ¿Puedo hacer cambios después de realizar el pedido?\nLos cambios de diseño suelen ser posibles antes de que comience la producción, a veces con un coste adicional según la fase del trabajo. Los cambios importantes solicitados después de iniciada la producción pueden requerir cancelar y reiniciar el pedido — consulta nuestra política de devoluciones y reembolsos para más detalles.\n\n## ¿Enviáis a nivel internacional, y quién paga la aduana?\nSí, enviamos a todo el mundo por mensajería. Los pedidos internacionales pueden estar sujetos a aranceles, impuestos de importación o cargos de gestión aplicados por tu país al llegar — estos cargos corren a cargo del destinatario y no están incluidos en el total del pedido.\n\n## ¿Necesito una cuenta para hacer un pedido?\nSí. Crear una cuenta nos permite recopilar tus datos de envío de forma segura y llevar un registro de tu historial de pedidos. Para registrarte solo necesitas un apodo, correo electrónico y contraseña — solo pedimos tu nombre completo y dirección al realizar un pedido o solicitar un presupuesto.\n\n## ¿Qué hago si algo va mal con mi pedido?\nContáctanos con la referencia de tu pedido y te ayudaremos a solucionarlo. Los artículos listos pueden devolverse dentro de los 14 días posteriores a la entrega si no se han usado y están en su estado original, y todo encargo está cubierto por nuestra garantía frente a defectos de fabricación — consulta nuestra política de devoluciones y reembolsos y nuestros términos y condiciones para más detalles."
+  },
+  "fursuitCare": {
+    "title": "Guía de cuidado del traje",
+    "content": "Un poco de cuidado ayuda mucho a que tu traje se vea y se sienta genial durante años. Así es como recomendamos cuidarlo.\n\n## Uso diario\nEvita comer o beber mientras llevas el traje, y haz descansos en un lugar fresco y con sombra durante sesiones largas para evitar el sobrecalentamiento y el exceso de sudor. Mantén tu traje alejado de llamas abiertas, superficies calientes y bordes afilados que puedan enganchar el pelo o dañar la base.\n\n## Limpieza\nLimpia manchas pequeñas puntualmente con un paño húmedo y un poco de detergente suave apto para pelo sintético, y deja que la zona se seque al aire por completo antes de guardar o volver a usar el traje. Evita el lavado o secado a máquina, y evita sumergir en agua las piezas de espuma o resina, que pueden deformarse o perder su forma.\n\n## Almacenamiento\nGuarda tu traje en un lugar fresco, seco y alejado de la luz solar directa, idealmente sobre una cabeza de peluca o una percha para que el pelo y la forma se mantengan con el tiempo. Evita las bolsas de plástico selladas para el almacenamiento a largo plazo, ya que la humedad atrapada puede provocar moho — una funda transpirable es una buena opción.\n\n## Reparaciones\nLos problemas menores, como una costura suelta o un hilo suelto, son más fáciles de solucionar cuanto antes, antes de que empeoren. Si tu traje fue fabricado por nosotros y presenta un defecto debido a la fabricación, contáctanos — está cubierto por nuestra garantía. Para todo lo demás, con gusto te presupuestamos una reparación."
   },
   "checkout": {
     "title": "Elige cómo pagar",

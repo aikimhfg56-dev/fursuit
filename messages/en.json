@@ -116,7 +116,28 @@
     }
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "brandHeading": "Fursuit Studio",
+    "helpHeading": "Help",
+    "legalHeading": "Legal",
+    "nav": {
+      "faq": "FAQ",
+      "fursuitCare": "Fursuit Care",
+      "about": "About",
+      "contact": "Contact"
+    }
+  },
+  "about": {
+    "title": "About Fursuit Studio",
+    "content": "Fursuit Studio is a small commission-based studio building custom, ready-made, and pre-order fursuits for customers worldwide. We started out making suits for friends in the fandom, and grew into a full-time workshop without losing the parts that mattered most to us: careful construction, honest communication, and characters that actually feel like the people wearing them.\n\nEvery custom commission is built to order by hand, using the reference materials and measurements you provide. Ready-made and pre-order pieces go through the same process, just on our own schedule rather than yours — so you can get a finished suit without the wait of a full custom build.\n\nWe ship worldwide and support customers across the US, UK, EU, and Australia, with pricing shown in your local currency and support in several languages. If you have questions before ordering, our Contact page is the fastest way to reach us."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "content": "Answers to the questions we hear most often. If you don't see what you're looking for, contact us and we'll help directly.\n\n## How does the commission process work?\nStart with a quote request describing your character, including reference images and any details about horns, tails, or design preferences. We'll review it and follow up with pricing and an estimated timeline. Once you accept the quote and pay the deposit, we begin work.\n\n## What payment methods do you accept?\nWe accept credit and debit cards, Alipay, and Revolut Pay through Stripe, as well as PayPal and bank transfer via Wise. Prices are shown in your selected currency, and the amount charged is confirmed at checkout or on your invoice.\n\n## How long does a custom commission take?\nMost custom commissions take about 3–6 months from when work begins to shipping, depending on complexity and our current queue. We'll confirm a more specific estimate with your quote. Ready-made items ship promptly, and pre-order items ship within the window shown on the product page.\n\n## Can I make changes after placing my order?\nDesign changes are usually possible before production begins, sometimes at an additional cost depending on the stage of work. Significant changes requested after production has started may require cancelling and restarting the order — see our Returns & Refunds policy for details.\n\n## Do you ship internationally, and who pays customs?\nYes, we ship worldwide by courier. International orders may be subject to customs duties, import taxes, or handling fees charged by your country on arrival — these are the responsibility of the recipient and aren't included in your order total.\n\n## Do I need an account to place an order?\nYes. Creating an account lets us securely collect your shipping details and keep a record of your order history. You can sign up with just a nickname, email, and password — we only ask for your full name and address when you place an order or request a quote.\n\n## What if something is wrong with my order?\nContact us with your order reference and we'll help make it right. Ready-made items can be returned within 14 days of delivery if unworn and in original condition, and any suit is covered by our warranty against manufacturing faults — see our Returns & Refunds and Terms of Service pages for details."
+  },
+  "fursuitCare": {
+    "title": "Fursuit Care Guide",
+    "content": "A little care goes a long way toward keeping your fursuit looking and feeling great for years. Here's how we recommend looking after it.\n\n## Everyday Wear\nAvoid eating or drinking in your fursuit, and take breaks in a cool, shaded area during long wear sessions to avoid overheating and excess sweat. Keep your suit away from open flames, hot surfaces, and sharp edges that could snag the fur or damage the base.\n\n## Cleaning\nSpot-clean small marks with a damp cloth and a small amount of mild, fur-safe detergent, then let the area air dry completely before storing or wearing the suit again. Avoid machine washing or drying, and avoid soaking foam or resin parts, which can warp or lose their shape.\n\n## Storage\nStore your suit somewhere cool, dry, and out of direct sunlight, ideally on a wig head or hanger so the fur and shape hold up over time. Avoid sealed plastic bags for long-term storage, since trapped moisture can lead to mildew — a breathable garment bag works well.\n\n## Repairs\nMinor issues like loose seams or a stray thread are easiest to fix early, before they get worse. If your suit was made by us and develops a fault due to how it was constructed, contact us — it's covered under our warranty. For everything else, we're happy to quote a repair."
   },
   "checkout": {
     "title": "Choose how to pay",

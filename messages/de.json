@@ -116,7 +116,28 @@
     }
   },
   "footer": {
-    "rights": "Alle Rechte vorbehalten."
+    "rights": "Alle Rechte vorbehalten.",
+    "brandHeading": "Fursuit Studio",
+    "helpHeading": "Hilfe",
+    "legalHeading": "Rechtliches",
+    "nav": {
+      "faq": "Häufige Fragen",
+      "fursuitCare": "Pflegehinweise",
+      "about": "Über uns",
+      "contact": "Kontakt"
+    }
+  },
+  "about": {
+    "title": "Über Fursuit Studio",
+    "content": "Fursuit Studio ist ein kleines, auftragsbasiertes Studio, das Maßanfertigungen, fertige Artikel und Vorbestellungen für Kund:innen weltweit herstellt. Angefangen haben wir mit Anfertigungen für Freunde aus dem Fandom und sind zu einer Vollzeit-Werkstatt gewachsen, ohne dabei zu verlieren, was uns am wichtigsten war: sorgfältige Verarbeitung, ehrliche Kommunikation und Charaktere, die sich für ihre Träger:innen wirklich richtig anfühlen.\n\nJede Maßanfertigung wird von Hand nach deinen Vorgaben angefertigt, auf Basis der Referenzmaterialien und Maße, die du uns lieferst. Fertige Artikel und Vorbestellungen durchlaufen denselben Prozess, nur nach unserem Zeitplan statt deinem — so bekommst du eine fertige Anfertigung ohne die Wartezeit einer kompletten Maßanfertigung.\n\nWir versenden weltweit und betreuen Kund:innen in den USA, Großbritannien, der EU und Australien, mit Preisen in deiner lokalen Währung und Support in mehreren Sprachen. Bei Fragen vor deiner Bestellung erreichst du uns am schnellsten über unsere Kontaktseite."
+  },
+  "faq": {
+    "title": "Häufige Fragen",
+    "content": "Antworten auf die Fragen, die uns am häufigsten erreichen. Solltest du hier nicht finden, wonach du suchst, kontaktiere uns direkt.\n\n## Wie läuft der Auftragsprozess ab?\nBeginne mit einer Angebotsanfrage, in der du deinen Charakter beschreibst, inklusive Referenzbildern und Angaben zu Hörnern, Schwanz oder sonstigen Designwünschen. Wir prüfen deine Anfrage und melden uns mit Preis und geschätztem Zeitrahmen zurück. Sobald du das Angebot annimmst und die Anzahlung leistest, beginnen wir mit der Arbeit.\n\n## Welche Zahlungsmethoden akzeptiert ihr?\nWir akzeptieren Kredit- und Debitkarten, Alipay und Revolut Pay über Stripe sowie PayPal und Banküberweisung über Wise. Preise werden in deiner gewählten Währung angezeigt, der tatsächlich abgerechnete Betrag wird beim Checkout oder auf deiner Rechnung bestätigt.\n\n## Wie lange dauert eine Maßanfertigung?\nDie meisten Maßanfertigungen dauern je nach Komplexität und aktueller Auslastung etwa 3–6 Monate ab Arbeitsbeginn bis zum Versand. Eine genauere Schätzung bestätigen wir mit deinem Angebot. Fertige Artikel werden zügig versendet, Vorbestellungen innerhalb des auf der Produktseite genannten Zeitfensters.\n\n## Kann ich nach der Bestellung noch Änderungen vornehmen?\nDesign-Änderungen sind meist vor Produktionsbeginn möglich, teils gegen Aufpreis je nach Arbeitsstand. Größere Änderungswünsche nach Produktionsbeginn erfordern unter Umständen eine Stornierung und Neubestellung — Details dazu in unserer Rückgabe- & Erstattungsrichtlinie.\n\n## Versendet ihr international, und wer trägt den Zoll?\nJa, wir versenden weltweit per Kurier. Bei internationalen Bestellungen können bei Ankunft Zollgebühren, Einfuhrsteuern oder Bearbeitungsgebühren deines Landes anfallen — diese trägt der Empfänger und sind nicht in der Bestellsumme enthalten.\n\n## Brauche ich ein Konto, um zu bestellen?\nJa. Mit einem Konto können wir deine Lieferdaten sicher erfassen und deinen Bestellverlauf festhalten. Für die Registrierung genügen Spitzname, E-Mail-Adresse und Passwort — deinen vollständigen Namen und deine Adresse fragen wir erst bei einer Bestellung oder Angebotsanfrage ab.\n\n## Was mache ich, wenn mit meiner Bestellung etwas nicht stimmt?\nKontaktiere uns mit deiner Bestellreferenz, wir kümmern uns darum. Fertige Artikel können innerhalb von 14 Tagen nach Lieferung zurückgegeben werden, sofern ungetragen und im Originalzustand, und jede Anfertigung ist durch unsere Garantie gegen Fertigungsmängel abgedeckt — Details in unserer Rückgabe- & Erstattungsrichtlinie sowie den AGB."
+  },
+  "fursuitCare": {
+    "title": "Pflegehinweise für deinen Fursuit",
+    "content": "Ein wenig Pflege trägt viel dazu bei, dass dein Fursuit über Jahre hinweg gut aussieht und sich gut anfühlt. So empfehlen wir, ihn zu pflegen.\n\n## Im Alltag tragen\nVermeide es, im Fursuit zu essen oder zu trinken, und mache bei längeren Trageeinheiten Pausen an einem kühlen, schattigen Ort, um Überhitzung und starkes Schwitzen zu vermeiden. Halte deinen Suit von offenen Flammen, heißen Oberflächen und scharfen Kanten fern, die das Fell verhaken oder die Basis beschädigen könnten.\n\n## Reinigung\nBehandle kleine Flecken punktuell mit einem feuchten Tuch und etwas mildem, fellverträglichem Waschmittel, und lasse die Stelle vollständig an der Luft trocknen, bevor du den Suit wieder verstaust oder trägst. Vermeide Maschinenwäsche oder -trocknung, und tauche Schaum- oder Harzteile nicht in Wasser, da sie sich verziehen oder ihre Form verlieren können.\n\n## Aufbewahrung\nBewahre deinen Suit an einem kühlen, trockenen Ort ohne direkte Sonneneinstrahlung auf, idealerweise auf einem Perückenkopf oder Kleiderbügel, damit Fell und Form erhalten bleiben. Vermeide luftdicht verschlossene Plastiktüten für die Langzeitlagerung, da eingeschlossene Feuchtigkeit zu Schimmel führen kann — ein atmungsaktiver Kleidersack eignet sich gut.\n\n## Reparaturen\nKleinere Probleme wie lose Nähte oder einen losen Faden behebt man am besten frühzeitig, bevor sie schlimmer werden. Wurde dein Suit von uns angefertigt und weist einen fertigungsbedingten Mangel auf, kontaktiere uns — das ist durch unsere Garantie abgedeckt. Für alles andere erstellen wir dir gerne ein Reparaturangebot."
   },
   "checkout": {
     "title": "Zahlungsart wählen",
