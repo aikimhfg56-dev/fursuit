@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import type { SupportedCurrency } from "@/lib/currency/constants";
 import PaymentMethodSelector, { type PaymentMethodId } from "./PaymentMethodSelector";
 import PromoCodeInput, { type PromoStatus } from "./PromoCodeInput";
@@ -29,11 +30,13 @@ export default function CheckoutPanel({
   configuredMethods,
 }: CheckoutPanelProps) {
   const t = useTranslations("checkout");
+  const tLegal = useTranslations("legal");
   const locale = useLocale();
   const [method, setMethod] = useState<PaymentMethodId>(configuredMethods[0] ?? "card");
   const [promoInput, setPromoInput] = useState("");
   const [appliedPromo, setAppliedPromo] = useState<{ code: string; discountAmount: number } | null>(null);
   const [promoStatus, setPromoStatus] = useState<PromoStatus>("idle");
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [wiseResult, setWiseResult] = useState<{
@@ -78,6 +81,8 @@ export default function CheckoutPanel({
   }
 
   async function handlePay() {
+    if (!agreedToTerms) return;
+
     setSubmitting(true);
     setErrorMessage(null);
 
@@ -193,12 +198,30 @@ export default function CheckoutPanel({
         <WiseBankTransferPanel bankDetails={wiseResult.bankDetails} referenceCode={wiseResult.referenceCode} />
       )}
 
+      <label className="flex items-start gap-2 text-sm">
+        <input
+          type="checkbox"
+          checked={agreedToTerms}
+          onChange={(event) => setAgreedToTerms(event.target.checked)}
+          className="mt-0.5 h-4 w-4 shrink-0"
+        />
+        <span>
+          {tLegal.rich("termsAgreementLabel", {
+            termsLink: (chunks) => (
+              <Link href="/legal/terms" target="_blank" className="underline">
+                {chunks}
+              </Link>
+            ),
+          })}
+        </span>
+      </label>
+
       {errorMessage && <p className="text-sm text-red-600 dark:text-red-400">{errorMessage}</p>}
 
       <button
         type="button"
         onClick={handlePay}
-        disabled={submitting || !configuredMethods.includes(method)}
+        disabled={submitting || !agreedToTerms || !configuredMethods.includes(method)}
         className="w-full rounded-full bg-black px-6 py-3 text-sm font-medium text-white disabled:opacity-40 dark:bg-white dark:text-black"
       >
         {t("payButton")}

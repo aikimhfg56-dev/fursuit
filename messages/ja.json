@@ -232,6 +232,7 @@
   },
   "legal": {
     "disclaimer": "このページはあくまで参考用のテンプレートです。公開前に必ず専門の弁護士による確認を受けてください。",
+    "termsAgreementLabel": "<termsLink>利用規約</termsLink>に同意します",
     "footerNav": {
       "privacy": "プライバシーポリシー",
       "terms": "利用規約",

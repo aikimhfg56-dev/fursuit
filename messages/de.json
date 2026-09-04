@@ -232,6 +232,7 @@
   },
   "legal": {
     "disclaimer": "Diese Seite ist nur eine Vorlage — lass sie vor dem Launch von einer qualifizierten Rechtsberatung prüfen.",
+    "termsAgreementLabel": "Ich stimme den <termsLink>Allgemeinen Geschäftsbedingungen</termsLink> zu",
     "footerNav": {
       "privacy": "Datenschutz",
       "terms": "AGB",

@@ -232,6 +232,7 @@
   },
   "legal": {
     "disclaimer": "Esta página es una plantilla de referencia — haz que un profesional legal cualificado la revise antes del lanzamiento.",
+    "termsAgreementLabel": "Acepto los <termsLink>términos y condiciones</termsLink>",
     "footerNav": {
       "privacy": "Política de privacidad",
       "terms": "Términos y condiciones",

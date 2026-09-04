@@ -232,6 +232,7 @@
   },
   "legal": {
     "disclaimer": "Cette page est un modèle fourni à titre indicatif — faites-la relire par un professionnel du droit avant le lancement.",
+    "termsAgreementLabel": "J'accepte les <termsLink>conditions générales</termsLink>",
     "footerNav": {
       "privacy": "Politique de confidentialité",
       "terms": "Conditions générales",

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import {
   MAX_REFERENCE_FILES,
   MAX_REFERENCE_FILE_SIZE_BYTES,
@@ -17,6 +18,7 @@ type SubmitStatus = "idle" | "submitting" | "success" | "error" | "files_too_lar
 
 export default function InquiryForm({ variant }: InquiryFormProps) {
   const t = useTranslations(variant === "commission" ? "commission.quote.form" : "contact.form");
+  const tLegal = useTranslations("legal");
   const [status, setStatus] = useState<SubmitStatus>("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -93,6 +95,18 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
               className="w-full rounded border border-black/15 bg-transparent px-3 py-2 text-sm dark:border-white/20"
             />
             <span className="mt-1 block text-xs text-black/50 dark:text-white/50">{t("referenceFilesHint")}</span>
+          </label>
+          <label className="flex items-start gap-2 text-sm">
+            <input type="checkbox" name="agreedToTerms" required className="mt-0.5 h-4 w-4 shrink-0" />
+            <span>
+              {tLegal.rich("termsAgreementLabel", {
+                termsLink: (chunks) => (
+                  <Link href="/legal/terms" target="_blank" className="underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </span>
           </label>
         </>
       ) : (

@@ -232,6 +232,7 @@
   },
   "legal": {
     "disclaimer": "This page is a template for reference only — have it reviewed by a qualified lawyer before launch.",
+    "termsAgreementLabel": "I agree to the <termsLink>Terms of Service</termsLink>",
     "footerNav": {
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
