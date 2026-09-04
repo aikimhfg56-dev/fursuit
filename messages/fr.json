@@ -125,6 +125,11 @@
       "fursuitCare": "Entretien du costume",
       "about": "À propos",
       "contact": "Contact"
+    },
+    "social": {
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "email": "Nous écrire"
     }
   },
   "about": {

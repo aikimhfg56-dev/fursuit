@@ -125,6 +125,11 @@
       "fursuitCare": "Cuidado del traje",
       "about": "Sobre nosotros",
       "contact": "Contacto"
+    },
+    "social": {
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "email": "Escríbenos"
     }
   },
   "about": {

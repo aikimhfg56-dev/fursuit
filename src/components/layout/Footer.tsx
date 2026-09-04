@@ -1,5 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { SOCIAL_LINKS } from "@/lib/social";
+import { InstagramIcon, MailIcon, TwitterIcon } from "./SocialIcons";
 
 const BRAND_LINKS = [
   { href: "/", key: "home" },
@@ -23,6 +25,10 @@ const LEGAL_LINKS = [
   { href: "/legal/cookies", key: "cookies" },
 ] as const;
 
+const ICON_CLASS = "h-4 w-4";
+const ICON_LINK_CLASS =
+  "flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/70 transition hover:border-black/40 hover:text-black dark:border-white/15 dark:text-white/70 dark:hover:border-white/40 dark:hover:text-white";
+
 export default function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
@@ -31,6 +37,29 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-black/10 dark:border-white/10">
+      <div className="mx-auto flex max-w-6xl justify-center gap-3 px-6 pt-10">
+        <a
+          href={SOCIAL_LINKS.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t("social.twitter")}
+          className={ICON_LINK_CLASS}
+        >
+          <TwitterIcon className={ICON_CLASS} />
+        </a>
+        <a
+          href={SOCIAL_LINKS.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t("social.instagram")}
+          className={ICON_LINK_CLASS}
+        >
+          <InstagramIcon className={ICON_CLASS} />
+        </a>
+        <Link href="/contact" aria-label={t("social.email")} className={ICON_LINK_CLASS}>
+          <MailIcon className={ICON_CLASS} />
+        </Link>
+      </div>
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 text-sm text-black/60 sm:grid-cols-3 dark:text-white/60">
         <div>
           <h2 className="font-semibold text-black dark:text-white">{t("brandHeading")}</h2>

@@ -125,6 +125,11 @@
       "fursuitCare": "Fursuit Care",
       "about": "About",
       "contact": "Contact"
+    },
+    "social": {
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "email": "Email us"
     }
   },
   "about": {

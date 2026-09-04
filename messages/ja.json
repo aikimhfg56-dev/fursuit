@@ -125,6 +125,11 @@
       "fursuitCare": "お手入れ方法",
       "about": "当店について",
       "contact": "お問い合わせ"
+    },
+    "social": {
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "email": "メールでのお問い合わせ"
     }
   },
   "about": {

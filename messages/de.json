@@ -125,6 +125,11 @@
       "fursuitCare": "Pflegehinweise",
       "about": "Über uns",
       "contact": "Kontakt"
+    },
+    "social": {
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "email": "E-Mail an uns"
     }
   },
   "about": {
