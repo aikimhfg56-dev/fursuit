@@ -20,12 +20,12 @@ export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-24 text-center">
       <FadeIn onMount>
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="text-4xl font-bold tracking-tight text-accent sm:text-5xl">
           {t("title")}
         </h1>
       </FadeIn>
       <FadeIn onMount delay={0.15}>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-black/70 dark:text-white/70">
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-foreground/80">
           {t("subtitle")}
         </p>
       </FadeIn>
@@ -33,13 +33,13 @@ export default function HomePage() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/commission"
-            className="rounded-full bg-black px-6 py-3 text-sm font-medium text-white dark:bg-white dark:text-black"
+            className="rounded-2xl bg-cta-background px-6 py-3 text-sm font-medium text-cta-foreground transition hover:opacity-90"
           >
             {t("ctaCommission")}
           </Link>
           <Link
             href="/shop"
-            className="rounded-full border border-black/20 px-6 py-3 text-sm font-medium dark:border-white/20"
+            className="rounded-2xl border border-border/35 px-6 py-3 text-sm font-medium text-foreground transition hover:border-border/60"
           >
             {t("ctaShop")}
           </Link>

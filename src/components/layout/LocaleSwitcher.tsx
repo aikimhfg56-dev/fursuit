@@ -18,7 +18,7 @@ export default function LocaleSwitcher() {
         onChange={(event) =>
           router.replace(pathname, { locale: event.target.value as Locale })
         }
-        className="rounded border border-black/15 bg-transparent px-2 py-1 text-sm dark:border-white/20"
+        className="rounded border border-border/40 bg-transparent px-2 py-1 text-sm"
       >
         {locales.map((value) => (
           <option key={value} value={value}>

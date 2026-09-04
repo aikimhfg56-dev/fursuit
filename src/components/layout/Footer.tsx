@@ -27,7 +27,7 @@ const LEGAL_LINKS = [
 
 const ICON_CLASS = "h-4 w-4";
 const ICON_LINK_CLASS =
-  "flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/70 transition hover:border-black/40 hover:text-black dark:border-white/15 dark:text-white/70 dark:hover:border-white/40 dark:hover:text-white";
+  "flex h-9 w-9 items-center justify-center rounded-full bg-cta-background text-cta-foreground transition hover:opacity-80";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -36,7 +36,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-black/10 dark:border-white/10">
+    <footer className="border-t border-border/15 bg-background">
       <div className="mx-auto flex max-w-6xl justify-center gap-3 px-6 pt-10">
         <a
           href={SOCIAL_LINKS.twitter}
@@ -60,9 +60,9 @@ export default function Footer() {
           <MailIcon className={ICON_CLASS} />
         </Link>
       </div>
-      <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 text-sm text-black/60 sm:grid-cols-3 dark:text-white/60">
+      <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 text-sm text-foreground/70 sm:grid-cols-3">
         <div>
-          <h2 className="font-semibold text-black dark:text-white">{t("brandHeading")}</h2>
+          <h2 className="font-semibold text-accent">{t("brandHeading")}</h2>
           <nav className="mt-3 flex flex-col gap-2">
             {BRAND_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="hover:underline">
@@ -72,7 +72,7 @@ export default function Footer() {
           </nav>
         </div>
         <div>
-          <h2 className="font-semibold text-black dark:text-white">{t("helpHeading")}</h2>
+          <h2 className="font-semibold text-accent">{t("helpHeading")}</h2>
           <nav className="mt-3 flex flex-col gap-2">
             {HELP_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="hover:underline">
@@ -82,7 +82,7 @@ export default function Footer() {
           </nav>
         </div>
         <div>
-          <h2 className="font-semibold text-black dark:text-white">{t("legalHeading")}</h2>
+          <h2 className="font-semibold text-accent">{t("legalHeading")}</h2>
           <nav className="mt-3 flex flex-col gap-2">
             {LEGAL_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="hover:underline">
@@ -92,7 +92,7 @@ export default function Footer() {
           </nav>
         </div>
       </div>
-      <div className="border-t border-black/10 px-6 py-6 text-sm text-black/60 dark:border-white/10 dark:text-white/60">
+      <div className="border-t border-border/15 px-6 py-6 text-sm text-foreground/70">
         <p className="mx-auto max-w-6xl">
           © {year} Fursuit Studio. {t("rights")}
         </p>

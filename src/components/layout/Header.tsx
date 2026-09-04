@@ -13,9 +13,9 @@ export default async function Header() {
   const currency = await getPreferredCurrency(locale);
 
   return (
-    <header className="border-b border-black/10 dark:border-white/10">
+    <header className="border-b border-border/15 bg-background">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-4">
-        <Link href="/" className="text-lg font-semibold tracking-tight">
+        <Link href="/" className="text-lg font-semibold tracking-tight text-accent">
           Fursuit Studio
         </Link>
         <nav className="flex flex-wrap items-center gap-6 text-sm">

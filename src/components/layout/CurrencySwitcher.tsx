@@ -23,7 +23,7 @@ export default function CurrencySwitcher({ currentCurrency }: CurrencySwitcherPr
       <select
         value={currentCurrency}
         onChange={handleChange}
-        className="rounded border border-black/15 bg-transparent px-2 py-1 text-sm dark:border-white/20"
+        className="rounded border border-border/40 bg-transparent px-2 py-1 text-sm"
       >
         {SUPPORTED_CURRENCIES.map((currency) => (
           <option key={currency} value={currency}>
