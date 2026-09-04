@@ -6,8 +6,13 @@ export const structure: StructureResolver = (S) =>
     .title("Content")
     .items([
       S.listItem()
+        .title("Home page")
+        .child(S.document().schemaType("homePage").documentId("homePage")),
+      S.listItem()
         .title("Commission page")
         .child(S.document().schemaType("commissionPage").documentId("commissionPage")),
       S.divider(),
-      ...S.documentTypeListItems().filter((item) => item.getId() !== "commissionPage"),
+      ...S.documentTypeListItems().filter(
+        (item) => item.getId() !== "commissionPage" && item.getId() !== "homePage",
+      ),
     ]);

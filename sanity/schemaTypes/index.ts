@@ -5,6 +5,7 @@ import styleTag from "./styleTag";
 import readyMadeProduct from "./readyMadeProduct";
 import preorderProduct from "./preorderProduct";
 import commissionPage from "./commissionPage";
+import homePage from "./homePage";
 import promoCode from "./promoCode";
 import order from "./order";
 
@@ -18,6 +19,7 @@ export const schemaTypes = [
   readyMadeProduct,
   preorderProduct,
   commissionPage,
+  homePage,
   promoCode,
   order,
 ];
