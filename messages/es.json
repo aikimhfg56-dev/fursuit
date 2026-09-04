@@ -77,6 +77,10 @@
       "form": {
         "hasHorns": "Tiene cuernos",
         "hasTail": "Tiene cola",
+        "twitterId": "Usuario de Twitter/X (opcional)",
+        "twitterIdPlaceholder": "@tuusuario",
+        "instagramId": "Usuario de Instagram (opcional)",
+        "instagramIdPlaceholder": "@tuusuario",
         "designNotes": "Preferencias de diseño del traje",
         "designNotesPlaceholder": "Colores, materiales, estilo y otros detalles de diseño...",
         "referenceFiles": "Archivos de referencia (opcional)",

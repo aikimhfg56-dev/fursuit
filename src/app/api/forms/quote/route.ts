@@ -48,6 +48,8 @@ export async function POST(request: Request) {
 
   const hasHorns = formData.get("hasHorns") === "on";
   const hasTail = formData.get("hasTail") === "on";
+  const twitterId = String(formData.get("twitterId") ?? "").trim();
+  const instagramId = String(formData.get("instagramId") ?? "").trim();
 
   const files = formData.getAll("referenceFiles").filter((value): value is File => value instanceof File && value.size > 0);
   const totalSize = files.reduce((sum, file) => sum + file.size, 0);
@@ -75,6 +77,8 @@ export async function POST(request: Request) {
     `Address: ${[address.line1, address.line2, address.city, address.postalCode, address.country].filter(Boolean).join(", ")}`,
     `Horns: ${hasHorns ? "Yes" : "No"}`,
     `Tail: ${hasTail ? "Yes" : "No"}`,
+    `Twitter: ${twitterId || "-"}`,
+    `Instagram: ${instagramId || "-"}`,
     `Reference files attached: ${files.length}`,
     "",
     "Design notes:",

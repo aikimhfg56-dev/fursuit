@@ -77,6 +77,10 @@
       "form": {
         "hasHorns": "ツノがある",
         "hasTail": "しっぽがある",
+        "twitterId": "Twitter(X)のID(任意)",
+        "twitterIdPlaceholder": "@あなたのID",
+        "instagramId": "InstagramのID(任意)",
+        "instagramIdPlaceholder": "@あなたのID",
         "designNotes": "着ぐるみのデザインに関するご希望",
         "designNotesPlaceholder": "カラー・素材・スタイルなど、デザインに関するご希望をお聞かせください",
         "referenceFiles": "参考ファイル(任意)",

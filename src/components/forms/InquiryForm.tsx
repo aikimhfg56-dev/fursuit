@@ -73,6 +73,10 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
             <Checkbox label={t("hasHorns")} name="hasHorns" />
             <Checkbox label={t("hasTail")} name="hasTail" />
           </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Field label={t("twitterId")} name="twitterId" placeholder={t("twitterIdPlaceholder")} />
+            <Field label={t("instagramId")} name="instagramId" placeholder={t("instagramIdPlaceholder")} />
+          </div>
           <TextArea
             label={t("designNotes")}
             name="designNotes"

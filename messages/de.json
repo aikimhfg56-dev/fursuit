@@ -77,6 +77,10 @@
       "form": {
         "hasHorns": "Hat Hörner",
         "hasTail": "Hat einen Schwanz",
+        "twitterId": "Twitter/X-Handle (optional)",
+        "twitterIdPlaceholder": "@deinhandle",
+        "instagramId": "Instagram-Handle (optional)",
+        "instagramIdPlaceholder": "@deinhandle",
         "designNotes": "Wünsche zum Kostümdesign",
         "designNotesPlaceholder": "Farben, Materialien, Stil und weitere Design-Details...",
         "referenceFiles": "Referenzdateien (optional)",

@@ -77,6 +77,10 @@
       "form": {
         "hasHorns": "A des cornes",
         "hasTail": "A une queue",
+        "twitterId": "Identifiant Twitter/X (optionnel)",
+        "twitterIdPlaceholder": "@votrepseudo",
+        "instagramId": "Identifiant Instagram (optionnel)",
+        "instagramIdPlaceholder": "@votrepseudo",
         "designNotes": "Souhaits pour le design du costume",
         "designNotesPlaceholder": "Couleurs, matériaux, style et autres détails de design...",
         "referenceFiles": "Fichiers de référence (optionnel)",

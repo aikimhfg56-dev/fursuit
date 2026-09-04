@@ -77,6 +77,10 @@
       "form": {
         "hasHorns": "Has horns",
         "hasTail": "Has a tail",
+        "twitterId": "Twitter/X handle (optional)",
+        "twitterIdPlaceholder": "@yourhandle",
+        "instagramId": "Instagram handle (optional)",
+        "instagramIdPlaceholder": "@yourhandle",
         "designNotes": "Costume design requests",
         "designNotesPlaceholder": "Colors, materials, style, and any other design details...",
         "referenceFiles": "Reference files (optional)",
