@@ -14,10 +14,16 @@ export function getResendClient(): Resend | null {
   return cachedClient;
 }
 
+export type NotificationEmailAttachment = {
+  filename: string;
+  content: Buffer;
+};
+
 export type NotificationEmailInput = {
   subject: string;
   text: string;
   replyTo?: string;
+  attachments?: NotificationEmailAttachment[];
 };
 
 /**
@@ -40,5 +46,6 @@ export async function sendNotificationEmail(input: NotificationEmailInput): Prom
     subject: input.subject,
     text: input.text,
     replyTo: input.replyTo,
+    attachments: input.attachments,
   });
 }

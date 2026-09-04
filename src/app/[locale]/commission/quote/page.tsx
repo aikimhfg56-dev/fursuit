@@ -38,7 +38,14 @@ export default async function CommissionQuotePage() {
           signInDescription={tAccount("signInToRequestQuote")}
           profile={profile}
         />
-        {gateState === "ready" && <InquiryForm variant="commission" />}
+        {gateState === "ready" && (
+          <>
+            <p className="rounded border border-black/10 px-4 py-3 text-sm text-black/70 dark:border-white/10 dark:text-white/70">
+              {t("timelineNotice")}
+            </p>
+            <InquiryForm variant="commission" />
+          </>
+        )}
       </div>
     </div>
   );
