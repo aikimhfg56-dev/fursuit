@@ -210,7 +210,8 @@
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
       "shipping": "Shipping & Customs",
-      "returns": "Returns & Refunds"
+      "returns": "Returns & Refunds",
+      "cookies": "Cookies Policy"
     },
     "privacy": {
       "title": "Privacy Policy",
@@ -237,6 +238,10 @@
     "returns": {
       "title": "Returns & Refunds",
       "content": "Ready-made items can be returned within 14 days of delivery if unworn and in original condition; contact us to arrange a return. Return shipping costs are the responsibility of the customer unless the item arrived damaged or defective.\n\nPre-order items follow the same return policy once delivered. Because pre-orders reserve a production slot, deposits may be non-refundable if you cancel after production has begun — details are provided on the product page.\n\nCustom commissions are made specifically for you, so once work has started they are generally not eligible for a refund. If there's an issue with the quality or accuracy of a finished commission, contact us and we'll work with you to make it right.\n\nTo start a return or refund request, contact us with your order reference and we'll guide you through the next steps."
+    },
+    "cookies": {
+      "title": "Cookies Policy",
+      "content": "This policy explains what cookies are, which ones we use, and how you can control them. \"Cookies\" here also covers similar technologies, such as local storage used by your browser.\n\n## What Is a Cookie?\nA cookie is a small text file that a website asks your browser to store on your device. It lets the site remember information about your visit — such as your preferences or whether you're signed in — the next time you load a page.\n\n## Why We Use Cookies\nWe use cookies to keep the site working the way you'd expect: remembering your language and currency choice, keeping you signed in as you move between pages, and helping us tell real visitors from automated abuse on our forms and checkout.\n\n## Types of Cookies We Use\nSession cookies are temporary and are deleted when you close your browser; we use these to help protect our forms and checkout from automated abuse. Persistent cookies remain on your device for longer and are used to keep you signed in across visits and remember your language and currency preference.\n\n## Third-Party Cookies\nWhen you complete a purchase, our payment providers (Stripe or PayPal) may set their own cookies on their hosted checkout pages to process your payment securely and prevent fraud. These cookies are set and controlled by the payment provider, not by us — please refer to their own privacy and cookie policies for details.\n\n## Cookies We Don't Use\nWe do not use cookies for third-party advertising, ad retargeting, or cross-site tracking, and we do not sell any information collected through cookies.\n\n## Managing Cookies\nMost browsers let you view, delete, or block cookies through their settings. Because we rely on a small number of essential cookies to keep you signed in and remember your preferences, blocking them may prevent some parts of the site — such as sign-in or checkout — from working correctly.\n\n## Changes to This Policy\nWe may update this policy from time to time as our services change. We'll post the current version on this page."
     }
   }
 }

@@ -210,7 +210,8 @@
       "privacy": "Política de privacidad",
       "terms": "Términos y condiciones",
       "shipping": "Envíos y aduanas",
-      "returns": "Devoluciones y reembolsos"
+      "returns": "Devoluciones y reembolsos",
+      "cookies": "Política de cookies"
     },
     "privacy": {
       "title": "Política de privacidad",
@@ -237,6 +238,10 @@
     "returns": {
       "title": "Devoluciones y reembolsos",
       "content": "Los artículos listos para enviar pueden devolverse dentro de los 14 días posteriores a la entrega si no se han usado y están en su estado original; contáctanos para gestionar la devolución. Los costes de envío de la devolución corren a cargo del cliente, salvo que el artículo llegara dañado o defectuoso.\n\nLos artículos en reserva siguen la misma política de devolución una vez entregados. Como las reservas apartan un puesto de producción, los depósitos pueden no ser reembolsables si cancelas después de que la producción haya comenzado — los detalles se indican en la ficha de producto.\n\nLos encargos a medida se fabrican específicamente para ti, por lo que, una vez iniciado el trabajo, generalmente no son elegibles para reembolso. Si hay algún problema con la calidad o el ajuste de un encargo terminado, contáctanos y buscaremos una solución juntos.\n\nPara iniciar una solicitud de devolución o reembolso, contáctanos con la referencia de tu pedido y te guiaremos en los siguientes pasos."
+    },
+    "cookies": {
+      "title": "Política de cookies",
+      "content": "Esta política explica qué son las cookies, cuáles usamos y cómo puedes gestionarlas. Aquí, «cookies» también incluye tecnologías similares, como el almacenamiento local de tu navegador.\n\n## ¿Qué es una cookie?\nUna cookie es un pequeño archivo de texto que un sitio web pide a tu navegador que guarde en tu dispositivo. Permite que el sitio recuerde información sobre tu visita —como tus preferencias o si has iniciado sesión— la próxima vez que cargues una página.\n\n## Por qué usamos cookies\nUsamos cookies para que el sitio funcione como esperas: recordar tu elección de idioma y moneda, mantener tu sesión iniciada mientras navegas entre páginas, y ayudarnos a distinguir a los visitantes reales del abuso automatizado en nuestros formularios y proceso de pago.\n\n## Tipos de cookies que usamos\nLas cookies de sesión son temporales y se eliminan al cerrar el navegador; las usamos para ayudar a proteger nuestros formularios y el proceso de pago frente a abusos automatizados. Las cookies persistentes permanecen más tiempo en tu dispositivo y se usan para mantener tu sesión iniciada entre visitas y recordar tu preferencia de idioma y moneda.\n\n## Cookies de terceros\nCuando completas una compra, nuestros proveedores de pago (Stripe o PayPal) pueden establecer sus propias cookies en sus páginas de pago alojadas para procesar tu pago de forma segura y prevenir el fraude. Estas cookies son establecidas y controladas por el proveedor de pago, no por nosotros — consulta sus propias políticas de privacidad y cookies para más información.\n\n## Cookies que no usamos\nNo usamos cookies con fines de publicidad de terceros, retargeting publicitario ni seguimiento entre sitios, y no vendemos ninguna información recopilada mediante cookies.\n\n## Gestión de cookies\nLa mayoría de los navegadores te permiten ver, eliminar o bloquear cookies desde su configuración. Como dependemos de un número reducido de cookies esenciales para mantener tu sesión iniciada y recordar tus preferencias, bloquearlas puede impedir que algunas partes del sitio —como el inicio de sesión o el pago— funcionen correctamente.\n\n## Cambios a esta política\nPodemos actualizar esta política ocasionalmente conforme cambien nuestros servicios. Publicaremos la versión vigente en esta página."
     }
   }
 }

@@ -210,7 +210,8 @@
       "privacy": "Datenschutz",
       "terms": "AGB",
       "shipping": "Versand & Zoll",
-      "returns": "Rückgabe & Erstattung"
+      "returns": "Rückgabe & Erstattung",
+      "cookies": "Cookie-Richtlinie"
     },
     "privacy": {
       "title": "Datenschutzerklärung",
@@ -237,6 +238,10 @@
     "returns": {
       "title": "Rückgabe & Erstattung",
       "content": "Fertige Artikel können innerhalb von 14 Tagen nach Lieferung zurückgegeben werden, sofern ungetragen und im Originalzustand; kontaktiere uns, um eine Rückgabe zu vereinbaren. Die Rücksendekosten trägt die kundenseitige Partei, außer der Artikel kam beschädigt oder fehlerhaft an.\n\nFür Vorbestellungen gilt nach Lieferung dieselbe Rückgaberegelung. Da Vorbestellungen einen Produktionsplatz reservieren, sind Anzahlungen bei Stornierung nach Produktionsbeginn unter Umständen nicht erstattungsfähig — Details dazu auf der jeweiligen Produktseite.\n\nMaßanfertigungen werden speziell für dich angefertigt und sind nach Arbeitsbeginn in der Regel von der Erstattung ausgeschlossen. Bei Qualitäts- oder Passgenauigkeitsproblemen einer fertigen Anfertigung kontaktiere uns bitte — wir finden gemeinsam eine Lösung.\n\nUm eine Rückgabe oder Erstattung zu beantragen, kontaktiere uns mit deiner Bestellreferenz; wir begleiten dich durch die nächsten Schritte."
+    },
+    "cookies": {
+      "title": "Cookie-Richtlinie",
+      "content": "Diese Richtlinie erklärt, was Cookies sind, welche wir verwenden und wie du sie steuern kannst. „Cookies” umfasst hier auch ähnliche Technologien wie den lokalen Speicher deines Browsers.\n\n## Was ist ein Cookie?\nEin Cookie ist eine kleine Textdatei, die eine Website deinen Browser bittet, auf deinem Gerät zu speichern. Sie ermöglicht es der Website, sich Informationen über deinen Besuch zu merken — etwa deine Einstellungen oder ob du angemeldet bist —, wenn du die Seite das nächste Mal aufrufst.\n\n## Warum wir Cookies verwenden\nWir verwenden Cookies, damit die Website so funktioniert, wie du es erwartest: um deine Sprach- und Währungswahl zu merken, dich beim Navigieren zwischen Seiten angemeldet zu halten und echte Besucher:innen von automatisiertem Missbrauch unserer Formulare und des Checkouts zu unterscheiden.\n\n## Arten von Cookies, die wir verwenden\nSitzungscookies sind vorübergehend und werden gelöscht, sobald du deinen Browser schließt; wir nutzen sie, um unsere Formulare und den Checkout vor automatisiertem Missbrauch zu schützen. Dauerhafte Cookies bleiben länger auf deinem Gerät gespeichert und halten dich über mehrere Besuche hinweg angemeldet und merken sich deine Sprach- und Währungspräferenz.\n\n## Cookies Dritter\nWenn du einen Kauf abschließt, können unsere Zahlungsanbieter (Stripe oder PayPal) auf ihren gehosteten Checkout-Seiten eigene Cookies setzen, um deine Zahlung sicher zu verarbeiten und Betrug zu verhindern. Diese Cookies werden vom jeweiligen Zahlungsanbieter gesetzt und kontrolliert, nicht von uns — Einzelheiten findest du in deren eigenen Datenschutz- und Cookie-Richtlinien.\n\n## Cookies, die wir nicht verwenden\nWir verwenden keine Cookies für Werbung Dritter, Retargeting oder seitenübergreifendes Tracking, und wir verkaufen keine über Cookies erhobenen Informationen.\n\n## Cookies verwalten\nDie meisten Browser erlauben es dir, Cookies über die Einstellungen anzuzeigen, zu löschen oder zu blockieren. Da wir uns auf eine kleine Anzahl notwendiger Cookies verlassen, um dich angemeldet zu halten und deine Einstellungen zu merken, kann das Blockieren dieser Cookies dazu führen, dass Teile der Website — etwa die Anmeldung oder der Checkout — nicht ordnungsgemäß funktionieren.\n\n## Änderungen dieser Richtlinie\nWir können diese Richtlinie von Zeit zu Zeit aktualisieren, wenn sich unsere Dienste ändern. Die jeweils aktuelle Fassung veröffentlichen wir auf dieser Seite."
     }
   }
 }

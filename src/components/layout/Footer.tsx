@@ -6,6 +6,7 @@ const LEGAL_LINKS = [
   { href: "/legal/terms", key: "terms" },
   { href: "/legal/shipping", key: "shipping" },
   { href: "/legal/returns", key: "returns" },
+  { href: "/legal/cookies", key: "cookies" },
 ] as const;
 
 export default function Footer() {

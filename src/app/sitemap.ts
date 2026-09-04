@@ -14,6 +14,7 @@ const STATIC_PATHS = [
   "/legal/terms",
   "/legal/shipping",
   "/legal/returns",
+  "/legal/cookies",
 ];
 
 function alternatesFor(path: string, siteUrl: string) {

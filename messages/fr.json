@@ -210,7 +210,8 @@
       "privacy": "Politique de confidentialité",
       "terms": "Conditions générales",
       "shipping": "Livraison & douane",
-      "returns": "Retours & remboursements"
+      "returns": "Retours & remboursements",
+      "cookies": "Politique relative aux cookies"
     },
     "privacy": {
       "title": "Politique de confidentialité",
@@ -237,6 +238,10 @@
     "returns": {
       "title": "Retours & remboursements",
       "content": "Les articles prêts à porter peuvent être retournés dans les 14 jours suivant la livraison s'ils sont non portés et dans leur état d'origine ; contactez-nous pour organiser un retour. Les frais de retour sont à la charge du client, sauf si l'article est arrivé endommagé ou défectueux.\n\nLes précommandes suivent la même politique de retour une fois livrées. Les précommandes réservant un créneau de production, les acomptes peuvent ne pas être remboursables en cas d'annulation après le début de la production — les détails figurent sur la fiche produit.\n\nLes commandes sur mesure sont réalisées spécifiquement pour vous ; une fois le travail commencé, elles ne sont généralement pas éligibles à un remboursement. En cas de problème de qualité ou de conformité d'une commande terminée, contactez-nous et nous trouverons une solution ensemble.\n\nPour lancer une demande de retour ou de remboursement, contactez-nous avec votre référence de commande et nous vous guiderons dans les prochaines étapes."
+    },
+    "cookies": {
+      "title": "Politique relative aux cookies",
+      "content": "Cette politique explique ce que sont les cookies, ceux que nous utilisons et comment vous pouvez les gérer. Le terme « cookies » désigne ici également les technologies similaires, comme le stockage local de votre navigateur.\n\n## Qu'est-ce qu'un cookie ?\nUn cookie est un petit fichier texte qu'un site web demande à votre navigateur d'enregistrer sur votre appareil. Il permet au site de se souvenir d'informations sur votre visite — comme vos préférences ou le fait que vous soyez connecté — lors de votre prochaine visite.\n\n## Pourquoi nous utilisons des cookies\nNous utilisons des cookies pour que le site fonctionne comme vous vous y attendez : mémoriser votre choix de langue et de devise, vous maintenir connecté d'une page à l'autre, et nous aider à distinguer les vrais visiteurs des abus automatisés sur nos formulaires et notre paiement.\n\n## Types de cookies que nous utilisons\nLes cookies de session sont temporaires et sont supprimés à la fermeture de votre navigateur ; nous les utilisons pour aider à protéger nos formulaires et notre paiement contre les abus automatisés. Les cookies persistants restent plus longtemps sur votre appareil et servent à vous maintenir connecté d'une visite à l'autre et à mémoriser votre préférence de langue et de devise.\n\n## Cookies tiers\nLorsque vous effectuez un achat, nos prestataires de paiement (Stripe ou PayPal) peuvent déposer leurs propres cookies sur leurs pages de paiement hébergées afin de traiter votre paiement en toute sécurité et de prévenir la fraude. Ces cookies sont déposés et contrôlés par le prestataire de paiement, et non par nous — veuillez consulter leurs propres politiques de confidentialité et de cookies pour plus de détails.\n\n## Cookies que nous n'utilisons pas\nNous n'utilisons pas de cookies à des fins de publicité tierce, de reciblage publicitaire ou de suivi intersites, et nous ne vendons aucune information collectée via des cookies.\n\n## Gérer les cookies\nLa plupart des navigateurs vous permettent de consulter, supprimer ou bloquer les cookies via leurs paramètres. Comme nous nous appuyons sur un nombre limité de cookies essentiels pour vous maintenir connecté et mémoriser vos préférences, les bloquer peut empêcher certaines parties du site — comme la connexion ou le paiement — de fonctionner correctement.\n\n## Modifications de cette politique\nNous pouvons mettre à jour cette politique ponctuellement à mesure que nos services évoluent. La version actuelle est toujours publiée sur cette page."
     }
   }
 }
