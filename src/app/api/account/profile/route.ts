@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { isClerkConfigured } from "@/lib/env";
-import { validateAddress, validateDateOfBirth, type AccountAddress } from "@/lib/account/profile";
+import { validateAddress, validateFullName, type AccountAddress } from "@/lib/account/profile";
 
 export async function POST(request: Request) {
   if (!isClerkConfigured()) {
@@ -14,10 +14,10 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json().catch(() => null);
-  const dateOfBirth = typeof body?.dateOfBirth === "string" ? body.dateOfBirth : "";
+  const fullName = typeof body?.fullName === "string" ? body.fullName.trim() : "";
 
-  if (!validateDateOfBirth(dateOfBirth)) {
-    return NextResponse.json({ error: "invalid_date_of_birth" }, { status: 400 });
+  if (!validateFullName(fullName)) {
+    return NextResponse.json({ error: "invalid_full_name" }, { status: 400 });
   }
 
   if (!validateAddress(body?.address)) {
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
   await client.users.updateUserMetadata(userId, {
     privateMetadata: {
       ...user.privateMetadata,
-      dateOfBirth,
+      fullName,
       address,
     },
   });

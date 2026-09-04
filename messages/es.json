@@ -22,12 +22,10 @@
     "signIn": "Iniciar sesión",
     "myAccount": "Mi cuenta",
     "notConfigured": "Las cuentas todavía no están disponibles — vuelve pronto.",
-    "completeProfile": {
-      "title": "Completa tu perfil",
-      "description": "Necesitamos algunos datos más antes de que puedas finalizar una compra o gestionar tus métodos de pago."
-    },
-    "profileForm": {
-      "dateOfBirth": "Fecha de nacimiento",
+    "signInToPurchase": "Debes iniciar sesión (o crear una cuenta) antes de finalizar la compra.",
+    "signInToRequestQuote": "Debes iniciar sesión (o crear una cuenta) antes de solicitar un presupuesto.",
+    "shippingForm": {
+      "fullName": "Nombre completo",
       "addressLine1": "Dirección (línea 1)",
       "addressLine2": "Dirección (línea 2, opcional)",
       "city": "Ciudad",
@@ -36,15 +34,19 @@
       "countryPlaceholder": "Selecciona un país",
       "save": "Guardar",
       "saving": "Guardando...",
-      "error": "Algo salió mal al guardar tu perfil. Inténtalo de nuevo."
+      "error": "Algo salió mal al guardar tus datos. Inténtalo de nuevo."
     },
     "overview": {
       "title": "Mi cuenta",
       "profileHeading": "Perfil",
-      "name": "Nombre",
+      "nickname": "Apodo",
       "email": "Correo electrónico",
-      "dateOfBirth": "Fecha de nacimiento",
-      "address": "Dirección",
+      "shippingHeading": "Datos de envío",
+      "shippingSummaryNote": "Se usan para completar tu nombre y dirección al pagar.",
+      "shippingMissingNote": "Aún no configurados — te los pediremos la primera vez que compres o solicites un presupuesto, o puedes añadirlos aquí ahora.",
+      "hide": "Ocultar",
+      "edit": "Editar",
+      "add": "Añadir",
       "paymentHeading": "Métodos de pago",
       "paymentDescription": "Añade o elimina tarjetas guardadas de forma segura a través de Stripe — nunca almacenamos tus datos de tarjeta nosotros mismos.",
       "managePayment": "Gestionar métodos de pago",
@@ -72,9 +74,6 @@
       "title": "Solicitar presupuesto",
       "description": "Cuéntanos sobre el fursuit que tienes en mente y te responderemos pronto.",
       "form": {
-        "name": "Nombre",
-        "email": "Correo electrónico",
-        "country": "País",
         "characterDescription": "Describe tu personaje",
         "characterDescriptionPlaceholder": "Especie, colores, personalidad, cualquier detalle de referencia...",
         "referenceLinks": "Enlaces a imágenes de referencia (opcional)",

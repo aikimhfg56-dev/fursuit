@@ -1,6 +1,8 @@
+import { clerkClient } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
-import { isStripeConfigured } from "@/lib/env";
+import { getAccountProfile } from "@/lib/account/profile";
+import { isClerkConfigured, isStripeConfigured } from "@/lib/env";
 import { getStripeClient } from "@/lib/payments/stripe";
 import { createOrder } from "@/lib/orders/createOrder";
 import { sendNotificationEmail } from "@/lib/email/resend";
@@ -37,6 +39,21 @@ export async function POST(request: Request) {
           ? "stripe_revolut_pay"
           : "stripe_card";
 
+    // Shipping details live on the shopper's Clerk profile, not the Stripe
+    // session — look them up via the clerkUserId stashed in metadata.
+    let customerName: string | undefined;
+    let shippingAddress: ReturnType<typeof getAccountProfile>["address"];
+    const clerkUserId = session.metadata?.clerkUserId;
+    if (clerkUserId && isClerkConfigured()) {
+      const client = await clerkClient();
+      const user = await client.users.getUser(clerkUserId).catch(() => null);
+      if (user) {
+        const profile = getAccountProfile(user);
+        customerName = profile.fullName;
+        shippingAddress = profile.address;
+      }
+    }
+
     await createOrder({
       paymentMethod,
       paymentStatus: "paid",
@@ -45,6 +62,8 @@ export async function POST(request: Request) {
       amountTotal: (session.amount_total ?? 0) / (session.currency === "jpy" ? 1 : 100),
       currency: session.currency ?? "usd",
       customerEmail: session.customer_details?.email ?? undefined,
+      customerName,
+      shippingAddress,
     });
 
     await sendNotificationEmail({

@@ -19,6 +19,12 @@ function localeFromPathname(pathname: string): Locale {
 // Clerk's middleware throws without keys, so the whole site falls back to
 // next-intl-only routing until NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY /
 // CLERK_SECRET_KEY are set (see .env.local.example).
+//
+// clerkMiddleware() has to actually run on /api/** requests too — it's what
+// lets auth() work inside API route handlers at all ("Clerk: auth() was
+// called but Clerk can't detect usage of clerkMiddleware()" is the error
+// otherwise). next-intl's routing only makes sense for page routes though
+// (API routes have no locale prefix), so it's skipped for /api below.
 const proxy = isClerkConfigured()
   ? clerkMiddleware(async (auth, req) => {
       if (isAccountRoute(req)) {
@@ -27,12 +33,18 @@ const proxy = isClerkConfigured()
         const signInUrl = new URL(`/${localeFromPathname(req.nextUrl.pathname)}/sign-in`, req.url);
         await auth.protect({ unauthenticatedUrl: signInUrl.toString() });
       }
-      return intlMiddleware(req);
+      if (!req.nextUrl.pathname.startsWith("/api")) {
+        return intlMiddleware(req);
+      }
     })
-  : (req: NextRequest) => intlMiddleware(req);
+  : (req: NextRequest) => {
+      if (!req.nextUrl.pathname.startsWith("/api")) {
+        return intlMiddleware(req);
+      }
+    };
 
 export default proxy;
 
 export const config = {
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!_next|_vercel|.*\\..*).*)"],
 };

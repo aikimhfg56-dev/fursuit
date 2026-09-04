@@ -1,21 +1,27 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
 import { COUNTRIES } from "@/lib/account/countries";
 import type { AccountAddress } from "@/lib/account/profile";
 
-type ProfileFormProps = {
-  initialDateOfBirth?: string;
+type ShippingDetailsFormProps = {
+  initialFullName?: string;
   initialAddress?: AccountAddress;
+  /** Defaults to router.refresh() — pass a custom handler if the caller needs different post-save behavior. */
+  onSaved?: () => void;
 };
 
 const inputClass =
   "w-full rounded border border-black/15 bg-transparent px-3 py-2 text-sm dark:border-white/20";
 
-export default function ProfileForm({ initialDateOfBirth, initialAddress }: ProfileFormProps) {
-  const t = useTranslations("account.profileForm");
+export default function ShippingDetailsForm({
+  initialFullName,
+  initialAddress,
+  onSaved,
+}: ShippingDetailsFormProps) {
+  const t = useTranslations("account.shippingForm");
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
 
@@ -25,7 +31,7 @@ export default function ProfileForm({ initialDateOfBirth, initialAddress }: Prof
 
     const formData = new FormData(event.currentTarget);
     const payload = {
-      dateOfBirth: formData.get("dateOfBirth"),
+      fullName: formData.get("fullName"),
       address: {
         line1: formData.get("line1"),
         line2: formData.get("line2"),
@@ -43,8 +49,12 @@ export default function ProfileForm({ initialDateOfBirth, initialAddress }: Prof
       });
 
       if (!response.ok) throw new Error("request_failed");
-      router.push("/account");
-      router.refresh();
+
+      if (onSaved) {
+        onSaved();
+      } else {
+        router.refresh();
+      }
     } catch {
       setStatus("error");
     }
@@ -53,14 +63,8 @@ export default function ProfileForm({ initialDateOfBirth, initialAddress }: Prof
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <label className="block text-sm">
-        <span className="mb-1 block font-medium">{t("dateOfBirth")}</span>
-        <input
-          type="date"
-          name="dateOfBirth"
-          defaultValue={initialDateOfBirth}
-          required
-          className={inputClass}
-        />
+        <span className="mb-1 block font-medium">{t("fullName")}</span>
+        <input type="text" name="fullName" defaultValue={initialFullName} required className={inputClass} />
       </label>
 
       <label className="block text-sm">

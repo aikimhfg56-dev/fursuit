@@ -1,5 +1,7 @@
+import { currentUser } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
-import { isPaypalConfigured } from "@/lib/env";
+import { getAccountProfile } from "@/lib/account/profile";
+import { isClerkConfigured, isPaypalConfigured } from "@/lib/env";
 import { processPaypalCapture } from "@/lib/orders/paypalCapture";
 import { retrieveStripeCheckoutSession } from "@/lib/payments/stripe";
 
@@ -20,7 +22,13 @@ export default async function CheckoutSuccessPage({ searchParams }: CheckoutSucc
     paid = session?.payment_status === "paid";
   } else if (token && isPaypalConfigured()) {
     try {
-      const result = await processPaypalCapture(token, reference);
+      const user = isClerkConfigured() ? await currentUser() : null;
+      const profile = user ? getAccountProfile(user) : {};
+      const result = await processPaypalCapture(token, reference, {
+        customerEmail: user?.primaryEmailAddress?.emailAddress,
+        customerName: profile.fullName,
+        shippingAddress: profile.address,
+      });
       paid = result.status === "COMPLETED";
     } catch (error) {
       console.error("PayPal capture on success page failed", error);

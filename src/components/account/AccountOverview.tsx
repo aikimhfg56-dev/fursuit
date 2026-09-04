@@ -2,19 +2,20 @@ import { getTranslations } from "next-intl/server";
 import type { AccountAddress } from "@/lib/account/profile";
 import type { OrderSummary } from "@/lib/sanity/queries";
 import BillingPortalButton from "./BillingPortalButton";
+import ShippingDetailsSection from "./ShippingDetailsSection";
 
 type AccountOverviewProps = {
-  name: string;
+  username: string;
   email: string;
-  dateOfBirth?: string;
+  fullName?: string;
   address?: AccountAddress;
   orders: OrderSummary[];
 };
 
 export default async function AccountOverview({
-  name,
+  username,
   email,
-  dateOfBirth,
+  fullName,
   address,
   orders,
 }: AccountOverviewProps) {
@@ -28,31 +29,19 @@ export default async function AccountOverview({
         <h2 className="text-lg font-semibold">{t("profileHeading")}</h2>
         <dl className="mt-4 space-y-2 text-sm">
           <div className="flex justify-between">
-            <dt className="text-black/60 dark:text-white/60">{t("name")}</dt>
-            <dd>{name}</dd>
+            <dt className="text-black/60 dark:text-white/60">{t("nickname")}</dt>
+            <dd>{username}</dd>
           </div>
           <div className="flex justify-between">
             <dt className="text-black/60 dark:text-white/60">{t("email")}</dt>
             <dd>{email}</dd>
           </div>
-          {dateOfBirth && (
-            <div className="flex justify-between">
-              <dt className="text-black/60 dark:text-white/60">{t("dateOfBirth")}</dt>
-              <dd>{dateOfBirth}</dd>
-            </div>
-          )}
-          {address && (
-            <div className="flex justify-between gap-6">
-              <dt className="shrink-0 text-black/60 dark:text-white/60">{t("address")}</dt>
-              <dd className="text-right">
-                {[address.line1, address.line2, address.city, address.postalCode, address.country]
-                  .filter(Boolean)
-                  .join(", ")}
-              </dd>
-            </div>
-          )}
         </dl>
       </section>
+
+      <div className="mt-6">
+        <ShippingDetailsSection fullName={fullName} address={address} />
+      </div>
 
       <section className="mt-6 rounded-xl border border-black/10 p-6 dark:border-white/10">
         <h2 className="text-lg font-semibold">{t("paymentHeading")}</h2>

@@ -1,5 +1,7 @@
+import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { isPaypalConfigured } from "@/lib/env";
+import { getAccountProfile } from "@/lib/account/profile";
+import { isClerkConfigured, isPaypalConfigured } from "@/lib/env";
 import { processPaypalCapture } from "@/lib/orders/paypalCapture";
 
 export async function POST(request: Request) {
@@ -15,8 +17,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
+  const user = isClerkConfigured() ? await currentUser() : null;
+  const profile = user ? getAccountProfile(user) : {};
+
   try {
-    const result = await processPaypalCapture(orderId, referenceCode);
+    const result = await processPaypalCapture(orderId, referenceCode, {
+      customerEmail: user?.primaryEmailAddress?.emailAddress,
+      customerName: profile.fullName,
+      shippingAddress: profile.address,
+    });
     return NextResponse.json(result);
   } catch (error) {
     console.error("PayPal order capture failed", error);

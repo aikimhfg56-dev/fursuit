@@ -22,12 +22,10 @@
     "signIn": "ログイン",
     "myAccount": "マイアカウント",
     "notConfigured": "アカウント機能は準備中です。近日公開をお待ちください。",
-    "completeProfile": {
-      "title": "プロフィールを完成させてください",
-      "description": "ご購入や決済方法の管理を行う前に、あと少し情報が必要です。"
-    },
-    "profileForm": {
-      "dateOfBirth": "生年月日",
+    "signInToPurchase": "ご購入にはログイン(またはアカウント作成)が必要です。",
+    "signInToRequestQuote": "見積もり依頼にはログイン(またはアカウント作成)が必要です。",
+    "shippingForm": {
+      "fullName": "フルネーム",
       "addressLine1": "住所1",
       "addressLine2": "住所2(任意)",
       "city": "市区町村",
@@ -36,15 +34,19 @@
       "countryPlaceholder": "国を選択してください",
       "save": "保存する",
       "saving": "保存中...",
-      "error": "プロフィールの保存中にエラーが発生しました。もう一度お試しください。"
+      "error": "情報の保存中にエラーが発生しました。もう一度お試しください。"
     },
     "overview": {
       "title": "マイアカウント",
       "profileHeading": "プロフィール",
-      "name": "お名前",
+      "nickname": "ニックネーム",
       "email": "メールアドレス",
-      "dateOfBirth": "生年月日",
-      "address": "住所",
+      "shippingHeading": "配送先情報",
+      "shippingSummaryNote": "ご購入時のお名前・ご住所の入力に使用されます。",
+      "shippingMissingNote": "まだ登録されていません。初めてのご購入・見積もり依頼時に入力いただくか、今すぐこちらから登録できます。",
+      "hide": "閉じる",
+      "edit": "編集",
+      "add": "登録する",
       "paymentHeading": "決済方法",
       "paymentDescription": "保存されたカード情報の追加・削除はStripeの安全な画面で行います。カード情報を当店側で保存することはありません。",
       "managePayment": "決済方法を管理する",
@@ -72,9 +74,6 @@
       "title": "見積もりを依頼する",
       "description": "ご希望のファースーツについてお聞かせください。担当者よりご連絡します。",
       "form": {
-        "name": "お名前",
-        "email": "メールアドレス",
-        "country": "お住まいの国",
         "characterDescription": "キャラクターの説明",
         "characterDescriptionPlaceholder": "種族・カラー・性格・参考にしたい要素など",
         "referenceLinks": "参考画像のリンク(任意)",

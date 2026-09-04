@@ -9,22 +9,24 @@ export type AccountAddress = {
 };
 
 export type AccountProfile = {
-  dateOfBirth?: string;
+  fullName?: string;
   address?: AccountAddress;
   stripeCustomerId?: string;
 };
 
 /**
- * Extended profile fields (DOB, address, linked Stripe customer) live in
+ * Shipping details (full name, address, linked Stripe customer) live in
  * Clerk's privateMetadata rather than a separate database — it's
  * server-only-readable, keeping this data out of the client bundle and out
  * of a second datastore we'd otherwise need to stand up just for this.
+ * Unlike account identity (email/username), these are collected lazily at
+ * checkout time, not at sign-up — see lib/account/shippingGate.ts.
  */
 export function getAccountProfile(user: User): AccountProfile {
   const metadata = user.privateMetadata as Record<string, unknown>;
 
   return {
-    dateOfBirth: typeof metadata.dateOfBirth === "string" ? metadata.dateOfBirth : undefined,
+    fullName: typeof metadata.fullName === "string" ? metadata.fullName : undefined,
     address: isAccountAddress(metadata.address) ? metadata.address : undefined,
     stripeCustomerId: typeof metadata.stripeCustomerId === "string" ? metadata.stripeCustomerId : undefined,
   };
@@ -41,18 +43,12 @@ function isAccountAddress(value: unknown): value is AccountAddress {
   );
 }
 
-export function isProfileComplete(profile: AccountProfile): boolean {
-  return Boolean(profile.dateOfBirth && profile.address);
+export function hasShippingDetails(profile: AccountProfile): boolean {
+  return Boolean(profile.fullName && profile.address);
 }
 
-const MIN_ACCOUNT_AGE_YEARS = 13;
-
-export function validateDateOfBirth(value: string): boolean {
-  const dob = new Date(value);
-  if (Number.isNaN(dob.getTime()) || dob.getTime() > Date.now()) return false;
-
-  const ageYears = (Date.now() - dob.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
-  return ageYears >= MIN_ACCOUNT_AGE_YEARS;
+export function validateFullName(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
 }
 
 export function validateAddress(value: unknown): value is AccountAddress {

@@ -50,6 +50,8 @@ export type CreateStripeCheckoutSessionInput = {
   successUrl: string;
   cancelUrl: string;
   customerEmail?: string;
+  /** Stashed in session metadata so the webhook can look the shopper's shipping details back up. */
+  clerkUserId: string;
 };
 
 /**
@@ -83,7 +85,7 @@ export async function createStripeCheckoutSession(input: CreateStripeCheckoutSes
         },
       },
     ],
-    metadata: { referenceCode: input.referenceCode },
+    metadata: { referenceCode: input.referenceCode, clerkUserId: input.clerkUserId },
     success_url: input.successUrl,
     cancel_url: input.cancelUrl,
   });

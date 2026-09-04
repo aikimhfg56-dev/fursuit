@@ -45,12 +45,8 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <Field label={t("name")} name="name" required />
-      <Field label={t("email")} name="email" type="email" required />
-
       {variant === "commission" ? (
         <>
-          <Field label={t("country")} name="country" />
           <TextArea
             label={t("characterDescription")}
             name="characterDescription"
@@ -69,6 +65,8 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
         </>
       ) : (
         <>
+          <Field label={t("name")} name="name" required />
+          <Field label={t("email")} name="email" type="email" required />
           <Field label={t("subject")} name="subject" required />
           <TextArea label={t("message")} name="message" required />
         </>

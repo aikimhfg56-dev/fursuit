@@ -1,3 +1,4 @@
+import type { AccountAddress } from "@/lib/account/profile";
 import { capturePaypalOrder } from "@/lib/payments/paypal";
 import { createOrder } from "@/lib/orders/createOrder";
 import { sendNotificationEmail } from "@/lib/email/resend";
@@ -23,6 +24,7 @@ export type PaypalCaptureResult = {
 export async function processPaypalCapture(
   orderId: string,
   referenceCode?: string,
+  shopper?: { customerEmail?: string; customerName?: string; shippingAddress?: AccountAddress },
 ): Promise<PaypalCaptureResult> {
   const capture = (await capturePaypalOrder(orderId)) as PaypalCaptureResponse;
   const captureDetails = capture.purchase_units?.[0]?.payments?.captures?.[0];
@@ -35,7 +37,9 @@ export async function processPaypalCapture(
     providerReference: orderId,
     amountTotal: Number(captureDetails?.amount?.value ?? 0),
     currency: captureDetails?.amount?.currency_code ?? "USD",
-    customerEmail: capture.payer?.email_address,
+    customerEmail: shopper?.customerEmail ?? capture.payer?.email_address,
+    customerName: shopper?.customerName,
+    shippingAddress: shopper?.shippingAddress,
   });
 
   await sendNotificationEmail({

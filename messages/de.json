@@ -22,12 +22,10 @@
     "signIn": "Anmelden",
     "myAccount": "Mein Konto",
     "notConfigured": "Konten sind noch nicht eingerichtet — schau bald wieder vorbei.",
-    "completeProfile": {
-      "title": "Profil vervollständigen",
-      "description": "Wir brauchen noch ein paar Angaben, bevor du bestellen oder Zahlungsmethoden verwalten kannst."
-    },
-    "profileForm": {
-      "dateOfBirth": "Geburtsdatum",
+    "signInToPurchase": "Zum Bestellen musst du dich anmelden (oder ein Konto erstellen).",
+    "signInToRequestQuote": "Für eine Angebotsanfrage musst du dich anmelden (oder ein Konto erstellen).",
+    "shippingForm": {
+      "fullName": "Vollständiger Name",
       "addressLine1": "Adresse Zeile 1",
       "addressLine2": "Adresse Zeile 2 (optional)",
       "city": "Stadt",
@@ -36,15 +34,19 @@
       "countryPlaceholder": "Land auswählen",
       "save": "Speichern",
       "saving": "Wird gespeichert...",
-      "error": "Beim Speichern deines Profils ist etwas schiefgelaufen. Bitte versuche es erneut."
+      "error": "Beim Speichern deiner Angaben ist etwas schiefgelaufen. Bitte versuche es erneut."
     },
     "overview": {
       "title": "Mein Konto",
       "profileHeading": "Profil",
-      "name": "Name",
+      "nickname": "Spitzname",
       "email": "E-Mail",
-      "dateOfBirth": "Geburtsdatum",
-      "address": "Adresse",
+      "shippingHeading": "Versanddaten",
+      "shippingSummaryNote": "Wird beim Checkout für Name und Adresse verwendet.",
+      "shippingMissingNote": "Noch nicht hinterlegt — wir fragen danach beim ersten Checkout oder bei einer Angebotsanfrage, oder du trägst es schon jetzt hier ein.",
+      "hide": "Ausblenden",
+      "edit": "Bearbeiten",
+      "add": "Hinzufügen",
       "paymentHeading": "Zahlungsmethoden",
       "paymentDescription": "Füge gespeicherte Karten sicher über Stripe hinzu oder entferne sie — wir speichern deine Kartendaten niemals selbst.",
       "managePayment": "Zahlungsmethoden verwalten",
@@ -72,9 +74,6 @@
       "title": "Angebot anfragen",
       "description": "Erzähl uns von deinem Wunsch-Fursuit, wir melden uns bei dir.",
       "form": {
-        "name": "Name",
-        "email": "E-Mail",
-        "country": "Land",
         "characterDescription": "Beschreibe deinen Charakter",
         "characterDescriptionPlaceholder": "Spezies, Farben, Persönlichkeit, Referenzdetails...",
         "referenceLinks": "Links zu Referenzbildern (optional)",

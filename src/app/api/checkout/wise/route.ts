@@ -1,7 +1,9 @@
+import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { getAccountProfile, hasShippingDetails } from "@/lib/account/profile";
 import type { SupportedCurrency } from "@/lib/currency/constants";
 import { convertFromUsd } from "@/lib/currency/rates";
-import { isWiseConfigured } from "@/lib/env";
+import { isClerkConfigured, isWiseConfigured } from "@/lib/env";
 import { getWiseBankDetails } from "@/lib/payments/wise";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
 import { createOrder } from "@/lib/orders/createOrder";
@@ -24,12 +26,28 @@ export async function POST(request: Request) {
     );
   }
 
+  // Purchases require a signed-in account with shipping details already on
+  // file — mirrors the UI gate in ShippingGateSection, enforced again here
+  // since the client can't be trusted to have honored it.
+  if (!isClerkConfigured()) {
+    return NextResponse.json({ error: "auth_not_configured" }, { status: 503 });
+  }
+
+  const user = await currentUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
+  const profile = getAccountProfile(user);
+  if (!hasShippingDetails(profile)) {
+    return NextResponse.json({ error: "shipping_details_required" }, { status: 400 });
+  }
+
   const body = await request.json().catch(() => null);
   const amountUsd = Number(body?.amountUsd);
   const shippingUsd = Number(body?.shippingUsd) || 0;
   const currency = typeof body?.currency === "string" ? body.currency.toUpperCase() : "USD";
   const promoCode = typeof body?.promoCode === "string" ? body.promoCode.trim() : "";
-  const customerEmail = typeof body?.customerEmail === "string" ? body.customerEmail : undefined;
 
   if (!Number.isFinite(amountUsd) || amountUsd <= 0) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
@@ -54,7 +72,9 @@ export async function POST(request: Request) {
     referenceCode,
     amountTotal: finalAmountInCurrency,
     currency,
-    customerEmail,
+    customerEmail: user.primaryEmailAddress?.emailAddress,
+    customerName: profile.fullName,
+    shippingAddress: profile.address,
   });
 
   await sendNotificationEmail({

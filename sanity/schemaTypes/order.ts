@@ -53,6 +53,19 @@ export default defineType({
     defineField({ name: "amountTotal", title: "Amount total", type: "number" }),
     defineField({ name: "currency", title: "Currency", type: "string" }),
     defineField({ name: "customerEmail", title: "Customer email", type: "string" }),
+    defineField({ name: "customerName", title: "Customer full name", type: "string" }),
+    defineField({
+      name: "shippingAddress",
+      title: "Shipping address",
+      type: "object",
+      fields: [
+        defineField({ name: "line1", title: "Address line 1", type: "string" }),
+        defineField({ name: "line2", title: "Address line 2", type: "string" }),
+        defineField({ name: "city", title: "City", type: "string" }),
+        defineField({ name: "postalCode", title: "Postal code", type: "string" }),
+        defineField({ name: "country", title: "Country", type: "string" }),
+      ],
+    }),
     defineField({
       name: "shippingStatus",
       title: "Shipping status",

@@ -1,7 +1,9 @@
+import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { getAccountProfile, hasShippingDetails } from "@/lib/account/profile";
 import type { SupportedCurrency } from "@/lib/currency/constants";
 import { convertFromUsd } from "@/lib/currency/rates";
-import { isPaypalConfigured } from "@/lib/env";
+import { isClerkConfigured, isPaypalConfigured } from "@/lib/env";
 import { createPaypalOrder } from "@/lib/payments/paypal";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
 import { validatePromoCode } from "@/lib/promo/validatePromoCode";
@@ -20,6 +22,22 @@ export async function POST(request: Request) {
       { error: "PayPal is not configured yet. Add PAYPAL_CLIENT_ID/SECRET to .env.local." },
       { status: 503 },
     );
+  }
+
+  // Purchases require a signed-in account with shipping details already on
+  // file — mirrors the UI gate in ShippingGateSection, enforced again here
+  // since the client can't be trusted to have honored it.
+  if (!isClerkConfigured()) {
+    return NextResponse.json({ error: "auth_not_configured" }, { status: 503 });
+  }
+
+  const user = await currentUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
+  if (!hasShippingDetails(getAccountProfile(user))) {
+    return NextResponse.json({ error: "shipping_details_required" }, { status: 400 });
   }
 
   const body = await request.json().catch(() => null);

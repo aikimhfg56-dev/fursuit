@@ -22,12 +22,10 @@
     "signIn": "Sign in",
     "myAccount": "My Account",
     "notConfigured": "Accounts aren't set up yet — check back soon.",
-    "completeProfile": {
-      "title": "Complete your profile",
-      "description": "We need a couple more details before you can check out or manage payment methods."
-    },
-    "profileForm": {
-      "dateOfBirth": "Date of birth",
+    "signInToPurchase": "You'll need to sign in (or create an account) before you can check out.",
+    "signInToRequestQuote": "You'll need to sign in (or create an account) before requesting a quote.",
+    "shippingForm": {
+      "fullName": "Full name",
       "addressLine1": "Address line 1",
       "addressLine2": "Address line 2 (optional)",
       "city": "City",
@@ -36,15 +34,19 @@
       "countryPlaceholder": "Select a country",
       "save": "Save",
       "saving": "Saving...",
-      "error": "Something went wrong saving your profile. Please try again."
+      "error": "Something went wrong saving your details. Please try again."
     },
     "overview": {
       "title": "My Account",
       "profileHeading": "Profile",
-      "name": "Name",
+      "nickname": "Nickname",
       "email": "Email",
-      "dateOfBirth": "Date of birth",
-      "address": "Address",
+      "shippingHeading": "Shipping details",
+      "shippingSummaryNote": "Used to fill in your name and address at checkout.",
+      "shippingMissingNote": "Not set yet — you'll be asked for this the first time you check out or request a quote, or you can add it here now.",
+      "hide": "Hide",
+      "edit": "Edit",
+      "add": "Add",
       "paymentHeading": "Payment methods",
       "paymentDescription": "Add or remove saved cards securely through Stripe — we never store your card details ourselves.",
       "managePayment": "Manage payment methods",
@@ -72,9 +74,6 @@
       "title": "Request a Quote",
       "description": "Tell us about the fursuit you have in mind and we'll get back to you.",
       "form": {
-        "name": "Name",
-        "email": "Email",
-        "country": "Country",
         "characterDescription": "Describe your character",
         "characterDescriptionPlaceholder": "Species, colors, personality, any reference details...",
         "referenceLinks": "Reference image links (optional)",

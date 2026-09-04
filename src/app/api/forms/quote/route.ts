@@ -1,4 +1,7 @@
+import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { getAccountProfile, hasShippingDetails } from "@/lib/account/profile";
+import { isClerkConfigured } from "@/lib/env";
 import { sendNotificationEmail } from "@/lib/email/resend";
 import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
 
@@ -10,26 +13,41 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 
-  const body = await request.json().catch(() => null);
+  if (!isClerkConfigured()) {
+    return NextResponse.json({ error: "auth_not_configured" }, { status: 503 });
+  }
 
-  const name = typeof body?.name === "string" ? body.name.trim() : "";
-  const email = typeof body?.email === "string" ? body.email.trim() : "";
+  // Commission quotes require an account with shipping details already on
+  // file (see lib/account/shippingGate.ts) — identity/address come from
+  // Clerk, never from the client-submitted body, so this can't be spoofed.
+  const user = await currentUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
+  const profile = getAccountProfile(user);
+  if (!hasShippingDetails(profile)) {
+    return NextResponse.json({ error: "shipping_details_required" }, { status: 400 });
+  }
+
+  const email = user.primaryEmailAddress?.emailAddress ?? "";
+  const body = await request.json().catch(() => null);
   const characterDescription =
     typeof body?.characterDescription === "string" ? body.characterDescription.trim() : "";
 
-  if (!name || !email || !characterDescription) {
+  if (!characterDescription) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
-  const country = typeof body?.country === "string" ? body.country.trim() : "";
   const budget = typeof body?.budget === "string" ? body.budget.trim() : "";
   const timeline = typeof body?.timeline === "string" ? body.timeline.trim() : "";
   const referenceLinks = typeof body?.referenceLinks === "string" ? body.referenceLinks.trim() : "";
+  const address = profile.address!;
 
   const text = [
-    `Name: ${name}`,
+    `Name: ${profile.fullName}`,
     `Email: ${email}`,
-    `Country: ${country || "-"}`,
+    `Address: ${[address.line1, address.line2, address.city, address.postalCode, address.country].filter(Boolean).join(", ")}`,
     `Budget: ${budget || "-"}`,
     `Timeline: ${timeline || "-"}`,
     `Reference links: ${referenceLinks || "-"}`,
@@ -39,7 +57,7 @@ export async function POST(request: Request) {
   ].join("\n");
 
   await sendNotificationEmail({
-    subject: `New commission quote request — ${name}`,
+    subject: `New commission quote request — ${profile.fullName}`,
     text,
     replyTo: email,
   });

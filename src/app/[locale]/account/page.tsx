@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import AccountOverview from "@/components/account/AccountOverview";
 import AuthNotConfigured from "@/components/account/AuthNotConfigured";
 import { isClerkConfigured } from "@/lib/env";
-import { getAccountProfile, isProfileComplete } from "@/lib/account/profile";
+import { getAccountProfile } from "@/lib/account/profile";
 import { fetchOrdersByEmail } from "@/lib/sanity/queries";
 
 export default async function AccountPage() {
@@ -13,17 +13,15 @@ export default async function AccountPage() {
   if (!user) redirect("/sign-in");
 
   const profile = getAccountProfile(user);
-  if (!isProfileComplete(profile)) redirect("/account/complete-profile");
-
   const email = user.primaryEmailAddress?.emailAddress ?? "";
-  const name = [user.firstName, user.lastName].filter(Boolean).join(" ") || email;
+  const username = user.username ?? email;
   const orders = email ? await fetchOrdersByEmail(email) : [];
 
   return (
     <AccountOverview
-      name={name}
+      username={username}
       email={email}
-      dateOfBirth={profile.dateOfBirth}
+      fullName={profile.fullName}
       address={profile.address}
       orders={orders}
     />

@@ -1,7 +1,9 @@
+import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { getAccountProfile, hasShippingDetails } from "@/lib/account/profile";
 import type { SupportedCurrency } from "@/lib/currency/constants";
 import { convertFromUsd } from "@/lib/currency/rates";
-import { isStripeConfigured } from "@/lib/env";
+import { isClerkConfigured, isStripeConfigured } from "@/lib/env";
 import {
   createStripeCheckoutSession,
   filterEligibleStripeMethods,
@@ -28,6 +30,23 @@ export async function POST(request: Request) {
     );
   }
 
+  // Purchases require a signed-in account with shipping details already on
+  // file — mirrors the UI gate in ShippingGateSection, enforced again here
+  // since the client can't be trusted to have honored it.
+  if (!isClerkConfigured()) {
+    return NextResponse.json({ error: "auth_not_configured" }, { status: 503 });
+  }
+
+  const user = await currentUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
+  const profile = getAccountProfile(user);
+  if (!hasShippingDetails(profile)) {
+    return NextResponse.json({ error: "shipping_details_required" }, { status: 400 });
+  }
+
   const body = await request.json().catch(() => null);
   const productName = typeof body?.productName === "string" ? body.productName : "";
   const amountUsd = Number(body?.amountUsd);
@@ -36,7 +55,6 @@ export async function POST(request: Request) {
   const promoCode = typeof body?.promoCode === "string" ? body.promoCode.trim() : "";
   const successUrl = typeof body?.successUrl === "string" ? body.successUrl : "";
   const cancelUrl = typeof body?.cancelUrl === "string" ? body.cancelUrl : "";
-  const customerEmail = typeof body?.customerEmail === "string" ? body.customerEmail : undefined;
 
   const paymentMethodsRequested: StripePaymentMethod[] = Array.isArray(body?.paymentMethods)
     ? body.paymentMethods.filter((method: unknown): method is StripePaymentMethod =>
@@ -74,7 +92,8 @@ export async function POST(request: Request) {
       referenceCode,
       successUrl,
       cancelUrl,
-      customerEmail,
+      customerEmail: user.primaryEmailAddress?.emailAddress,
+      clerkUserId: user.id,
     });
 
     return NextResponse.json({ url: session.url, referenceCode });

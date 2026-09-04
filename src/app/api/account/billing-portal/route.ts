@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 
   if (!stripeCustomerId) {
     const customer = await stripe.customers.create({
-      name: [user.firstName, user.lastName].filter(Boolean).join(" ") || undefined,
+      name: profile.fullName,
       email: user.primaryEmailAddress?.emailAddress,
       address: profile.address
         ? {

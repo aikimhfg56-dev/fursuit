@@ -1,3 +1,4 @@
+import type { AccountAddress } from "@/lib/account/profile";
 import { getSanityWriteClient } from "@/lib/sanity/client";
 
 export type OrderInput = {
@@ -13,6 +14,8 @@ export type OrderInput = {
   amountTotal: number;
   currency: string;
   customerEmail?: string;
+  customerName?: string;
+  shippingAddress?: AccountAddress;
 };
 
 /**

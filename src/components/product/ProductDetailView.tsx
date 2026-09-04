@@ -1,11 +1,15 @@
+import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
+import ShippingGateSection from "@/components/account/ShippingGateSection";
 import CheckoutPanel from "@/components/checkout/CheckoutPanel";
 import type { PaymentMethodId } from "@/components/checkout/PaymentMethodSelector";
 import type { Locale } from "@/i18n/routing";
+import { getAccountProfile } from "@/lib/account/profile";
+import { getShippingGateState } from "@/lib/account/shippingGate";
 import { getPreferredCurrency } from "@/lib/currency/preference";
 import { convertFromUsd } from "@/lib/currency/rates";
-import { isPaypalConfigured, isStripeConfigured, isWiseConfigured } from "@/lib/env";
+import { isClerkConfigured, isPaypalConfigured, isStripeConfigured, isWiseConfigured } from "@/lib/env";
 import { pickLocaleValue } from "@/lib/i18n/pickLocaleValue";
 import { isRevolutPayEligible } from "@/lib/payments/stripe";
 import { urlForImage } from "@/lib/sanity/image";
@@ -21,6 +25,7 @@ type ProductDetailViewProps = {
 export default async function ProductDetailView({ product, kind }: ProductDetailViewProps) {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("product");
+  const tAccount = await getTranslations("account");
 
   const name = pickLocaleValue(product.name, locale);
   const description = pickLocaleValue(product.description, locale);
@@ -40,6 +45,12 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
     ...(isPaypalConfigured() ? (["paypal"] as const) : []),
     ...(isWiseConfigured() ? (["wise"] as const) : []),
   ];
+
+  // Purchases require an account; full name + address are collected lazily
+  // here (not at sign-up) — see lib/account/shippingGate.ts.
+  const user = isClerkConfigured() ? await currentUser() : null;
+  const profile = user ? getAccountProfile(user) : {};
+  const gateState = getShippingGateState(user?.id ?? null, profile);
 
   const preorder = kind === "preorder" ? (product as PreorderProductDetail) : null;
   const dateFormatter = new Intl.DateTimeFormat(locale, { year: "numeric", month: "short" });
@@ -72,15 +83,23 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
           </p>
         )}
 
-        <div className="mt-8">
-          <CheckoutPanel
-            productName={name}
-            amountUsd={product.basePrice}
-            displayAmount={displayAmount}
-            shippingUsd={shippingUsd}
-            currency={currency}
-            configuredMethods={configuredMethods}
+        <div className="mt-8 space-y-4">
+          <ShippingGateSection
+            state={gateState}
+            returnPath={`/${kind}/${product.slug}`}
+            signInDescription={tAccount("signInToPurchase")}
+            profile={profile}
           />
+          {gateState === "ready" && (
+            <CheckoutPanel
+              productName={name}
+              amountUsd={product.basePrice}
+              displayAmount={displayAmount}
+              shippingUsd={shippingUsd}
+              currency={currency}
+              configuredMethods={configuredMethods}
+            />
+          )}
         </div>
       </div>
     </div>

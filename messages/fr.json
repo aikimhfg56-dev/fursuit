@@ -22,12 +22,10 @@
     "signIn": "Se connecter",
     "myAccount": "Mon compte",
     "notConfigured": "Les comptes ne sont pas encore disponibles — revenez bientôt.",
-    "completeProfile": {
-      "title": "Complétez votre profil",
-      "description": "Il nous manque quelques informations avant que vous puissiez commander ou gérer vos moyens de paiement."
-    },
-    "profileForm": {
-      "dateOfBirth": "Date de naissance",
+    "signInToPurchase": "Vous devez vous connecter (ou créer un compte) avant de passer commande.",
+    "signInToRequestQuote": "Vous devez vous connecter (ou créer un compte) avant de demander un devis.",
+    "shippingForm": {
+      "fullName": "Nom complet",
       "addressLine1": "Adresse (ligne 1)",
       "addressLine2": "Adresse (ligne 2, optionnel)",
       "city": "Ville",
@@ -36,15 +34,19 @@
       "countryPlaceholder": "Sélectionnez un pays",
       "save": "Enregistrer",
       "saving": "Enregistrement...",
-      "error": "Une erreur est survenue lors de l'enregistrement de votre profil. Merci de réessayer."
+      "error": "Une erreur est survenue lors de l'enregistrement de vos informations. Merci de réessayer."
     },
     "overview": {
       "title": "Mon compte",
       "profileHeading": "Profil",
-      "name": "Nom",
+      "nickname": "Pseudo",
       "email": "E-mail",
-      "dateOfBirth": "Date de naissance",
-      "address": "Adresse",
+      "shippingHeading": "Informations de livraison",
+      "shippingSummaryNote": "Utilisées pour préremplir votre nom et votre adresse lors du paiement.",
+      "shippingMissingNote": "Pas encore renseignées — nous vous les demanderons lors de votre premier achat ou de votre première demande de devis, ou vous pouvez les ajouter dès maintenant ici.",
+      "hide": "Masquer",
+      "edit": "Modifier",
+      "add": "Ajouter",
       "paymentHeading": "Moyens de paiement",
       "paymentDescription": "Ajoutez ou supprimez vos cartes enregistrées en toute sécurité via Stripe — nous ne stockons jamais vos données de carte nous-mêmes.",
       "managePayment": "Gérer les moyens de paiement",
@@ -72,9 +74,6 @@
       "title": "Demander un devis",
       "description": "Parlez-nous du fursuit que vous avez en tête, nous vous répondrons rapidement.",
       "form": {
-        "name": "Nom",
-        "email": "E-mail",
-        "country": "Pays",
         "characterDescription": "Décrivez votre personnage",
         "characterDescriptionPlaceholder": "Espèce, couleurs, personnalité, détails de référence...",
         "referenceLinks": "Liens vers des images de référence (optionnel)",
