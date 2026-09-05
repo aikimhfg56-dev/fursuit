@@ -63,7 +63,7 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
 
   return (
     <div className="mx-auto grid max-w-5xl gap-10 px-6 py-16 sm:grid-cols-2">
-      <div className="aspect-square overflow-hidden rounded-xl bg-black/5 dark:bg-white/5">
+      <div className="aspect-square overflow-hidden rounded-xl bg-black/5">
         {imageUrl ? (
           <Image src={imageUrl} alt={name} width={1200} height={1200} className="h-full w-full object-cover" />
         ) : null}
@@ -73,12 +73,12 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
         <h1 className="text-2xl font-bold tracking-tight">{name}</h1>
         <PriceDisplay
           basePriceUsd={product.basePrice}
-          className="mt-2 block text-lg text-black/70 dark:text-white/70"
+          className="mt-2 block text-lg text-black/70"
         />
-        {description && <p className="mt-4 text-sm text-black/70 dark:text-white/70">{description}</p>}
+        {description && <p className="mt-4 text-sm text-black/70">{description}</p>}
 
         {preorder && (shipStart || shipEnd) && (
-          <p className="mt-4 rounded border border-black/10 px-3 py-2 text-xs text-black/60 dark:border-white/10 dark:text-white/60">
+          <p className="mt-4 rounded border border-black/10 px-3 py-2 text-xs text-black/60">
             {t("expectedShip", { range: `${shipStart ?? "?"} – ${shipEnd ?? "?"}` })}
           </p>
         )}

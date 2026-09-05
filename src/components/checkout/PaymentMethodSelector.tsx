@@ -37,8 +37,8 @@ export default function PaymentMethodSelector({
               title={isConfigured ? undefined : t("notConfigured")}
               className={`rounded border px-3 py-2 text-left text-sm transition disabled:cursor-not-allowed disabled:opacity-40 ${
                 isSelected
-                  ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
-                  : "border-black/15 dark:border-white/20"
+                  ? "border-black bg-black text-white"
+                  : "border-black/15"
               }`}
             >
               {t(`methods.${method}`)}

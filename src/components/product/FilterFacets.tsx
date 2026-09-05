@@ -32,7 +32,7 @@ export default function FilterFacets({ categories, styleTags }: FilterFacetsProp
   if (categories.length === 0 && styleTags.length === 0) return null;
 
   return (
-    <div className="flex flex-wrap items-center gap-4 border-b border-black/10 pb-6 dark:border-white/10">
+    <div className="flex flex-wrap items-center gap-4 border-b border-black/10 pb-6">
       {categories.length > 0 && (
         <div className="flex flex-wrap gap-2">
           <FilterPill active={!activeCategory} label={t("all")} onClick={() => setParam("category", null)} />
@@ -77,8 +77,8 @@ function FilterPill({
       onClick={onClick}
       className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
         active
-          ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
-          : "border-black/15 dark:border-white/20"
+          ? "border-black bg-black text-white"
+          : "border-black/15"
       }`}
     >
       {label}

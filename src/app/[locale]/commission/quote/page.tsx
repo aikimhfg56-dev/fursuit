@@ -30,7 +30,7 @@ export default async function CommissionQuotePage() {
   return (
     <div className="mx-auto max-w-xl px-6 py-16">
       <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
-      <p className="mt-2 text-black/70 dark:text-white/70">{t("description")}</p>
+      <p className="mt-2 text-black/70">{t("description")}</p>
       <div className="mt-8 space-y-4">
         <ShippingGateSection
           state={gateState}
@@ -40,7 +40,7 @@ export default async function CommissionQuotePage() {
         />
         {gateState === "ready" && (
           <>
-            <p className="rounded border border-black/10 px-4 py-3 text-sm text-black/70 dark:border-white/10 dark:text-white/70">
+            <p className="rounded border border-black/10 px-4 py-3 text-sm text-black/70">
               {t("timelineNotice")}
             </p>
             <InquiryForm variant="commission" />

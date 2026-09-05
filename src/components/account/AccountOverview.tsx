@@ -25,15 +25,15 @@ export default async function AccountOverview({
     <div className="mx-auto max-w-2xl px-6 py-16">
       <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
 
-      <section className="mt-8 rounded-xl border border-black/10 p-6 dark:border-white/10">
+      <section className="mt-8 rounded-xl border border-black/10 p-6">
         <h2 className="text-lg font-semibold">{t("profileHeading")}</h2>
         <dl className="mt-4 space-y-2 text-sm">
           <div className="flex justify-between">
-            <dt className="text-black/60 dark:text-white/60">{t("nickname")}</dt>
+            <dt className="text-black/60">{t("nickname")}</dt>
             <dd>{username}</dd>
           </div>
           <div className="flex justify-between">
-            <dt className="text-black/60 dark:text-white/60">{t("email")}</dt>
+            <dt className="text-black/60">{t("email")}</dt>
             <dd>{email}</dd>
           </div>
         </dl>
@@ -43,30 +43,30 @@ export default async function AccountOverview({
         <ShippingDetailsSection fullName={fullName} address={address} />
       </div>
 
-      <section className="mt-6 rounded-xl border border-black/10 p-6 dark:border-white/10">
+      <section className="mt-6 rounded-xl border border-black/10 p-6">
         <h2 className="text-lg font-semibold">{t("paymentHeading")}</h2>
-        <p className="mt-2 text-sm text-black/70 dark:text-white/70">{t("paymentDescription")}</p>
+        <p className="mt-2 text-sm text-black/70">{t("paymentDescription")}</p>
         <div className="mt-4">
           <BillingPortalButton />
         </div>
       </section>
 
-      <section className="mt-6 rounded-xl border border-black/10 p-6 dark:border-white/10">
+      <section className="mt-6 rounded-xl border border-black/10 p-6">
         <h2 className="text-lg font-semibold">{t("ordersHeading")}</h2>
         {orders.length > 0 ? (
           <ul className="mt-4 space-y-3 text-sm">
             {orders.map((order) => (
               <li
                 key={order._id}
-                className="flex justify-between border-b border-black/10 pb-2 dark:border-white/10"
+                className="flex justify-between border-b border-black/10 pb-2"
               >
                 <span>{order.referenceCode ?? order._id}</span>
-                <span className="text-black/60 dark:text-white/60">{order.paymentStatus}</span>
+                <span className="text-black/60">{order.paymentStatus}</span>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="mt-2 text-sm text-black/60 dark:text-white/60">{t("noOrders")}</p>
+          <p className="mt-2 text-sm text-black/60">{t("noOrders")}</p>
         )}
       </section>
     </div>

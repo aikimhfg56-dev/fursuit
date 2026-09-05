@@ -32,7 +32,7 @@ export default function BillingPortalButton() {
       type="button"
       onClick={handleClick}
       disabled={loading}
-      className="rounded-full border border-black/20 px-5 py-2.5 text-sm font-medium disabled:opacity-40 dark:border-white/20"
+      className="rounded-full border border-black/20 px-5 py-2.5 text-sm font-medium disabled:opacity-40"
     >
       {loading ? t("billingLoading") : t("managePayment")}
     </button>

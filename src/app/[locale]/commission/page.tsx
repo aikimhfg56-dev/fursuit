@@ -28,10 +28,10 @@ export default async function CommissionPage() {
     <div className="mx-auto max-w-3xl px-6 py-16">
       <header className="text-center">
         <h1 className="text-3xl font-bold tracking-tight">{heroTitle}</h1>
-        <p className="mx-auto mt-3 max-w-xl text-black/70 dark:text-white/70">{heroBody}</p>
+        <p className="mx-auto mt-3 max-w-xl text-black/70">{heroBody}</p>
         <Link
           href="/commission/quote"
-          className="mt-8 inline-block rounded-full bg-black px-6 py-3 text-sm font-medium text-white dark:bg-white dark:text-black"
+          className="mt-8 inline-block rounded-full bg-black px-6 py-3 text-sm font-medium text-white"
         >
           {t("cta")}
         </Link>

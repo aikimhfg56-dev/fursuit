@@ -38,11 +38,11 @@ export default async function CheckoutSuccessPage({ searchParams }: CheckoutSucc
   return (
     <div className="mx-auto max-w-lg px-6 py-24 text-center">
       <h1 className="text-2xl font-bold tracking-tight">{paid ? t("title") : t("pendingTitle")}</h1>
-      <p className="mt-3 text-black/70 dark:text-white/70">
+      <p className="mt-3 text-black/70">
         {paid ? t("description") : t("pendingDescription")}
       </p>
       {referenceCode && (
-        <p className="mt-6 inline-block rounded border border-black/10 px-4 py-2 text-sm dark:border-white/10">
+        <p className="mt-6 inline-block rounded border border-black/10 px-4 py-2 text-sm">
           {t("reference", { code: referenceCode })}
         </p>
       )}

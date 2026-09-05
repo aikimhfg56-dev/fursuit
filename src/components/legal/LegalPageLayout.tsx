@@ -16,7 +16,7 @@ export default async function LegalPageLayout({ title, content, children }: Lega
       title={title}
       content={content}
       banner={
-        <p className="mt-4 rounded border border-dashed border-amber-500/40 bg-amber-500/10 px-4 py-3 text-xs text-amber-700 dark:text-amber-400">
+        <p className="mt-4 rounded border border-dashed border-amber-500/40 bg-amber-500/10 px-4 py-3 text-xs text-amber-700">
           {t("disclaimer")}
         </p>
       }

@@ -31,7 +31,7 @@ export default function ProductCard({ product, kind }: ProductCardProps) {
 
   return (
     <Link href={`/${kind}/${product.slug}`} className="group block">
-      <div className="aspect-square overflow-hidden rounded-lg bg-black/5 dark:bg-white/5">
+      <div className="aspect-square overflow-hidden rounded-lg bg-black/5">
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -41,20 +41,20 @@ export default function ProductCard({ product, kind }: ProductCardProps) {
             className="h-full w-full object-cover transition group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center px-2 text-center text-xs text-black/40 dark:text-white/40">
+          <div className="flex h-full w-full items-center justify-center px-2 text-center text-xs text-black/40">
             {name}
           </div>
         )}
       </div>
       <div className="mt-3">
         <p className="text-sm font-medium">{name}</p>
-        <PriceDisplay basePriceUsd={product.basePrice} className="text-sm text-black/60 dark:text-white/60" />
+        <PriceDisplay basePriceUsd={product.basePrice} className="text-sm text-black/60" />
         {badges.length > 0 && (
           <div className="mt-1 flex flex-wrap gap-1">
             {badges.map((badge) => (
               <span
                 key={badge}
-                className="rounded-full border border-black/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-black/60 dark:border-white/20 dark:text-white/60"
+                className="rounded-full border border-black/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-black/60"
               >
                 {badge}
               </span>

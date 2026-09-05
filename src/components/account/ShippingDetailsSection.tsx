@@ -29,25 +29,25 @@ export default function ShippingDetailsSection({ fullName, address }: ShippingDe
   }
 
   return (
-    <section className="rounded-xl border border-black/10 p-6 dark:border-white/10">
+    <section className="rounded-xl border border-black/10 p-6">
       <div className="flex items-center justify-between gap-4">
         <div>
           <h2 className="text-lg font-semibold">{t("shippingHeading")}</h2>
-          <p className="mt-1 text-sm text-black/60 dark:text-white/60">
+          <p className="mt-1 text-sm text-black/60">
             {hasDetails ? t("shippingSummaryNote") : t("shippingMissingNote")}
           </p>
         </div>
         <button
           type="button"
           onClick={() => setExpanded((value) => !value)}
-          className="shrink-0 rounded-full border border-black/20 px-4 py-1.5 text-sm font-medium dark:border-white/20"
+          className="shrink-0 rounded-full border border-black/20 px-4 py-1.5 text-sm font-medium"
         >
           {expanded ? t("hide") : hasDetails ? t("edit") : t("add")}
         </button>
       </div>
 
       {!expanded && hasDetails && (
-        <p className="mt-4 text-sm text-black/80 dark:text-white/80">
+        <p className="mt-4 text-sm text-black/80">
           {fullName}
           <br />
           {[address?.line1, address?.line2, address?.city, address?.postalCode, address?.country]

@@ -16,7 +16,7 @@ export default function WiseBankTransferPanel({
 
   if (!bankDetails) {
     return (
-      <p className="rounded border border-dashed border-black/20 px-4 py-3 text-sm text-black/60 dark:border-white/20 dark:text-white/60">
+      <p className="rounded border border-dashed border-black/20 px-4 py-3 text-sm text-black/60">
         {t("notConfigured")}
       </p>
     );
@@ -30,12 +30,12 @@ export default function WiseBankTransferPanel({
   ];
 
   return (
-    <div className="rounded border border-black/15 px-4 py-3 text-sm dark:border-white/20">
-      <p className="text-black/70 dark:text-white/70">{t("instructions")}</p>
+    <div className="rounded border border-black/15 px-4 py-3 text-sm">
+      <p className="text-black/70">{t("instructions")}</p>
       <dl className="mt-3 space-y-1">
         {rows.map(([label, value]) => (
           <div key={label} className="flex justify-between gap-4">
-            <dt className="text-black/60 dark:text-white/60">{label}</dt>
+            <dt className="text-black/60">{label}</dt>
             <dd className="font-medium">{value}</dd>
           </div>
         ))}

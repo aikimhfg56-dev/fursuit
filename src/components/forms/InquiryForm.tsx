@@ -61,7 +61,7 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
 
   if (status === "success") {
     return (
-      <p className="rounded border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-700 dark:text-green-400">
+      <p className="rounded border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-700">
         {t("success")}
       </p>
     );
@@ -92,9 +92,9 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
               name="referenceFiles"
               multiple
               accept={REFERENCE_FILE_ACCEPT}
-              className="w-full rounded border border-black/15 bg-transparent px-3 py-2 text-sm dark:border-white/20"
+              className="w-full rounded border border-black/15 bg-transparent px-3 py-2 text-sm"
             />
-            <span className="mt-1 block text-xs text-black/50 dark:text-white/50">{t("referenceFilesHint")}</span>
+            <span className="mt-1 block text-xs text-black/50">{t("referenceFilesHint")}</span>
           </label>
           <label className="flex items-start gap-2 text-sm">
             <input type="checkbox" name="agreedToTerms" required className="mt-0.5 h-4 w-4 shrink-0" />
@@ -119,14 +119,14 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
       )}
 
       {status === "files_too_large" && (
-        <p className="text-sm text-red-600 dark:text-red-400">{t("filesTooLarge")}</p>
+        <p className="text-sm text-red-600">{t("filesTooLarge")}</p>
       )}
-      {status === "error" && <p className="text-sm text-red-600 dark:text-red-400">{t("error")}</p>}
+      {status === "error" && <p className="text-sm text-red-600">{t("error")}</p>}
 
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-black px-6 py-3 text-sm font-medium text-white disabled:opacity-40 dark:bg-white dark:text-black"
+        className="w-full rounded-full bg-black px-6 py-3 text-sm font-medium text-white disabled:opacity-40"
       >
         {status === "submitting" ? t("submitting") : t("submit")}
       </button>
@@ -151,7 +151,7 @@ function Field({ label, name, type = "text", required, placeholder }: FieldProps
         name={name}
         required={required}
         placeholder={placeholder}
-        className="w-full rounded border border-black/15 bg-transparent px-3 py-2 text-sm dark:border-white/20"
+        className="w-full rounded border border-black/15 bg-transparent px-3 py-2 text-sm"
       />
     </label>
   );
@@ -166,7 +166,7 @@ function TextArea({ label, name, required, placeholder }: FieldProps) {
         required={required}
         placeholder={placeholder}
         rows={4}
-        className="w-full rounded border border-black/15 bg-transparent px-3 py-2 text-sm dark:border-white/20"
+        className="w-full rounded border border-black/15 bg-transparent px-3 py-2 text-sm"
       />
     </label>
   );

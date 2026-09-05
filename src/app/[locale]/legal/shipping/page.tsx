@@ -32,8 +32,8 @@ export default async function ShippingPolicyPage() {
       <table className="mt-4 w-full text-sm">
         <tbody>
           {rows.map((row) => (
-            <tr key={row.region} className="border-b border-black/10 dark:border-white/10">
-              <td className="py-2 text-black/80 dark:text-white/80">{row.label}</td>
+            <tr key={row.region} className="border-b border-black/10">
+              <td className="py-2 text-black/80">{row.label}</td>
               <td className="py-2 text-right font-medium">{row.price}</td>
             </tr>
           ))}

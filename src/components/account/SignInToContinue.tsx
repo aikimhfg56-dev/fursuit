@@ -14,11 +14,11 @@ export default async function SignInToContinue({ returnPath, description }: Sign
   const signInHref = `/${locale}/sign-in?redirect_url=${encodeURIComponent(`/${locale}${returnPath}`)}`;
 
   return (
-    <div className="rounded-xl border border-black/10 p-6 text-center dark:border-white/10">
-      <p className="text-sm text-black/70 dark:text-white/70">{description}</p>
+    <div className="rounded-xl border border-black/10 p-6 text-center">
+      <p className="text-sm text-black/70">{description}</p>
       <Link
         href={signInHref}
-        className="mt-4 inline-block rounded-full bg-black px-6 py-3 text-sm font-medium text-white dark:bg-white dark:text-black"
+        className="mt-4 inline-block rounded-full bg-black px-6 py-3 text-sm font-medium text-white"
       >
         {t("signIn")}
       </Link>

@@ -53,7 +53,7 @@ export default async function PreorderPage({ searchParams }: PreorderPageProps) 
     <div className="mx-auto max-w-6xl px-6 py-16">
       <header className="mb-8 text-center">
         <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
-        <p className="mt-2 text-black/70 dark:text-white/70">{t("description")}</p>
+        <p className="mt-2 text-black/70">{t("description")}</p>
       </header>
 
       <FilterFacets categories={categories} styleTags={styleTags} />
@@ -62,7 +62,7 @@ export default async function PreorderPage({ searchParams }: PreorderPageProps) 
         {filteredProducts.length > 0 ? (
           <ProductGrid products={filteredProducts} kind="preorder" />
         ) : (
-          <p className="py-16 text-center text-sm text-black/60 dark:text-white/60">{tp("empty")}</p>
+          <p className="py-16 text-center text-sm text-black/60">{tp("empty")}</p>
         )}
       </div>
 

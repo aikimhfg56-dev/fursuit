@@ -36,19 +36,19 @@ export default async function ShippingGateSection({
 
   if (state === "needs_details") {
     return (
-      <div className="rounded-xl border border-black/10 p-6 dark:border-white/10">
+      <div className="rounded-xl border border-black/10 p-6">
         <h2 className="text-lg font-semibold">{t("shippingHeading")}</h2>
-        <p className="mb-4 mt-1 text-sm text-black/60 dark:text-white/60">{t("shippingMissingNote")}</p>
+        <p className="mb-4 mt-1 text-sm text-black/60">{t("shippingMissingNote")}</p>
         <ShippingDetailsForm initialFullName={profile.fullName} initialAddress={profile.address} />
       </div>
     );
   }
 
   return (
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-black/10 p-4 text-sm dark:border-white/10">
+    <div className="flex items-center justify-between gap-4 rounded-xl border border-black/10 p-4 text-sm">
       <div>
         <p className="font-medium">{profile.fullName}</p>
-        <p className="text-black/60 dark:text-white/60">
+        <p className="text-black/60">
           {[
             profile.address?.line1,
             profile.address?.line2,

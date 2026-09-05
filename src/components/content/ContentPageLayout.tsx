@@ -15,10 +15,10 @@ export default function ContentPageLayout({ title, content, banner, children }: 
     <div className="mx-auto max-w-2xl px-6 py-16">
       <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
       {banner}
-      <div className="mt-8 space-y-4 text-sm text-black/80 dark:text-white/80">
+      <div className="mt-8 space-y-4 text-sm text-black/80">
         {blocks.map((block) =>
           block.startsWith("## ") ? (
-            <h2 key={block.slice(0, 40)} className="pt-2 text-base font-semibold text-black dark:text-white">
+            <h2 key={block.slice(0, 40)} className="pt-2 text-base font-semibold text-black">
               {block.slice(3)}
             </h2>
           ) : (

@@ -38,12 +38,12 @@ export default async function ProcessSteps({ steps, locale }: ProcessStepsProps)
       <ol className="mt-8 space-y-6">
         {items.map((item) => (
           <li key={item.number} className="flex gap-4">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-sm font-semibold text-white dark:bg-white dark:text-black">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black text-sm font-semibold text-white">
               {item.number}
             </span>
             <div>
               <p className="font-medium">{item.title}</p>
-              <p className="mt-1 text-sm text-black/70 dark:text-white/70">{item.description}</p>
+              <p className="mt-1 text-sm text-black/70">{item.description}</p>
             </div>
           </li>
         ))}

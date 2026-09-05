@@ -161,7 +161,7 @@ export default function CheckoutPanel({
   const currencyFormatter = new Intl.NumberFormat(locale, { style: "currency", currency });
 
   return (
-    <div className="space-y-6 rounded-xl border border-black/10 p-6 dark:border-white/10">
+    <div className="space-y-6 rounded-xl border border-black/10 p-6">
       <h2 className="text-lg font-semibold">{t("title")}</h2>
 
       <PaymentMethodSelector value={method} onChange={setMethod} configuredMethods={configuredMethods} />
@@ -173,7 +173,7 @@ export default function CheckoutPanel({
         status={promoStatus}
       />
 
-      <dl className="space-y-1 border-t border-black/10 pt-4 text-sm dark:border-white/10">
+      <dl className="space-y-1 border-t border-black/10 pt-4 text-sm">
         <div className="flex justify-between">
           <dt>{t("summary.subtotal")}</dt>
           <dd>{currencyFormatter.format(displayAmount)}</dd>
@@ -183,7 +183,7 @@ export default function CheckoutPanel({
           <dd>{currencyFormatter.format(shippingDisplay)}</dd>
         </div>
         {discountDisplay > 0 && (
-          <div className="flex justify-between text-green-600 dark:text-green-400">
+          <div className="flex justify-between text-green-600">
             <dt>{t("summary.discount")}</dt>
             <dd>-{currencyFormatter.format(discountDisplay)}</dd>
           </div>
@@ -216,13 +216,13 @@ export default function CheckoutPanel({
         </span>
       </label>
 
-      {errorMessage && <p className="text-sm text-red-600 dark:text-red-400">{errorMessage}</p>}
+      {errorMessage && <p className="text-sm text-red-600">{errorMessage}</p>}
 
       <button
         type="button"
         onClick={handlePay}
         disabled={submitting || !agreedToTerms || !configuredMethods.includes(method)}
-        className="w-full rounded-full bg-black px-6 py-3 text-sm font-medium text-white disabled:opacity-40 dark:bg-white dark:text-black"
+        className="w-full rounded-full bg-black px-6 py-3 text-sm font-medium text-white disabled:opacity-40"
       >
         {t("payButton")}
       </button>
