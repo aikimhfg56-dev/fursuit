@@ -19,9 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   const t = await getTranslations("home");
   const cms = await getHomePage();
+  // Placeholder until real photography is uploaded in Sanity — swap by setting the Home page's hero image there.
   const heroImageUrl = cms?.heroImage
     ? urlForImage(cms.heroImage)?.width(2400).height(1400).fit("crop").url()
-    : undefined;
+    : "/hero-placeholder.jpg";
 
   return (
     <div
