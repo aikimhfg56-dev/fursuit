@@ -42,8 +42,10 @@ export default async function HomePage() {
   return (
     <>
       <div
-        className={`relative mx-auto flex max-w-none flex-col items-center px-6 text-center ${
-          heroImageUrl ? "min-h-[560px] justify-end pb-16 pt-24 sm:pb-24" : "max-w-6xl py-24"
+        className={`relative mx-auto flex w-full max-w-none flex-col items-center px-6 text-center ${
+          heroImageUrl
+            ? "aspect-[4/5] max-h-[720px] min-h-[480px] justify-end pb-16 pt-24 sm:aspect-video sm:pb-24 lg:aspect-[21/9]"
+            : "max-w-6xl py-24"
         }`}
       >
         {heroImageUrl && (
@@ -92,7 +94,7 @@ export default async function HomePage() {
         const imageUrl = resolveImageUrl(section.image);
         return (
           <FadeIn key={section.href} className="block w-full">
-            <div className="relative flex min-h-[480px] flex-col items-center justify-end px-6 pb-16 pt-24 text-center sm:pb-20">
+            <div className="relative flex aspect-[4/5] max-h-[640px] min-h-[420px] w-full flex-col items-center justify-end px-6 pb-16 pt-24 text-center sm:aspect-video sm:pb-20 lg:aspect-[21/9]">
               {imageUrl && (
                 <>
                   <Image src={imageUrl} alt="" fill className="-z-20 object-cover" sizes="100vw" />
