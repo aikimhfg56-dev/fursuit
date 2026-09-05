@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
@@ -15,7 +16,8 @@ export default async function Header() {
   return (
     <header className="border-b border-border/15 bg-background">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-4">
-        <Link href="/" className="text-lg font-semibold tracking-tight text-accent">
+        <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-accent">
+          <Image src="/logo.png" alt="" width={32} height={32} className="rounded-md" priority />
           Fursuit Studio
         </Link>
         <nav className="flex flex-wrap items-center gap-6 text-sm">
