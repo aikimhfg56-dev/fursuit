@@ -50,44 +50,46 @@ export default async function HomePage() {
       >
         {heroImageUrl && (
           <>
-            <Image src={heroImageUrl} alt="" fill priority className="-z-20 object-cover" sizes="100vw" />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
+            <Image src={heroImageUrl} alt="" fill priority className="object-cover" sizes="100vw" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
           </>
         )}
-        <FadeIn onMount>
-          <h1
-            className={`text-4xl font-bold tracking-tight sm:text-5xl ${
-              heroImageUrl ? "text-white" : "text-accent"
-            }`}
-          >
-            {t("title")}
-          </h1>
-        </FadeIn>
-        <FadeIn onMount delay={0.15}>
-          <p className={`mx-auto mt-6 max-w-2xl text-lg ${heroImageUrl ? "text-white/85" : "text-foreground/80"}`}>
-            {t("subtitle")}
-          </p>
-        </FadeIn>
-        <FadeIn onMount delay={0.3}>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/commission"
-              className="rounded-2xl bg-cta-background px-6 py-3 text-sm font-medium text-cta-foreground transition hover:opacity-90"
-            >
-              {t("ctaCommission")}
-            </Link>
-            <Link
-              href="/shop"
-              className={`rounded-2xl border px-6 py-3 text-sm font-medium transition ${
-                heroImageUrl
-                  ? "border-white/50 text-white hover:border-white/80"
-                  : "border-border/35 text-foreground hover:border-border/60"
+        <div className="relative z-10 flex flex-col items-center">
+          <FadeIn onMount>
+            <h1
+              className={`text-4xl font-bold tracking-tight sm:text-5xl ${
+                heroImageUrl ? "text-white" : "text-accent"
               }`}
             >
-              {t("ctaShop")}
-            </Link>
-          </div>
-        </FadeIn>
+              {t("title")}
+            </h1>
+          </FadeIn>
+          <FadeIn onMount delay={0.15}>
+            <p className={`mx-auto mt-6 max-w-2xl text-lg ${heroImageUrl ? "text-white/85" : "text-foreground/80"}`}>
+              {t("subtitle")}
+            </p>
+          </FadeIn>
+          <FadeIn onMount delay={0.3}>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/commission"
+                className="rounded-2xl bg-cta-background px-6 py-3 text-sm font-medium text-cta-foreground transition hover:opacity-90"
+              >
+                {t("ctaCommission")}
+              </Link>
+              <Link
+                href="/shop"
+                className={`rounded-2xl border px-6 py-3 text-sm font-medium transition ${
+                  heroImageUrl
+                    ? "border-white/50 text-white hover:border-white/80"
+                    : "border-border/35 text-foreground hover:border-border/60"
+                }`}
+              >
+                {t("ctaShop")}
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
       </div>
 
       {sections.map((section) => {
@@ -97,17 +99,19 @@ export default async function HomePage() {
             <div className="relative flex aspect-[4/5] max-h-[640px] min-h-[420px] w-full flex-col items-center justify-end px-6 pb-16 pt-24 text-center sm:aspect-video sm:pb-20 lg:aspect-[21/9]">
               {imageUrl && (
                 <>
-                  <Image src={imageUrl} alt="" fill className="-z-20 object-cover" sizes="100vw" />
-                  <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
+                  <Image src={imageUrl} alt="" fill className="object-cover" sizes="100vw" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
                 </>
               )}
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">{section.title}</h2>
-              <Link
-                href={section.href}
-                className="mt-6 rounded-2xl bg-cta-background px-6 py-3 text-sm font-medium text-cta-foreground transition hover:opacity-90"
-              >
-                {t("seeMore")}
-              </Link>
+              <div className="relative z-10 flex flex-col items-center">
+                <h2 className="text-2xl font-bold text-white sm:text-3xl">{section.title}</h2>
+                <Link
+                  href={section.href}
+                  className="mt-6 rounded-2xl bg-cta-background px-6 py-3 text-sm font-medium text-cta-foreground transition hover:opacity-90"
+                >
+                  {t("seeMore")}
+                </Link>
+              </div>
             </div>
           </FadeIn>
         );
