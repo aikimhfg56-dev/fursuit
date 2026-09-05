@@ -173,6 +173,10 @@ export async function getCommissionPage(): Promise<CommissionPageContent | null>
 
 export type HomePageContent = {
   heroImage?: SanityImageRef;
+  shopImage?: SanityImageRef;
+  preorderImage?: SanityImageRef;
+  commissionImage?: SanityImageRef;
+  contactImage?: SanityImageRef;
 };
 
 /** Returns null if Sanity isn't configured yet, or the singleton hasn't been created — callers fall back to a plain hero. */
@@ -180,7 +184,9 @@ export async function getHomePage(): Promise<HomePageContent | null> {
   const client = getSanityClient();
   if (!client) return null;
 
-  const result = await client.fetch<HomePageContent | null>(`*[_type == "homePage"][0]{ heroImage }`);
+  const result = await client.fetch<HomePageContent | null>(
+    `*[_type == "homePage"][0]{ heroImage, shopImage, preorderImage, commissionImage, contactImage }`,
+  );
   return result ?? null;
 }
 

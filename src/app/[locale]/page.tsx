@@ -6,6 +6,7 @@ import FadeIn from "@/components/motion/FadeIn";
 import { buildAlternateLanguages } from "@/lib/seo/alternates";
 import { urlForImage } from "@/lib/sanity/image";
 import { getHomePage } from "@/lib/sanity/queries";
+import type { SanityImageRef } from "@/lib/sanity/queries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("home");
@@ -16,67 +17,99 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+function resolveImageUrl(image: SanityImageRef | undefined) {
+  return image ? urlForImage(image)?.width(2400).height(1400).fit("crop").url() : "/hero-placeholder.jpg";
+}
+
 export default async function HomePage() {
   const t = await getTranslations("home");
+  const tShop = await getTranslations("shop");
+  const tPreorder = await getTranslations("preorder");
+  const tCommission = await getTranslations("commission");
+  const tContact = await getTranslations("contact");
   const cms = await getHomePage();
-  // Placeholder until real photography is uploaded in Sanity — swap by setting the Home page's hero image there.
-  const heroImageUrl = cms?.heroImage
-    ? urlForImage(cms.heroImage)?.width(2400).height(1400).fit("crop").url()
-    : "/hero-placeholder.jpg";
+
+  // Placeholder until real photography is uploaded in Sanity — swap by setting the Home page's images there.
+  const heroImageUrl = resolveImageUrl(cms?.heroImage);
+
+  const sections = [
+    { title: tShop("title"), href: "/shop", image: cms?.shopImage },
+    { title: tPreorder("title"), href: "/preorder", image: cms?.preorderImage },
+    { title: tCommission("title"), href: "/commission", image: cms?.commissionImage },
+    { title: tContact("title"), href: "/contact", image: cms?.contactImage },
+  ] as const;
 
   return (
-    <div
-      className={`relative mx-auto flex max-w-none flex-col items-center px-6 text-center ${
-        heroImageUrl ? "min-h-[560px] justify-end pb-16 pt-24 sm:pb-24" : "max-w-6xl py-24"
-      }`}
-    >
-      {heroImageUrl && (
-        <>
-          <Image
-            src={heroImageUrl}
-            alt=""
-            fill
-            priority
-            className="-z-20 object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
-        </>
-      )}
-      <FadeIn onMount>
-        <h1
-          className={`text-4xl font-bold tracking-tight sm:text-5xl ${
-            heroImageUrl ? "text-white" : "text-accent"
-          }`}
-        >
-          {t("title")}
-        </h1>
-      </FadeIn>
-      <FadeIn onMount delay={0.15}>
-        <p className={`mx-auto mt-6 max-w-2xl text-lg ${heroImageUrl ? "text-white/85" : "text-foreground/80"}`}>
-          {t("subtitle")}
-        </p>
-      </FadeIn>
-      <FadeIn onMount delay={0.3}>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href="/commission"
-            className="rounded-2xl bg-cta-background px-6 py-3 text-sm font-medium text-cta-foreground transition hover:opacity-90"
-          >
-            {t("ctaCommission")}
-          </Link>
-          <Link
-            href="/shop"
-            className={`rounded-2xl border px-6 py-3 text-sm font-medium transition ${
-              heroImageUrl
-                ? "border-white/50 text-white hover:border-white/80"
-                : "border-border/35 text-foreground hover:border-border/60"
+    <>
+      <div
+        className={`relative mx-auto flex max-w-none flex-col items-center px-6 text-center ${
+          heroImageUrl ? "min-h-[560px] justify-end pb-16 pt-24 sm:pb-24" : "max-w-6xl py-24"
+        }`}
+      >
+        {heroImageUrl && (
+          <>
+            <Image src={heroImageUrl} alt="" fill priority className="-z-20 object-cover" sizes="100vw" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
+          </>
+        )}
+        <FadeIn onMount>
+          <h1
+            className={`text-4xl font-bold tracking-tight sm:text-5xl ${
+              heroImageUrl ? "text-white" : "text-accent"
             }`}
           >
-            {t("ctaShop")}
-          </Link>
-        </div>
-      </FadeIn>
-    </div>
+            {t("title")}
+          </h1>
+        </FadeIn>
+        <FadeIn onMount delay={0.15}>
+          <p className={`mx-auto mt-6 max-w-2xl text-lg ${heroImageUrl ? "text-white/85" : "text-foreground/80"}`}>
+            {t("subtitle")}
+          </p>
+        </FadeIn>
+        <FadeIn onMount delay={0.3}>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/commission"
+              className="rounded-2xl bg-cta-background px-6 py-3 text-sm font-medium text-cta-foreground transition hover:opacity-90"
+            >
+              {t("ctaCommission")}
+            </Link>
+            <Link
+              href="/shop"
+              className={`rounded-2xl border px-6 py-3 text-sm font-medium transition ${
+                heroImageUrl
+                  ? "border-white/50 text-white hover:border-white/80"
+                  : "border-border/35 text-foreground hover:border-border/60"
+              }`}
+            >
+              {t("ctaShop")}
+            </Link>
+          </div>
+        </FadeIn>
+      </div>
+
+      {sections.map((section) => {
+        const imageUrl = resolveImageUrl(section.image);
+        return (
+          <FadeIn key={section.href} className="block w-full">
+            <div className="relative flex min-h-[480px] flex-col items-center justify-end px-6 pb-16 pt-24 text-center sm:pb-20">
+              {imageUrl && (
+                <>
+                  <Image src={imageUrl} alt="" fill className="-z-20 object-cover" sizes="100vw" />
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
+                </>
+              )}
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">{section.title}</h2>
+              <Link
+                href={section.href}
+                className="mt-6 rounded-2xl bg-cta-background px-6 py-3 text-sm font-medium text-cta-foreground transition hover:opacity-90"
+              >
+                {t("seeMore")}
+              </Link>
+            </div>
+          </FadeIn>
+        );
+      })}
+    </>
   );
 }
