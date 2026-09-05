@@ -22,6 +22,10 @@ export function isWiseConfigured(): boolean {
   return Boolean(process.env.WISE_ACCOUNT_HOLDER && process.env.WISE_IBAN);
 }
 
+export function isCoinbaseConfigured(): boolean {
+  return Boolean(process.env.COINBASE_COMMERCE_API_KEY);
+}
+
 export function isResendConfigured(): boolean {
   return Boolean(process.env.RESEND_API_KEY);
 }

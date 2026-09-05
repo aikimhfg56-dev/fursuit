@@ -153,7 +153,8 @@
       "paypal": "PayPal",
       "alipay": "Alipay",
       "revolutPay": "Revolut Pay",
-      "wise": "銀行振込(Wise)"
+      "wise": "銀行振込(Wise)",
+      "crypto": "暗号資産(ビットコインなど)"
     },
     "promo": {
       "label": "プロモーションコード",

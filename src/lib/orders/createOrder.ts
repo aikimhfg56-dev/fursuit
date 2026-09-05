@@ -7,7 +7,8 @@ export type OrderInput = {
     | "stripe_alipay"
     | "stripe_revolut_pay"
     | "paypal"
-    | "wise";
+    | "wise"
+    | "coinbase";
   paymentStatus: "pending" | "awaiting_bank_transfer" | "paid" | "failed" | "refunded";
   referenceCode: string;
   providerReference?: string;

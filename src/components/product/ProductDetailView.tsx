@@ -9,7 +9,13 @@ import { getAccountProfile } from "@/lib/account/profile";
 import { getShippingGateState } from "@/lib/account/shippingGate";
 import { getPreferredCurrency } from "@/lib/currency/preference";
 import { convertFromUsd } from "@/lib/currency/rates";
-import { isClerkConfigured, isPaypalConfigured, isStripeConfigured, isWiseConfigured } from "@/lib/env";
+import {
+  isClerkConfigured,
+  isCoinbaseConfigured,
+  isPaypalConfigured,
+  isStripeConfigured,
+  isWiseConfigured,
+} from "@/lib/env";
 import { pickLocaleValue } from "@/lib/i18n/pickLocaleValue";
 import { isRevolutPayEligible } from "@/lib/payments/stripe";
 import { urlForImage } from "@/lib/sanity/image";
@@ -44,6 +50,7 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
     ...(isStripeConfigured() && isRevolutPayEligible(currency) ? (["revolutPay"] as const) : []),
     ...(isPaypalConfigured() ? (["paypal"] as const) : []),
     ...(isWiseConfigured() ? (["wise"] as const) : []),
+    ...(isCoinbaseConfigured() ? (["crypto"] as const) : []),
   ];
 
   // Purchases require an account; full name + address are collected lazily

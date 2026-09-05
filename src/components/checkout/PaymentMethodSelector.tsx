@@ -2,9 +2,16 @@
 
 import { useTranslations } from "next-intl";
 
-export type PaymentMethodId = "card" | "paypal" | "alipay" | "revolutPay" | "wise";
+export type PaymentMethodId = "card" | "paypal" | "alipay" | "revolutPay" | "wise" | "crypto";
 
-export const ALL_PAYMENT_METHODS: PaymentMethodId[] = ["card", "paypal", "alipay", "revolutPay", "wise"];
+export const ALL_PAYMENT_METHODS: PaymentMethodId[] = [
+  "card",
+  "paypal",
+  "alipay",
+  "revolutPay",
+  "wise",
+  "crypto",
+];
 
 type PaymentMethodSelectorProps = {
   value: PaymentMethodId;

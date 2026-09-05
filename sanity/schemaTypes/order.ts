@@ -22,6 +22,7 @@ export default defineType({
           { title: "Stripe (Revolut Pay)", value: "stripe_revolut_pay" },
           { title: "PayPal", value: "paypal" },
           { title: "Wise (bank transfer)", value: "wise" },
+          { title: "Coinbase Commerce (crypto)", value: "coinbase" },
         ],
       },
       validation: (rule) => rule.required(),

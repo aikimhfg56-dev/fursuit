@@ -150,6 +150,27 @@ export default function CheckoutPanel({
         } else {
           setErrorMessage(t("errors.generic"));
         }
+      } else if (method === "crypto") {
+        const response = await fetch("/api/checkout/coinbase", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            productName,
+            amountUsd,
+            shippingUsd,
+            currency,
+            promoCode: appliedPromo?.code,
+            successUrl,
+            cancelUrl,
+          }),
+        });
+        const data = await response.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          setErrorMessage(t("errors.generic"));
+        }
       }
     } catch {
       setErrorMessage(t("errors.generic"));

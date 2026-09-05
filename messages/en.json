@@ -153,7 +153,8 @@
       "paypal": "PayPal",
       "alipay": "Alipay",
       "revolutPay": "Revolut Pay",
-      "wise": "Bank transfer (Wise)"
+      "wise": "Bank transfer (Wise)",
+      "crypto": "Crypto (Bitcoin, etc.)"
     },
     "promo": {
       "label": "Promo code",
