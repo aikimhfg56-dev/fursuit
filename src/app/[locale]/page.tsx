@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import FadeIn from "@/components/motion/FadeIn";
+import ParallaxImage from "@/components/motion/ParallaxImage";
 import { buildAlternateLanguages } from "@/lib/seo/alternates";
 import { urlForImage } from "@/lib/sanity/image";
 import { getHomePage } from "@/lib/sanity/queries";
@@ -50,7 +50,7 @@ export default async function HomePage() {
       >
         {heroImageUrl && (
           <>
-            <Image src={heroImageUrl} alt="" fill priority className="object-cover" sizes="100vw" />
+            <ParallaxImage src={heroImageUrl} priority className="object-cover" strength={70} />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
           </>
         )}
@@ -99,7 +99,7 @@ export default async function HomePage() {
             <div className="relative flex aspect-[4/5] max-h-[640px] min-h-[420px] w-full flex-col items-center justify-end px-6 pb-16 pt-24 text-center sm:aspect-video sm:pb-20 lg:aspect-[21/9]">
               {imageUrl && (
                 <>
-                  <Image src={imageUrl} alt="" fill className="object-cover" sizes="100vw" />
+                  <ParallaxImage src={imageUrl} className="object-cover" strength={50} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
                 </>
               )}
