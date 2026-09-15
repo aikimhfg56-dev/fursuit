@@ -8,6 +8,7 @@ import {
   MAX_REFERENCE_FILE_SIZE_BYTES,
   MAX_REFERENCE_TOTAL_SIZE_BYTES,
 } from "@/lib/forms/referenceFiles";
+import { addMessage, createThread } from "@/lib/messages/store";
 import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
 
 const rateLimiter = getRateLimiter("forms-quote", 3, "10 m");
@@ -46,8 +47,35 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
-  const hasHorns = formData.get("hasHorns") === "on";
-  const hasTail = formData.get("hasTail") === "on";
+  // Mirrors the UI gate on the terms-agreement checkbox — enforced again
+  // here since the client can't be trusted to have honored it.
+  if (formData.get("agreedToTerms") !== "on") {
+    return NextResponse.json({ error: "invalid_request" }, { status: 400 });
+  }
+
+  const VALID_ORDER_TYPES = ["fullSuit", "partialSuit", "parts"];
+  const orderTypeRaw = String(formData.get("orderType") ?? "");
+  const orderType = VALID_ORDER_TYPES.includes(orderTypeRaw) ? orderTypeRaw : "fullSuit";
+
+  const VALID_PART_TYPES = [
+    "head",
+    "handpaws",
+    "puffyHandpaws",
+    "feetpawsOutdoorPlantigrade",
+    "feetpawsOutdoorDigitigrade",
+    "sockpawsIndoorPlantigrade",
+    "tail",
+    "armsleeves",
+    "body",
+  ];
+  const partTypes = formData.getAll("partTypes").filter((value): value is string => typeof value === "string" && VALID_PART_TYPES.includes(value));
+  const species = String(formData.get("species") ?? "").trim();
+
+  if (orderType === "parts" && partTypes.length === 0) {
+    return NextResponse.json({ error: "invalid_request" }, { status: 400 });
+  }
+
+  const rushOrder = formData.get("rushOrder") === "on";
   const twitterId = String(formData.get("twitterId") ?? "").trim();
   const instagramId = String(formData.get("instagramId") ?? "").trim();
 
@@ -75,8 +103,9 @@ export async function POST(request: Request) {
     `Name: ${profile.fullName}`,
     `Email: ${email}`,
     `Address: ${[address.line1, address.line2, address.city, address.postalCode, address.country].filter(Boolean).join(", ")}`,
-    `Horns: ${hasHorns ? "Yes" : "No"}`,
-    `Tail: ${hasTail ? "Yes" : "No"}`,
+    `Order type: ${orderType}`,
+    `Rush order (+10% of total): ${rushOrder ? "Yes" : "No"}`,
+    ...(orderType === "parts" ? [`Part(s): ${partTypes.join(", ")}`, `Species: ${species || "-"}`] : []),
     `Twitter: ${twitterId || "-"}`,
     `Instagram: ${instagramId || "-"}`,
     `Reference files attached: ${files.length}`,
@@ -84,6 +113,21 @@ export async function POST(request: Request) {
     "Design notes:",
     designNotes,
   ].join("\n");
+
+  const ORDER_TYPE_LABELS: Record<string, string> = {
+    fullSuit: "Full Suit Commission",
+    partialSuit: "Partial Suit Commission",
+    parts: "Parts Commission",
+  };
+
+  const thread = await createThread({
+    kind: "commission",
+    buyerUserId: user.id,
+    buyerName: profile.fullName,
+    buyerEmail: email,
+    productName: ORDER_TYPE_LABELS[orderType] ?? "Custom Commission",
+  });
+  await addMessage(thread.id, { sender: "buyer", text: designNotes });
 
   await sendNotificationEmail({
     subject: `New commission quote request — ${profile.fullName}`,

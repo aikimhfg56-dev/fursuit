@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import ProductDetailView from "@/components/product/ProductDetailView";
-import { getPreorderProductBySlug } from "@/lib/sanity/queries";
+import { getPreorderProductDetail } from "@/lib/products/catalog";
 
 type PreorderProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -8,7 +8,7 @@ type PreorderProductPageProps = {
 
 export default async function PreorderProductPage({ params }: PreorderProductPageProps) {
   const { slug } = await params;
-  const product = await getPreorderProductBySlug(slug);
+  const product = await getPreorderProductDetail(slug);
 
   if (!product) notFound();
 

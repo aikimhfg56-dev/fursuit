@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import {
   MAX_REFERENCE_FILES,
   MAX_REFERENCE_FILE_SIZE_BYTES,
@@ -14,18 +14,46 @@ type InquiryFormProps = {
   variant: "commission" | "contact";
 };
 
-type SubmitStatus = "idle" | "submitting" | "success" | "error" | "files_too_large";
+type OrderType = "fullSuit" | "partialSuit" | "parts";
+type SubmitStatus = "idle" | "submitting" | "success" | "redirecting" | "error" | "files_too_large";
+
+const FORM_ENDPOINTS: Record<InquiryFormProps["variant"], string> = {
+  commission: "/api/forms/quote",
+  contact: "/api/forms/contact",
+};
+
+const TRANSLATION_NAMESPACES: Record<InquiryFormProps["variant"], string> = {
+  commission: "commission.quote.form",
+  contact: "contact.form",
+};
+
+const ORDER_TYPES: OrderType[] = ["fullSuit", "partialSuit", "parts"];
+
+const PART_TYPE_VALUES = [
+  "head",
+  "handpaws",
+  "puffyHandpaws",
+  "feetpawsOutdoorPlantigrade",
+  "feetpawsOutdoorDigitigrade",
+  "sockpawsIndoorPlantigrade",
+  "tail",
+  "armsleeves",
+  "body",
+] as const;
 
 export default function InquiryForm({ variant }: InquiryFormProps) {
-  const t = useTranslations(variant === "commission" ? "commission.quote.form" : "contact.form");
+  const t = useTranslations(TRANSLATION_NAMESPACES[variant]);
   const tLegal = useTranslations("legal");
+  const router = useRouter();
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [orderType, setOrderType] = useState<OrderType>("fullSuit");
+  const usesFileUpload = variant === "commission";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
 
-    if (variant === "commission") {
+    if (usesFileUpload) {
       const files = new FormData(form).getAll("referenceFiles").filter((value): value is File => value instanceof File && value.size > 0);
       const totalSize = files.reduce((sum, file) => sum + file.size, 0);
 
@@ -42,21 +70,40 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
     setStatus("submitting");
 
     try {
-      const response =
-        variant === "commission"
-          ? await fetch("/api/forms/quote", { method: "POST", body: new FormData(form) })
-          : await fetch("/api/forms/contact", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),
-            });
+      const response = usesFileUpload
+        ? await fetch(FORM_ENDPOINTS[variant], { method: "POST", body: new FormData(form) })
+        : await fetch(FORM_ENDPOINTS[variant], {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),
+          });
 
       if (!response.ok) throw new Error("request_failed");
+      const data = await response.json();
+
+      // Only the contact form has no account behind it — jump straight into
+      // the token-gated chat thread we just created rather than showing a
+      // static "we'll be in touch" message, since this IS how we'll be in touch.
+      if (variant === "contact" && data.threadId && data.token) {
+        setStatus("redirecting");
+        router.push(`/messages/${data.threadId}?token=${data.token}`);
+        return;
+      }
+
       setStatus("success");
       form.reset();
+      setOrderType("fullSuit");
     } catch {
       setStatus("error");
     }
+  }
+
+  if (status === "redirecting") {
+    return (
+      <p className="rounded border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-700">
+        {t("redirecting")}
+      </p>
+    );
   }
 
   if (status === "success") {
@@ -69,12 +116,49 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {variant === "commission" ? (
+      {variant === "commission" && (
         <>
-          <div className="flex gap-6">
-            <Checkbox label={t("hasHorns")} name="hasHorns" />
-            <Checkbox label={t("hasTail")} name="hasTail" />
-          </div>
+          <fieldset>
+            <legend className="mb-1 block text-sm font-medium">{t("orderType")}</legend>
+            <div className="flex flex-wrap gap-4">
+              {ORDER_TYPES.map((type) => (
+                <label key={type} className="flex items-center gap-2 text-sm">
+                  <input
+                    type="radio"
+                    name="orderType"
+                    value={type}
+                    checked={orderType === type}
+                    onChange={() => setOrderType(type)}
+                    className="h-4 w-4"
+                  />
+                  {t(`orderTypeOptions.${type}`)}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <label className="flex items-start gap-2 text-sm">
+            <input type="checkbox" name="rushOrder" className="mt-0.5 h-4 w-4 shrink-0" />
+            <span>{t("rushOrder")}</span>
+          </label>
+
+          {orderType === "parts" && (
+            <>
+              <fieldset>
+                <legend className="mb-1 block text-sm font-medium">{t("partType")}</legend>
+                <div className="grid grid-cols-2 gap-2">
+                  {PART_TYPE_VALUES.map((value) => (
+                    <label key={value} className="flex items-center gap-2 text-sm">
+                      <input type="checkbox" name="partTypes" value={value} className="h-4 w-4" />
+                      {t(`partTypeOptions.${value}`)}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+              <Field label={t("species")} name="species" placeholder={t("speciesPlaceholder")} />
+            </>
+          )}
+
           <div className="grid grid-cols-2 gap-4">
             <Field label={t("twitterId")} name="twitterId" placeholder={t("twitterIdPlaceholder")} />
             <Field label={t("instagramId")} name="instagramId" placeholder={t("instagramIdPlaceholder")} />
@@ -109,7 +193,9 @@ export default function InquiryForm({ variant }: InquiryFormProps) {
             </span>
           </label>
         </>
-      ) : (
+      )}
+
+      {variant === "contact" && (
         <>
           <Field label={t("name")} name="name" required />
           <Field label={t("email")} name="email" type="email" required />
@@ -172,11 +258,3 @@ function TextArea({ label, name, required, placeholder }: FieldProps) {
   );
 }
 
-function Checkbox({ label, name }: { label: ReactNode; name: string }) {
-  return (
-    <label className="flex items-center gap-2 text-sm">
-      <input type="checkbox" name={name} className="h-4 w-4" />
-      {label}
-    </label>
-  );
-}

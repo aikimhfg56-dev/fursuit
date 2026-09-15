@@ -25,6 +25,9 @@ function localeFromPathname(pathname: string): Locale {
 // called but Clerk can't detect usage of clerkMiddleware()" is the error
 // otherwise). next-intl's routing only makes sense for page routes though
 // (API routes have no locale prefix), so it's skipped for /api below.
+// /seller is skipped too — it's a standalone admin area outside the
+// [locale] tree with its own root layout and its own (passphrase-based)
+// auth, not part of the localized storefront.
 const proxy = isClerkConfigured()
   ? clerkMiddleware(async (auth, req) => {
       if (isAccountRoute(req)) {
@@ -33,12 +36,12 @@ const proxy = isClerkConfigured()
         const signInUrl = new URL(`/${localeFromPathname(req.nextUrl.pathname)}/sign-in`, req.url);
         await auth.protect({ unauthenticatedUrl: signInUrl.toString() });
       }
-      if (!req.nextUrl.pathname.startsWith("/api")) {
+      if (!req.nextUrl.pathname.startsWith("/api") && !req.nextUrl.pathname.startsWith("/seller")) {
         return intlMiddleware(req);
       }
     })
   : (req: NextRequest) => {
-      if (!req.nextUrl.pathname.startsWith("/api")) {
+      if (!req.nextUrl.pathname.startsWith("/api") && !req.nextUrl.pathname.startsWith("/seller")) {
         return intlMiddleware(req);
       }
     };

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { sendNotificationEmail } from "@/lib/email/resend";
+import { addMessage, createThread } from "@/lib/messages/store";
 import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
 
 const rateLimiter = getRateLimiter("forms-contact", 5, "10 m");
@@ -23,11 +24,17 @@ export async function POST(request: Request) {
 
   const text = [`Name: ${name}`, `Email: ${email}`, `Subject: ${subject}`, "", message].join("\n");
 
+  // No account exists at this point — the thread is keyed by the access
+  // token below instead, which is the only thing that lets this specific
+  // sender (and no one else) continue the conversation.
+  const thread = await createThread({ kind: "contact", buyerName: name, buyerEmail: email, productName: subject });
+  await addMessage(thread.id, { sender: "buyer", text: message });
+
   await sendNotificationEmail({
     subject: `New contact form message — ${subject}`,
     text,
     replyTo: email,
   });
 
-  return NextResponse.json({ success: true });
+  return NextResponse.json({ success: true, threadId: thread.id, token: thread.accessToken });
 }

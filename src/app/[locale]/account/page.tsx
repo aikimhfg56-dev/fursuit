@@ -4,6 +4,7 @@ import AccountOverview from "@/components/account/AccountOverview";
 import AuthNotConfigured from "@/components/account/AuthNotConfigured";
 import { isClerkConfigured } from "@/lib/env";
 import { getAccountProfile } from "@/lib/account/profile";
+import { isThreadUnread, listThreadsForBuyer } from "@/lib/messages/store";
 import { fetchOrdersByEmail } from "@/lib/sanity/queries";
 
 export default async function AccountPage() {
@@ -16,6 +17,8 @@ export default async function AccountPage() {
   const email = user.primaryEmailAddress?.emailAddress ?? "";
   const username = user.username ?? email;
   const orders = email ? await fetchOrdersByEmail(email) : [];
+  const threads = await listThreadsForBuyer(user.id);
+  const unreadMessagesCount = threads.filter((thread) => isThreadUnread(thread, "buyer")).length;
 
   return (
     <AccountOverview
@@ -24,6 +27,7 @@ export default async function AccountPage() {
       fullName={profile.fullName}
       address={profile.address}
       orders={orders}
+      unreadMessagesCount={unreadMessagesCount}
     />
   );
 }

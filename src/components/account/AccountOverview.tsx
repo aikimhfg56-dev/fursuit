@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import type { AccountAddress } from "@/lib/account/profile";
 import type { OrderSummary } from "@/lib/sanity/queries";
 import BillingPortalButton from "./BillingPortalButton";
@@ -10,6 +11,7 @@ type AccountOverviewProps = {
   fullName?: string;
   address?: AccountAddress;
   orders: OrderSummary[];
+  unreadMessagesCount: number;
 };
 
 export default async function AccountOverview({
@@ -18,6 +20,7 @@ export default async function AccountOverview({
   fullName,
   address,
   orders,
+  unreadMessagesCount,
 }: AccountOverviewProps) {
   const t = await getTranslations("account.overview");
 
@@ -42,6 +45,26 @@ export default async function AccountOverview({
       <div className="mt-6">
         <ShippingDetailsSection fullName={fullName} address={address} />
       </div>
+
+      <section className="mt-6 rounded-xl border border-black/10 p-6">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <h2 className="text-lg font-semibold">{t("messagesHeading")}</h2>
+            <p className="mt-1 text-sm text-black/70">{t("messagesDescription")}</p>
+          </div>
+          <Link
+            href="/account/messages"
+            className="relative shrink-0 rounded-full border border-black/15 px-4 py-2 text-sm font-medium transition hover:border-black/30"
+          >
+            {t("viewMessages")}
+            {unreadMessagesCount > 0 && (
+              <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] font-semibold text-white">
+                {unreadMessagesCount}
+              </span>
+            )}
+          </Link>
+        </div>
+      </section>
 
       <section className="mt-6 rounded-xl border border-black/10 p-6">
         <h2 className="text-lg font-semibold">{t("paymentHeading")}</h2>

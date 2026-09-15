@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import ProductDetailView from "@/components/product/ProductDetailView";
-import { getReadyMadeProductBySlug } from "@/lib/sanity/queries";
+import { getShopProductDetail } from "@/lib/products/catalog";
 
 type ShopProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -8,7 +8,7 @@ type ShopProductPageProps = {
 
 export default async function ShopProductPage({ params }: ShopProductPageProps) {
   const { slug } = await params;
-  const product = await getReadyMadeProductBySlug(slug);
+  const product = await getShopProductDetail(slug);
 
   if (!product) notFound();
 
