@@ -10,8 +10,6 @@ const STATIC_PATHS = [
   "/shop",
   "/preorder",
   "/contact",
-  "/about",
-  "/faq",
   "/fursuit-care",
   "/legal/privacy",
   "/legal/terms",

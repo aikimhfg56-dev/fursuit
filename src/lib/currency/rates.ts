@@ -36,3 +36,9 @@ export async function convertFromUsd(amountUsd: number, currency: SupportedCurre
   const rates = await getExchangeRates();
   return amountUsd * (rates[currency] ?? 1);
 }
+
+/** EMS rates are quoted in JPY by Japan Post; convert to USD for display and checkout totals. */
+export async function convertJpyToUsd(amountJpy: number): Promise<number> {
+  const rates = await getExchangeRates();
+  return amountJpy / (rates.JPY || 149);
+}

@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import FilterFacets from "@/components/product/FilterFacets";
 import ProductGrid from "@/components/product/ProductGrid";
-import PagePlaceholder from "@/components/shared/PagePlaceholder";
 import TrustBadges from "@/components/shared/TrustBadges";
-import { isSanityConfigured } from "@/lib/env";
-import { listCategories, listPreorderProducts, listStyleTags } from "@/lib/sanity/queries";
+import { getPreorderCatalog } from "@/lib/products/catalog";
 import { buildAlternateLanguages } from "@/lib/seo/alternates";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -23,25 +21,10 @@ type PreorderPageProps = {
 
 export default async function PreorderPage({ searchParams }: PreorderPageProps) {
   const t = await getTranslations("preorder");
-  const tc = await getTranslations("common");
   const tp = await getTranslations("product");
 
-  if (!isSanityConfigured()) {
-    return (
-      <PagePlaceholder
-        title={t("title")}
-        description={tp("catalogNotConnected.description")}
-        comingSoon={tc("comingSoon")}
-      />
-    );
-  }
-
   const { category, style } = await searchParams;
-  const [products, categories, styleTags] = await Promise.all([
-    listPreorderProducts(),
-    listCategories(),
-    listStyleTags(),
-  ]);
+  const { products, categories, styleTags } = await getPreorderCatalog();
 
   const filteredProducts = products.filter((product) => {
     if (category && product.category?.slug !== category) return false;

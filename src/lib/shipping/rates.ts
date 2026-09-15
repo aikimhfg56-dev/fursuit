@@ -1,4 +1,5 @@
 import type { SupportedCurrency } from "@/lib/currency/constants";
+import { localeConfig, type Locale } from "@/i18n/routing";
 
 export type ShippingRegion = "US" | "EU" | "UK" | "AU" | "OTHER";
 
@@ -21,8 +22,7 @@ export function getShippingRateUsd(region: ShippingRegion): number {
   return SHIPPING_RATES_USD[region];
 }
 
-/** Currency is a reasonable proxy for delivery region without collecting an address up front. */
-export function getShippingRegionForCurrency(currency: SupportedCurrency): ShippingRegion {
+function regionForCurrency(currency: SupportedCurrency): ShippingRegion {
   switch (currency) {
     case "USD":
       return "US";
@@ -35,4 +35,19 @@ export function getShippingRegionForCurrency(currency: SupportedCurrency): Shipp
     default:
       return "OTHER";
   }
+}
+
+/** Currency is a reasonable proxy for delivery region without collecting an address up front. */
+export function getShippingRegionForCurrency(currency: SupportedCurrency): ShippingRegion {
+  return regionForCurrency(currency);
+}
+
+/**
+ * Prices are fixed to USD, so the shopper's currency can no longer stand in
+ * for their delivery region — fall back to the site locale's default
+ * currency instead, which is still a reasonable proxy without collecting an
+ * address up front.
+ */
+export function getShippingRegionForLocale(locale: Locale): ShippingRegion {
+  return regionForCurrency(localeConfig[locale].defaultCurrency);
 }

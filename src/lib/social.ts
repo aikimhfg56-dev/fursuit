@@ -1,5 +1,4 @@
-// TODO: replace with the real account URLs once these are created.
 export const SOCIAL_LINKS = {
-  twitter: "#",
-  instagram: "#",
+  twitter: "https://x.com/R_FurStudio",
+  instagram: "https://www.instagram.com/r_furstudio/",
 } as const;

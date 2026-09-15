@@ -21,19 +21,21 @@ function resolveImageUrl(image: SanityImageRef | undefined) {
   return image ? urlForImage(image)?.width(2400).height(1400).fit("crop").url() : "/hero-placeholder.jpg";
 }
 
+// Falls back to real fursuit photos until Sanity is connected — swap by setting the Shop section's image there.
+const SHOP_PREVIEW_IMAGES = ["/shop-preview-1.jpg", "/shop-preview-2.jpg", "/shop-preview-3.jpg"];
+
 export default async function HomePage() {
   const t = await getTranslations("home");
-  const tShop = await getTranslations("shop");
   const tPreorder = await getTranslations("preorder");
   const tCommission = await getTranslations("commission");
   const tContact = await getTranslations("contact");
   const cms = await getHomePage();
 
-  // Placeholder until real photography is uploaded in Sanity — swap by setting the Home page's images there.
-  const heroImageUrl = resolveImageUrl(cms?.heroImage);
+  // Falls back to a real fursuit photo until Sanity is connected — swap by setting the Home page's hero image there.
+  const heroImageUrl = cms?.heroImage ? resolveImageUrl(cms.heroImage) : "/hero-fursuit.jpg";
 
   const sections = [
-    { title: tShop("title"), href: "/shop", image: cms?.shopImage },
+    { title: t("shopSectionTitle"), href: "/shop", image: cms?.shopImage },
     { title: tPreorder("title"), href: "/preorder", image: cms?.preorderImage },
     { title: tCommission("title"), href: "/commission", image: cms?.commissionImage },
     { title: tContact("title"), href: "/contact", image: cms?.contactImage },
@@ -93,16 +95,44 @@ export default async function HomePage() {
       </div>
 
       {sections.map((section) => {
-        const imageUrl = resolveImageUrl(section.image);
+        const isShopPreview = section.href === "/shop" && !section.image;
+        const isPreorderPreview = section.href === "/preorder" && !section.image;
+        const isCommissionPreview = section.href === "/commission" && !section.image;
+        const isContactPreview = section.href === "/contact" && !section.image;
+        const imageUrl = isPreorderPreview
+          ? "/preorder-preview.jpg"
+          : isCommissionPreview
+            ? "/commission-preview.jpg"
+            : isContactPreview
+              ? "/contact-preview.jpg"
+              : resolveImageUrl(section.image);
+        const imageClassName =
+          isPreorderPreview || isCommissionPreview
+            ? "object-cover object-[center_30%]"
+            : isContactPreview
+              ? "object-cover object-[center_14%]"
+              : "object-cover";
         return (
           <FadeIn key={section.href} className="block w-full">
             <div className="relative flex aspect-[4/5] max-h-[640px] min-h-[420px] w-full flex-col items-center justify-end px-6 pb-16 pt-24 text-center sm:aspect-video sm:pb-20 lg:aspect-[21/9]">
-              {imageUrl && (
-                <>
-                  <ParallaxImage src={imageUrl} className="object-cover" strength={50} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
-                </>
+              {isShopPreview ? (
+                <div className="absolute inset-0 grid grid-cols-3">
+                  {SHOP_PREVIEW_IMAGES.map((src) => (
+                    <div key={src} className="relative overflow-hidden">
+                      <ParallaxImage src={src} className="object-cover" strength={40} />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                imageUrl && (
+                  <ParallaxImage
+                    src={imageUrl}
+                    className={imageClassName}
+                    strength={50}
+                  />
+                )
               )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
               <div className="relative z-10 flex flex-col items-center">
                 <h2 className="text-2xl font-bold text-white sm:text-3xl">{section.title}</h2>
                 <Link

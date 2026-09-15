@@ -3,9 +3,10 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { pickLocaleValue } from "@/lib/i18n/pickLocaleValue";
-import { urlForImage } from "@/lib/sanity/image";
+import { resolveProductImageUrl } from "@/lib/sanity/image";
 import type { PreorderProductSummary, ProductSummary } from "@/lib/sanity/queries";
 import PriceDisplay from "./PriceDisplay";
+import ProductImagePlaceholder from "./ProductImagePlaceholder";
 
 type ProductCardProps = {
   product: ProductSummary | PreorderProductSummary;
@@ -16,9 +17,9 @@ export default function ProductCard({ product, kind }: ProductCardProps) {
   const locale = useLocale() as Locale;
   const t = useTranslations("product");
   const name = pickLocaleValue(product.name, locale);
-  const imageUrl = product.images?.[0]
-    ? urlForImage(product.images[0])?.width(600).height(600).fit("crop").url()
-    : undefined;
+  const categoryName = product.category ? pickLocaleValue(product.category.title, locale) : undefined;
+  const subtitle = [categoryName, product.speciesTag].filter(Boolean).join(" · ");
+  const imageUrl = product.images?.[0] ? resolveProductImageUrl(product.images[0], 600) : undefined;
 
   const badges: string[] = [];
   if (product.stockStatus === "sold_out") badges.push(t("stockStatus.sold_out"));
@@ -30,27 +31,29 @@ export default function ProductCard({ product, kind }: ProductCardProps) {
   }
 
   return (
-    <Link href={`/${kind}/${product.slug}`} className="group block">
-      <div className="aspect-square overflow-hidden rounded-lg bg-black/5">
+    <Link
+      href={`/${kind}/${product.slug}`}
+      className="group block text-center transition duration-300 ease-out hover:-translate-y-1"
+    >
+      <div className="aspect-square overflow-hidden rounded-2xl bg-card-background transition-shadow duration-300 group-hover:shadow-lg">
         {imageUrl ? (
           <Image
             src={imageUrl}
             alt={name}
             width={600}
             height={600}
-            className="h-full w-full object-cover transition group-hover:scale-105"
+            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center px-2 text-center text-xs text-black/40">
-            {name}
-          </div>
+          <ProductImagePlaceholder label={t("imageComingSoon")} />
         )}
       </div>
-      <div className="mt-3">
-        <p className="text-sm font-medium">{name}</p>
-        <PriceDisplay basePriceUsd={product.basePrice} className="text-sm text-black/60" />
+      <div className="mt-4">
+        <p className="text-base font-bold uppercase tracking-wide">{name}</p>
+        {subtitle && <p className="mt-1 text-xs text-black/50">{subtitle}</p>}
+        <PriceDisplay basePriceUsd={product.basePrice} className="mt-1 text-sm text-black/60" />
         {badges.length > 0 && (
-          <div className="mt-1 flex flex-wrap gap-1">
+          <div className="mt-2 flex flex-wrap justify-center gap-1">
             {badges.map((badge) => (
               <span
                 key={badge}

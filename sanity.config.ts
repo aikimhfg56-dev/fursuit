@@ -8,7 +8,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 
 export default defineConfig({
   name: "fursuit-studio",
-  title: "Fursuit Studio",
+  title: "R Furstudio",
   projectId,
   dataset,
   basePath: "/studio",

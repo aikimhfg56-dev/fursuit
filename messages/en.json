@@ -3,21 +3,22 @@
     "home": "Home",
     "commission": "Custom Commission",
     "shop": "Shop",
-    "preorder": "Pre-Order",
+    "preorder": "Semi Order",
     "contact": "Contact"
   },
   "common": {
     "language": "Language",
-    "currency": "Currency",
     "color": "Color",
-    "comingSoon": "Coming soon"
+    "comingSoon": "Coming soon",
+    "search": "Search"
   },
   "home": {
-    "title": "Bring Your Fursona to Life",
-    "subtitle": "Handcrafted fursuits, made to order and ready to ship, for fursuiters around the world.",
+    "title": "Become Who You've Always Imagined.",
+    "subtitle": "Step beyond the everyday and into a world that feels entirely your own.",
     "ctaCommission": "Start a Custom Commission",
     "ctaShop": "Browse Ready-Made Suits",
-    "seeMore": "See More"
+    "seeMore": "See More",
+    "shopSectionTitle": "Shop"
   },
   "account": {
     "signIn": "Sign in",
@@ -53,22 +54,60 @@
       "managePayment": "Manage payment methods",
       "billingLoading": "Opening...",
       "ordersHeading": "Order history",
-      "noOrders": "No orders yet."
+      "noOrders": "No orders yet.",
+      "messagesHeading": "Messages",
+      "messagesDescription": "Chat with us about color, size, and other details for your custom or semi order.",
+      "viewMessages": "View Messages"
+    },
+    "messages": {
+      "title": "Messages",
+      "empty": "You don't have any conversations yet.",
+      "noMessagesYet": "No messages yet",
+      "back": "← Back to Messages",
+      "chat": {
+        "inputPlaceholder": "Type a message...",
+        "send": "Send",
+        "sending": "Sending...",
+        "read": "Read",
+        "attachImage": "Attach an image",
+        "sendError": "Couldn't send your message. Please try again.",
+        "imageTooLarge": "That image is too large. Please try a smaller photo."
+      },
+      "shipped": "Shipped",
+      "trackingNumber": "Tracking number"
     }
   },
   "commission": {
     "title": "Custom Commission",
-    "description": "Design your one-of-a-kind fursuit from scratch, made to your measurements.",
+    "description": "Design your one-of-a-kind fursuit from scratch, made to your measurements. We also accept orders for partial suits and individual parts.",
     "cta": "Start a Quote Request",
     "steps": {
       "heading": "How It Works",
       "items": [
-        { "title": "Submit a quote request", "description": "Tell us about your character and budget." },
-        { "title": "Discuss the details", "description": "We refine the design, materials, and timeline together." },
-        { "title": "Pay and share measurements", "description": "A deposit secures your spot; we take your measurements." },
-        { "title": "We build it in stages", "description": "Base, fur, and details — each stage is handmade with care." },
-        { "title": "You approve along the way", "description": "We share progress photos so you can give feedback." },
-        { "title": "Ship and enjoy", "description": "Your finished fursuit is packed carefully and shipped to you." }
+        {
+          "title": "Submit a quote request",
+          "description": "Tell us about your character and species. If you don't have a finished design yet, feel free to send reference images close to what you have in mind."
+        },
+        {
+          "title": "Get a quote & discuss the details",
+          "description": "Based on what you're looking for, we'll give you an approximate quote, then work together on the design, materials, and specifications."
+        },
+        {
+          "title": "Pay a deposit to secure your slot",
+          "description": "Once you've confirmed the details and quote, a 50% deposit secures your production slot."
+        },
+        {
+          "title": "Final design check & production begins",
+          "description": "As your turn approaches, we'll do a final check on the design and specifications, then start production once it's your turn."
+        },
+        {
+          "title": "Progress updates",
+          "description": "We'll send photos of the work in progress and completed parts along the way."
+        },
+        {
+          "title": "Completion & shipping",
+          "description": "Once finished, you'll pay the remaining balance and shipping, and we'll carefully package and ship your suit."
+        }
       ]
     },
     "quote": {
@@ -76,8 +115,27 @@
       "description": "Tell us about the fursuit you have in mind and we'll get back to you.",
       "timelineNotice": "Most custom commissions take about 3–6 months from order to shipping. We'll confirm a more specific timeline once we discuss your quote.",
       "form": {
-        "hasHorns": "Has horns",
-        "hasTail": "Has a tail",
+        "orderType": "Order type",
+        "orderTypeOptions": {
+          "fullSuit": "Full Suit",
+          "partialSuit": "Partial Suit",
+          "parts": "Parts Order"
+        },
+        "rushOrder": "Rush my order (+10% of the total price, for a faster turnaround)",
+        "partType": "Part type(s)",
+        "partTypeOptions": {
+          "head": "Head",
+          "handpaws": "Handpaws",
+          "puffyHandpaws": "Puffy Handpaws",
+          "feetpawsOutdoorPlantigrade": "Feetpaws Outdoor (plantigrade)",
+          "feetpawsOutdoorDigitigrade": "Feetpaws Outdoor (digitigrade)",
+          "sockpawsIndoorPlantigrade": "Sockpaws Indoor (plantigrade)",
+          "tail": "Tail",
+          "armsleeves": "Armsleeves",
+          "body": "Body"
+        },
+        "species": "Species (optional)",
+        "speciesPlaceholder": "e.g. Fox",
         "twitterId": "Twitter/X handle (optional)",
         "twitterIdPlaceholder": "@yourhandle",
         "instagramId": "Instagram handle (optional)",
@@ -92,15 +150,27 @@
         "success": "Thanks! We've received your request and will be in touch soon.",
         "error": "Something went wrong sending your request. Please try again."
       }
+    },
+    "startingPrices": {
+      "heading": "Starting Prices",
+      "priceFrom": "From {price}",
+      "items": {
+        "fullSuit": "Full Suit",
+        "head": "Head",
+        "bodysuit": "Body Suit",
+        "hands": "Hands",
+        "feet": "Feet",
+        "tail": "Tail"
+      }
     }
   },
   "shop": {
-    "title": "Ready-Made Fursuits",
-    "description": "Completed suits available to purchase and ship right away."
+    "title": "Shop",
+    "description": "Items available for immediate shipping."
   },
   "preorder": {
-    "title": "Pre-Order",
-    "description": "Reserve a suit that's already designed but not yet made, ahead of production."
+    "title": "Semi Order",
+    "description": "The design is fixed, but can be made in your preferred color and size. Please see each product page for full details."
   },
   "contact": {
     "title": "Contact Us",
@@ -113,18 +183,17 @@
       "submit": "Send Message",
       "submitting": "Sending...",
       "success": "Thanks! We've received your message and will reply soon.",
-      "error": "Something went wrong sending your message. Please try again."
+      "error": "Something went wrong sending your message. Please try again.",
+      "redirecting": "Thanks! Taking you to the conversation..."
     }
   },
   "footer": {
     "rights": "All rights reserved.",
-    "brandHeading": "Fursuit Studio",
+    "brandHeading": "R Furstudio",
     "helpHeading": "Help",
     "legalHeading": "Legal",
     "nav": {
-      "faq": "FAQ",
       "fursuitCare": "Fursuit Care",
-      "about": "About",
       "contact": "Contact"
     },
     "social": {
@@ -133,17 +202,9 @@
       "email": "Email us"
     }
   },
-  "about": {
-    "title": "About Fursuit Studio",
-    "content": "Fursuit Studio is a small commission-based studio building custom, ready-made, and pre-order fursuits for customers worldwide. We started out making suits for friends in the fandom, and grew into a full-time workshop without losing the parts that mattered most to us: careful construction, honest communication, and characters that actually feel like the people wearing them.\n\nEvery custom commission is built to order by hand, using the reference materials and measurements you provide. Ready-made and pre-order pieces go through the same process, just on our own schedule rather than yours — so you can get a finished suit without the wait of a full custom build.\n\nWe ship worldwide and support customers across the US, UK, EU, and Australia, with pricing shown in your local currency and support in several languages. If you have questions before ordering, our Contact page is the fastest way to reach us."
-  },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "content": "Answers to the questions we hear most often. If you don't see what you're looking for, contact us and we'll help directly.\n\n## How does the commission process work?\nStart with a quote request describing your character, including reference images and any details about horns, tails, or design preferences. We'll review it and follow up with pricing and an estimated timeline. Once you accept the quote and pay the deposit, we begin work.\n\n## What payment methods do you accept?\nWe accept credit and debit cards, Alipay, and Revolut Pay through Stripe, as well as PayPal and bank transfer via Wise. Prices are shown in your selected currency, and the amount charged is confirmed at checkout or on your invoice.\n\n## How long does a custom commission take?\nMost custom commissions take about 3–6 months from when work begins to shipping, depending on complexity and our current queue. We'll confirm a more specific estimate with your quote. Ready-made items ship promptly, and pre-order items ship within the window shown on the product page.\n\n## Can I make changes after placing my order?\nDesign changes are usually possible before production begins, sometimes at an additional cost depending on the stage of work. Significant changes requested after production has started may require cancelling and restarting the order — see our Returns & Refunds policy for details.\n\n## Do you ship internationally, and who pays customs?\nYes, we ship worldwide by courier. International orders may be subject to customs duties, import taxes, or handling fees charged by your country on arrival — these are the responsibility of the recipient and aren't included in your order total.\n\n## Do I need an account to place an order?\nYes. Creating an account lets us securely collect your shipping details and keep a record of your order history. You can sign up with just a nickname, email, and password — we only ask for your full name and address when you place an order or request a quote.\n\n## What if something is wrong with my order?\nContact us with your order reference and we'll help make it right. Ready-made items can be returned within 14 days of delivery if unworn and in original condition, and any suit is covered by our warranty against manufacturing faults — see our Returns & Refunds and Terms of Service pages for details."
-  },
   "fursuitCare": {
     "title": "Fursuit Care Guide",
-    "content": "A little care goes a long way toward keeping your fursuit looking and feeling great for years. Here's how we recommend looking after it.\n\n## Everyday Wear\nAvoid eating or drinking in your fursuit, and take breaks in a cool, shaded area during long wear sessions to avoid overheating and excess sweat. Keep your suit away from open flames, hot surfaces, and sharp edges that could snag the fur or damage the base.\n\n## Cleaning\nSpot-clean small marks with a damp cloth and a small amount of mild, fur-safe detergent, then let the area air dry completely before storing or wearing the suit again. Avoid machine washing or drying, and avoid soaking foam or resin parts, which can warp or lose their shape.\n\n## Storage\nStore your suit somewhere cool, dry, and out of direct sunlight, ideally on a wig head or hanger so the fur and shape hold up over time. Avoid sealed plastic bags for long-term storage, since trapped moisture can lead to mildew — a breathable garment bag works well.\n\n## Repairs\nMinor issues like loose seams or a stray thread are easiest to fix early, before they get worse. If your suit was made by us and develops a fault due to how it was constructed, contact us — it's covered under our warranty. For everything else, we're happy to quote a repair."
+    "content": "Proper care will help keep your fursuit clean, soft, and in good condition for a long time. Please brush, clean, dry, and store each part carefully after use.\n\n## 1. Basic Care\n\nBrush your fursuit before and after wearing it. For long fur, use a slicker brush or pet brush. For short fur, use a firmer bristle brush. Always brush gently in the direction of the fur.\n\nFor quick cleaning and disinfecting, mix equal parts water and alcohol in a spray bottle. Lightly spray the inside and outside of the suit, including the head, hands, body, and other parts. You may also use a suitable aerosol disinfectant. After spraying, brush the fur and let the suit dry completely in a well-ventilated area away from direct sunlight.\n\nWhen storing your fursuit, keep it in a closed, clean space with moderate temperature and humidity. Mini partials and partial suits can be stored in a plastic container, bag, backpack, or suitcase. Full bodysuits, arm sleeves, and long tails should be hung up whenever possible to prevent wrinkles and marks.\n\n## 2. Washing and Drying\n\nHand paws, arm sleeves, tails, indoor foot paws, bodysuits, and padding can usually be machine washed. Before washing, close all zippers and buckles. Use a mild liquid detergent. Do not use powder detergent, bleach, hot water, or an iron.\n\nIf there are stains or white areas that need extra care, apply a stain remover before washing. If the fur feels rough, a small amount of fabric softener may be used. If you are unsure, test the product on a hidden area first.\n\nWet fur becomes very heavy, so check your washing machine's weight limit before washing. After washing, brush the fur in the direction of the pile and hang each part to dry.\n\nDrying tips:\n\n* Hang hand paws from the wrist with the fingers facing downward.\n* Hang arm sleeves separately with the buckles open.\n* Hang tails from the belt loop or strap.\n* Foot paws can be hung from the ankle area or placed upright with the toes down.\n* Hang bodysuits from the shoulders.\n* Gently press padding to remove extra water before hanging it.\n* If using clothespins, clip them on the seams to avoid leaving marks in the fur.\n* A fan or cool-air hair dryer can help reduce drying time.\n\nMake sure every part is completely dry before storing it. This helps prevent mold and unpleasant odors.\n\n## 3. Head, Outdoor Feet, and Extra Care Tips\n\nThe fursuit head should be cleaned by hand only. Do not fully submerge the head in water. Lightly dampen the outside with water or wipe it with a damp cloth or towel. Add a small amount of liquid detergent, gently work it into the fur, then rinse carefully until no soap remains. Pay extra attention to areas such as the ears and cheeks, as they may hold more water.\n\nAfter cleaning, brush the head and let it dry in a well-ventilated area away from direct sunlight.\n\nOutdoor foot paws should be hand washed only. Use the same mild liquid detergent and gently clean them by hand. Brush the soles, rinse well, and allow them to air dry completely.\n\nSandals can be cleaned with soap and a brush. Scrub both the soles and straps, rinse thoroughly, and dry them away from direct sunlight.\n\nFor best comfort and hygiene, wear a functional undersuit and balaclava under your fursuit. Avoid cotton, as it absorbs sweat and does not dry quickly. Breathable sportswear or cooling fabric is recommended.\n\nIf your fursuit becomes damaged, heavily stained, or difficult to clean, please contact the maker before trying any strong cleaning method."
   },
   "checkout": {
     "title": "Choose how to pay",
@@ -178,7 +239,12 @@
       "iban": "IBAN",
       "bic": "BIC / SWIFT",
       "reference": "Reference",
-      "notConfigured": "Bank transfer details aren't set up yet."
+      "notConfigured": "Bank transfer details aren't set up yet.",
+      "routingNumber": "Routing number",
+      "accountNumber": "Account number",
+      "sortCode": "Sort code",
+      "bankAddress": "Bank address",
+      "bankCountry": "Bank country"
     },
     "notConfigured": "This payment method isn't connected yet.",
     "errors": {
@@ -207,6 +273,7 @@
       "all": "All"
     },
     "empty": "No products yet — check back soon.",
+    "imageComingSoon": "Photo coming soon",
     "catalogNotConnected": {
       "description": "The product catalog isn't connected yet."
     }
@@ -233,8 +300,7 @@
     "reference": "Reference: {code}"
   },
   "legal": {
-    "disclaimer": "This page is a template for reference only — have it reviewed by a qualified lawyer before launch.",
-    "termsAgreementLabel": "I agree to the <termsLink>Terms of Service</termsLink>",
+    "termsAgreementLabel": "I have read the <termsLink>Safety Precautions and Terms of Service</termsLink>, and I agree, having understood the product's characteristics and the risks involved in its use.",
     "footerNav": {
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
@@ -244,33 +310,30 @@
     },
     "privacy": {
       "title": "Privacy Policy",
-      "content": "This policy explains what personal information we collect, how we use it, and the choices you have. It applies to your use of this website and the services described on it.\n\n## Information We Collect\nWe collect the information you provide directly — your nickname, email address, and password when you create an account; your full name and shipping address when you place an order or request a commission quote; and any character details, reference images, or files you share with your commission request. We also collect basic technical information automatically, such as your browser type, general location inferred from your IP address, and the pages you visit, to keep the site secure and working correctly.\n\n## How We Use Your Information\nWe use your information to create and manage your account, process orders and commission requests, communicate with you about your purchase or quote, provide customer support, and detect and prevent fraud or abuse of our forms and checkout. We do not sell your personal information, and we do not use it for third-party advertising.\n\n## Cookies & Similar Technologies\nWe use a small number of cookies that are necessary for the site to work: to keep you signed in, remember your language and currency preference, and protect our forms from automated abuse. We don't use third-party advertising or tracking cookies. You can control cookies through your browser settings, though blocking essential cookies may prevent parts of the site — such as sign-in — from working.\n\n## Third-Party Service Providers\nWe share your information with a small number of providers who help us run the site, and only to the extent needed for them to provide their service to us: Clerk (account creation and sign-in), Stripe, PayPal, and Wise (payment processing), Sanity (product catalog and order records), Resend (order and quote confirmation emails), and Upstash (short-term abuse prevention on our forms and checkout). None of these providers may use your information for their own marketing purposes.\n\n## Data Security\nWe rely on our providers' industry-standard security measures — encrypted connections, encrypted storage, and access controls — to protect your information. We never store your full card number ourselves; payment details are handled directly by Stripe, PayPal, or Wise. No method of transmission or storage is completely secure, but we work to protect your information appropriately.\n\n## Your Rights\nDepending on where you live, you may have the right to access, correct, or delete the personal information we hold about you, object to or restrict certain processing, or receive a copy of your data in a portable format. If you are in the European Economic Area, the UK, or Switzerland, you also have the right to lodge a complaint with your local data protection authority. To exercise any of these rights, contact us using the details on our Contact page, subject to any records we're required to keep for accounting or legal purposes.\n\n## International Data Transfers\nWe and our service providers may process your information in countries outside your own, including the United States. Where this involves transferring personal data from the European Economic Area, the UK, or Switzerland, we rely on appropriate safeguards such as our providers' standard contractual clauses.\n\n## Children's Privacy\nOur services are not directed to children, and we do not knowingly collect personal information from anyone under 16. If you believe a child has provided us with personal information, please contact us and we will delete it.\n\n## Changes to This Policy\nWe may update this policy from time to time as our services change. We'll post the current version on this page."
+      "content": "## Information We Collect\n\nWe collect personal information that you provide directly to us. This may include your nickname, email address, and password when you create an account; your full name and shipping address when you place an order or request a commission quote; and any character details, reference images, files, or other information you choose to share as part of a commission request.\n\nWe may also collect basic technical information automatically when you use our website. This may include your browser type, device information, general location inferred from your IP address, pages visited, and other usage information. We use this information to keep the site secure, prevent abuse, and ensure the website works correctly.\n\n## How We Use Your Information\n\nWe use your information to:\n\n* Create and manage your account\n* Process orders, payments, and commission requests\n* Communicate with you about your order, quote, or commission\n* Provide customer support\n* Send order confirmations, quote updates, and service-related emails\n* Detect, prevent, and respond to fraud, spam, abuse, or security issues\n* Maintain and improve the functionality of our website\n\nWe do not sell your personal information. We also do not use your personal information for third-party advertising.\n\n## Cookies & Similar Technologies\n\nWe use a limited number of cookies and similar technologies that are necessary for the website to function properly. These may be used to keep you signed in, remember your language or currency preferences, protect our forms from automated abuse, and support secure checkout and account features. We do not use third-party advertising or tracking cookies.\n\nYou can control or block cookies through your browser settings. However, blocking essential cookies may prevent certain parts of the website, such as sign-in or checkout, from working correctly.\n\n## Third-Party Service Providers\n\nWe share information with a limited number of trusted service providers who help us operate our website and provide our services. We only share the information necessary for them to perform their services. These providers may include:\n\n* Clerk, for account creation and sign-in\n* Stripe, PayPal, and Wise, for payment processing\n* Sanity, for product catalog and order record management\n* Resend, for order, quote, and confirmation emails\n* Upstash, for short-term abuse prevention on forms and checkout\n\nThese service providers are not permitted to use your personal information for their own marketing purposes.\n\n## Data Security\n\nWe take reasonable steps to protect your personal information. We rely on our service providers' industry-standard security measures, including encrypted connections, encrypted storage, and access controls where appropriate.\n\nWe do not store your full payment card number ourselves. Payment details are handled directly by Stripe, PayPal, Wise, or the applicable payment provider.\n\nNo method of transmission over the internet or electronic storage is completely secure. However, we work to protect your information using appropriate technical and organizational measures.\n\n## Your Rights\n\nDepending on where you live, you may have certain rights regarding your personal information. These may include the right to access, correct, delete, or receive a copy of the personal information we hold about you. You may also have the right to object to or restrict certain types of processing.\n\nIf you are located in the European Economic Area, the United Kingdom, or Switzerland, you may also have the right to lodge a complaint with your local data protection authority.\n\nTo exercise your rights, please contact us using the details provided on our Contact page. Some requests may be subject to identity verification, and we may need to retain certain records where required for accounting, tax, legal, fraud prevention, or legitimate business purposes.\n\n## International Data Transfers\n\nWe and our service providers may process your information in countries outside your own country, including the United States. Where personal information is transferred from the European Economic Area, the United Kingdom, or Switzerland to another country, we rely on appropriate safeguards where required, such as standard contractual clauses or equivalent legal protections used by our service providers.\n\n## Children's Privacy\n\nOur services are not directed to children, and we do not knowingly collect personal information from anyone under the age of 16.\n\nIf you believe that a child has provided us with personal information, please contact us. If we become aware that we have collected personal information from a child without appropriate consent, we will delete it where required by law.\n\n## Changes to This Policy\n\nWe may update this Privacy Policy from time to time to reflect changes to our services, website, legal requirements, or business practices.\n\nWhen we update this policy, we will post the current version on this page. The updated policy will apply from the date it is posted unless otherwise stated."
     },
     "terms": {
-      "title": "Terms of Service",
-      "content": "By placing an order or submitting a commission quote request, you agree to these terms. Prices are shown in your selected currency for convenience; the amount charged is confirmed at checkout or on your invoice.\n\n## Work Aspects\nAll commission work is carried out under the Fursuit Studio name. To start work on your character, please provide a clear reference sheet or as many reference images as possible during the quote process. Clear, timely communication throughout the build helps us finish your suit on schedule and to your expectations. We reserve the right to decline any order or commission at our discretion. If a client is unreasonable or repeatedly unresponsive, we may cancel the order; any refund follows our Returns & Refunds policy.\n\n## Orders & Payment\nFor ready-made and pre-order items, payment is collected in full at checkout via Stripe, PayPal, or Wise bank transfer. For custom commissions, once your quote is agreed a deposit is required before we begin work, with the remaining balance due before your finished suit ships — see \"Payment Plans\" below for larger commissions.\n\n## Payment Plans\nFor larger commissions, we may offer a payment plan spread over several months. A non-refundable deposit secures your place in the queue, and we'll agree a schedule for the rest of the balance together. If your circumstances change, please let us know as early as possible so we can find a workable arrangement — missed payments may delay the start of work.\n\n## Changes to Your Design\nDesign changes can usually be made before production begins, sometimes at an additional cost depending on the stage of work. Significant changes requested after production has started may not be possible without cancelling and restarting the order — see our Returns & Refunds policy for how this affects any refund.\n\n## Measurements\nFor custom commissions, we'll provide guidance on how to take the measurements we need. It's your responsibility to measure carefully and follow that guidance; while we review submitted measurements for anything that looks unusual, we can't be responsible for a suit that doesn't fit due to inaccurate measurements.\n\n## Production Time\nReady-made items ship promptly after purchase, and pre-order items ship within the window shown on the product page. Custom commissions typically take about 3–6 months from when work begins to shipping, depending on complexity and our current queue — we'll confirm a more specific estimate with your quote.\n\n## Warranty\nWe stand behind the quality of our work. If a fault appears that's due to how the suit was made, contact us and we'll repair it at no extra cost to you (you're responsible for shipping it to us). Damage from normal wear, accidents, or improper care isn't covered, but we're happy to quote a repair.\n\n## Intellectual Property\nAll character designs, artwork, and product photography on this site are the property of Fursuit Studio or our artists and may not be reproduced without permission. Custom character designs created for you remain your character, but our patterns, techniques, and construction methods remain ours.\n\n## Limitation of Liability\nWe aim to accurately describe every product and commission process, but we don't guarantee the site will be error-free or uninterrupted, and we're not liable for indirect or incidental damages arising from your use of the site, to the fullest extent permitted by law."
+      "title": "Fursuit / Plushsuit Sales Terms & Safety Policy",
+      "content": "These Terms apply to the purchase and use of Fursuits, Plushsuits, custom-made items, and other wearable products sold by us (collectively, the \"Products\").\n\nBefore purchasing, please carefully review these Terms and the specifications and precautions listed on each product page, and proceed with your purchase only once you understand and agree to their contents.\n\n## Article 1: Nature of the Products\n\nThe Products are specialized wearable items that differ from ordinary clothing.\n\nDepending on the type, construction, and specifications of a Product, the following conditions or risks may occur:\n\n* Limited or no visibility\n* Reduced hearing\n* Restricted movement of the body and joints\n* Increased body temperature and heavy sweating\n* Dehydration\n* Falling, or collisions with surrounding objects or people\n* Pressure on the body\n* Difficulty breathing\n* Anxiety or panic\n* Difficulty removing the item due to zippers, locking mechanisms, etc.\n\nProducts that cover the head or entire body, one-piece (integrated) designs, products with no or severely limited visibility, products that restrict body movement, and products fitted with locking mechanisms may require greater care than an ordinary fursuit.\n\nPurchasers and wearers must understand the characteristics and risks specific to each product and use it with safety as the top priority.\n\n## Article 2: Safety Check Before Use\n\nBefore each use, always check that the product body, stitching, zippers, locking mechanisms, and other components show no abnormalities.\n\nBefore wearing the product, also confirm the following:\n\n* The correct way to put on and remove the product\n* How to remove the product in an emergency\n* How to check visibility and your surroundings\n* How to operate the zippers and locks\n* That the environment allows for adequate rest and hydration\n\nIf using the product for the first time, begin with a short period of wear in a safe indoor environment.\n\n## Article 3: Safety Monitor\n\nFor products with no or severely limited visibility, products that significantly restrict body movement, or products where the wearer may have difficulty removing the item quickly on their own, do not use the product alone — use it together with an adult safety monitor who can assist immediately in an emergency.\n\nThe safety monitor must remain within a range where they can observe the wearer's condition, immediately stop use if any problem occurs, and assist with removal as needed.\n\nFor products with a locking mechanism, check the unlocking method before use and make sure it can be unlocked quickly in an emergency.\n\n## Article 4: Precautions During Use\n\nWearers must fully check their own physical condition and the environment of use.\n\nAvoid continuous wear for long periods, and take appropriate breaks with sufficient hydration.\n\nStop use immediately if you experience any of the following symptoms or abnormalities:\n\n* Severe heat\n* Difficulty breathing\n* Dizziness\n* Nausea\n* Heart palpitations\n* Numbness\n* Severe fatigue\n* Anxiety or panic\n* Any other physical or mental abnormality\n\nIf necessary, promptly consult a medical institution or call emergency services.\n\n## Article 5: Use in Hazardous Environments\n\nFully consider the visibility, range of motion, and other characteristics of the Product.\n\nThe risk of accidents is especially high in the following locations and situations; avoid use there, or ensure thorough safety measures are taken by a safety monitor:\n\n* Roadways and near vehicles\n* Stairs, steps, or elevated areas\n* Bodies of water\n* Near open flames\n* Extremely hot environments\n* Crowded places\n* Slippery surfaces\n* Any other environment posing a risk of falling, collision, burns, drowning, etc.\n\nFor products with no visibility, do not walk or move in an environment where safety cannot be adequately ensured.\n\n## Article 6: Conditions Under Which Use Is Prohibited\n\nDo not use the Product under any of the following conditions:\n\n* While under the influence of alcohol\n* While under the influence of illegal drugs or similar substances\n* While in a condition that affects normal judgment or physical control\n* While feeling unwell\n* While extremely fatigued\n* Any other condition in which safe use is judged to be difficult\n\n## Article 7: Size and Fit\n\nBefore purchasing, check the compatible height, body measurements, and other sizing conditions listed on the product page.\n\nForcing a poorly fitting product onto your body can not only damage the product but also lead to excessive pressure on the body or difficulty removing it.\n\nDue to the nature of custom-made products, size mismatches resulting from the purchaser's own measurement errors, incorrect size information provided, or other circumstances on the purchaser's part are generally not eligible for return or exchange.\n\nHowever, this does not apply where the product was made with dimensions clearly different from the order due to a manufacturing error on our part.\n\n## Article 8: Modification and Dangerous Use\n\nDo not use the Product in any manner that endangers life or physical safety.\n\nIn addition, if the zippers, locking mechanism, internal structure, or other safety-related parts are modified or altered in a way we did not anticipate, we are not responsible for any accident, malfunction, or damage resulting from such modification or alteration.\n\n## Article 9: Emergency Response\n\nIf the wearer's life or physical safety is at risk, prioritize the safety of life and body over protecting the product.\n\nIf normal removal is difficult, promptly remove the product even if this requires cutting or damaging the zipper, stitching, fabric, or other parts as necessary.\n\nIf a serious abnormality is observed, immediately call emergency services or take other necessary action.\n\n## Orders & Payment\n\n## Article 10: Formation of Orders\n\nA sales contract is formed once the purchaser places an order using our designated method and we accept that order.\n\nFor custom-made items or commissions, the order becomes final once we have provided a quote, the purchaser has paid the required deposit, and we have confirmed receipt of that payment.\n\n## Article 11: Custom-Made Items & Commissions\n\nCustom-made products are made based on the reference sheet, images, body measurements, and other information provided by the purchaser.\n\nWe may be unable to accommodate major design changes, specification changes, or size changes once production has begun.\n\nEven where such changes can be accommodated, additional fees and an extended delivery time may apply.\n\nDue to the nature of handmade products, minor differences in color, fur texture, shape, left-right symmetry, and other aspects may occur between the reference image or digital design and the finished product.\n\n## Article 12: Payment\n\nPlease pay for products according to the method and deadline stated on the product page, quote, or invoice.\n\nFor commissions, in principle, 50% of the total is paid as a deposit at the time of contract, and the remaining 50% plus shipping is paid upon completion.\n\nWhere different payment terms have been individually agreed, those terms take precedence.\n\nAvailable payment methods are those we indicate at the time of order or invoicing.\n\n## Shipping & International Delivery\n\n## Article 13: Shipping Fees\n\nShipping fees vary depending on the size, weight, destination, shipping method, and other factors of the product.\n\nUnless otherwise indicated as \"free shipping,\" \"shipping included,\" or similar, shipping costs are the responsibility of the purchaser.\n\nFor products such as custom-made items where the final packed size and weight are not determined at the time of order, shipping costs may be calculated after completion or once the item is ready to ship.\n\n## Article 14: Shipping Method\n\nFor domestic and international shipping, we use the carrier and shipping service we determine to be appropriate, taking into account the destination, size, weight, price, and other conditions of the product.\n\nIn principle, we use a trackable shipping method.\n\nFor international shipments, we may use EMS, FedEx, or other appropriate international shipping services.\n\nIf a tracking number is issued after shipment, we will notify the purchaser.\n\n## Article 15: International Shipping, Customs Duties, etc.\n\nFor international shipments, customs duties, import consumption tax, VAT, customs clearance fees, carrier disbursement fees, and other costs may be incurred in the destination country or region.\n\nUnless otherwise expressly stated, these costs are not included in the product price or shipping fee and are the responsibility of the purchaser.\n\nPurchasers should also check the import regulations, customs systems, and other clearance conditions of their own country or region in advance.\n\n## Article 16: Customs Declarations\n\nFor customs declarations required for international shipments, our basic policy is to declare an amount close to the actual value of the product.\n\nWe will declare the product description, quantity, price, and other information appropriately in accordance with applicable laws, customs regulations, and carrier rules.\n\nIf a purchaser requests that we declare an amount significantly lower than the actual value of the product, declare a false product name or description, or make any other improper declaration for the purpose of avoiding or reducing customs duties or import taxes, we will not comply with such a request.\n\nIn addition, customs authorities or carriers in the destination country or region may request additional documentation, invoices, or other materials regarding the declared price or other customs declaration content.\n\nCustoms duties, import consumption tax, VAT, customs clearance fees, and other costs incurred at the time of import are the responsibility of the purchaser in accordance with Article 15, unless otherwise expressly stated.\n\n## Article 17: Shipping Delays\n\nAfter shipment, delivery may be delayed due to weather, natural disasters, flight schedules, customs inspections, customs clearance procedures, the carrier, circumstances in the destination country, or other circumstances beyond our control.\n\nWe will provide information on the expected shipping date and tracking information to the extent possible, but we do not guarantee the arrival date and time after the item has been handed over to the carrier.\n\nIf a shipping problem occurs, we will cooperate as needed, including by requesting an investigation from the carrier.\n\n## Article 18: Loss or Damage During Shipping\n\nIf loss or damage occurs during shipping, please contact us promptly.\n\nWe will respond within a reasonable scope, including investigating with the carrier and filing compensation claims.\n\nWhere carrier compensation applies, the terms and procedures of that carrier's compensation policy will apply.\n\nWe are not responsible for the occurrence of delays or other events that occur after handover to the carrier and that are not attributable to us, except where we bear legal responsibility.\n\n## Article 19: Shipping Information & Reshipment\n\nPurchasers must provide accurate name, address, postal code, phone number, and other information necessary for shipping.\n\nWe may be unable to accommodate address changes after shipment.\n\nIf a product is returned due to an incorrect address entered by the purchaser, prolonged absence, refusal of receipt, refusal to pay customs duties, or other circumstances on the purchaser's part, the shipping costs for reshipment, return shipping costs, and any other actual additional costs incurred are the responsibility of the purchaser.\n\n## Cancellations, Returns & Warranty\n\n## Article 20: Order Cancellation\n\nFor ready-made items, the cancellation conditions after an order is confirmed are shown on each product page or the order screen.\n\nFor custom-made products, because materials are secured, the design is adjusted, and production is carried out specifically for the purchaser, we generally do not accept cancellations for the purchaser's convenience once the order is finalized and production has begun.\n\nWhere an individual agreement exists regarding the stage at which cancellation is possible and the refundable amount, that agreement takes precedence.\n\n## Article 21: Returns & Exchanges\n\nFor custom-made products, products made according to the purchaser's specifications, and other individually produced items, we generally do not accept returns or exchanges for the purchaser's convenience.\n\nFor ready-made items as well, any items designated as non-returnable will be indicated as such on the product page and purchase screen.\n\nHowever, please contact us in the following cases:\n\n* A different product from the one ordered was delivered\n* Significant damage or a defect was confirmed at the time the product arrived\n* The product clearly differs from the main specifications agreed at the time of order due to a manufacturing error on our part\n\nAfter confirming the condition of the product, we will individually propose a reasonable resolution, such as repair, exchange, remake, or return/refund.\n\n## Article 22: Confirmation Upon Arrival\n\nAfter the product arrives, please check its condition as promptly as possible.\n\nIf damage during shipping is suspected, do not dispose of the product, packaging materials, or outer box; keep photos or video showing the condition, and contact us.\n\n## Article 23: Repairs & Warranty\n\nIf a manufacturing defect on our part is confirmed, we will determine our response after checking the details and the conditions of use.\n\nDamage caused by normal wear and tear, deterioration over time, damage caused by the purchaser or a third party, improper use, storage, or cleaning methods, unauthorized modification, or other causes not attributable to a manufacturing defect on our part is not eligible for free repair.\n\nWhere a paid repair is possible, we will provide the repair cost, shipping fee, and other details after confirming the condition.\n\n## Intellectual Property & Photography\n\n## Article 24: Intellectual Property Rights\n\nPurchase of a product does not transfer copyright or any other intellectual property rights to the purchaser in the product design, photographs, videos, text, logos, patterns, production methods, or other content created by us and to which we hold rights.\n\nThe purchaser shall not, without our permission, reproduce and sell our products, designs, or other materials, reproduce or distribute our patterns, or otherwise infringe our intellectual property rights.\n\nIntellectual property rights in characters or other materials for which the purchaser holds the rights belong to that rights holder.\n\n## Article 25: Third-Party Characters, etc.\n\nIt is the purchaser's own responsibility to confirm that they hold the necessary rights or license to use any reference sheet, character, logo, or other material they provide.\n\nIf we determine that a request may infringe a third party's intellectual property rights, we may decline to produce the item.\n\n## Liability & Use by Third Parties\n\n## Article 26: Use by Third Parties\n\nIf a person other than the purchaser will use the Product, the purchaser must fully explain these Terms, the product-specific precautions, the correct method of putting on and removing the item, and the anticipated risks to that user in advance.\n\nFor products in particular that restrict visibility or body movement, the purchaser must also share the safety management methods with the user.\n\n## Article 27: Responsibility of the Purchaser & User\n\nThe purchaser and user shall understand these Terms, the safety precautions listed on the product page, and the characteristics of the product, and shall use the Product in a safe environment and manner.\n\nWe are not liable, beyond the scope attributable to us, for any accident or damage arising from the purchaser's or user's violation of these Terms, misuse, use in a hazardous environment, unauthorized modification, or other cause attributable to the purchaser or user.\n\n## Article 28: Our Responsibility\n\nWhere damage is caused to the purchaser due to a cause attributable to us, we will be liable in accordance with applicable law.\n\nNothing in these Terms exempts us from liability for our intentional misconduct or gross negligence, or from any other liability that cannot be waived under applicable law.\n\n## Terms & Consent at Purchase\n\n## Article 29: Changes to These Terms\n\nWe may revise these Terms in accordance with applicable law where there is a change in law, a change in our services, or another reasonable necessity.\n\nThe revised Terms will be posted on our website or elsewhere.\n\nFor contracts already formed, the terms in effect at the time the contract was formed shall generally apply, except where the revised Terms apply as a matter of law or by agreement between the parties.\n\n## Article 30: Confirmation & Consent Before Purchase\n\nBefore finalizing an order, the purchaser shall review these Terms and the specifications, safety precautions, price, shipping fee, payment terms, delivery time, and return/cancellation conditions stated on the product page.\n\nOn the purchase screen, by checking the box that reads:\n\n\"I have read the Sales Terms and Safety Precautions, and I agree, having understood the characteristics of this Product, the risks involved in its use, and the terms regarding payment, shipping, returns, and other matters.\"\n\nand confirming the order, the purchaser is deemed to have agreed to these Terms."
     },
     "shipping": {
       "title": "Shipping & Customs",
-      "content": "We ship worldwide by courier. Shipping is calculated as a flat rate based on your delivery region, shown below and added to your order total at checkout.\n\nInternational orders may be subject to customs duties, import taxes, or handling fees charged by your country upon arrival. These charges are the responsibility of the recipient and are not included in your order total — please check your local customs rules before ordering.\n\nProduction and shipping timelines vary by product: ready-made items ship promptly after purchase, pre-order items ship within the window shown on the product page, and custom commissions follow the timeline agreed during your quote.",
-      "rates": {
-        "heading": "Flat-Rate Shipping",
-        "regions": {
-          "US": "United States",
-          "EU": "European Union",
-          "UK": "United Kingdom",
-          "AU": "Australia",
-          "OTHER": "Rest of world"
-        }
-      }
+      "content": "We ship worldwide by courier. Shipping is calculated as a flat rate based on your delivery region, added to your order total at checkout.\n\nInternational orders may be subject to customs duties, import taxes, or handling fees charged by your country upon arrival. These charges are the responsibility of the recipient and are not included in your order total — please check your local customs rules before ordering.\n\nProduction and shipping timelines vary by product: ready-made items ship promptly after purchase, pre-order items ship within the window shown on the product page, and custom commissions follow the timeline agreed during your quote."
     },
     "returns": {
       "title": "Returns & Refunds",
-      "content": "Ready-made items can be returned within 14 days of delivery if unworn and in original condition; contact us to arrange a return. Return shipping costs are the responsibility of the customer unless the item arrived damaged or defective.\n\nPre-order items follow the same return policy once delivered. Because pre-orders reserve a production slot, deposits may be non-refundable if you cancel after production has begun — details are provided on the product page.\n\nCustom commissions are made specifically for you, so once work has started they are generally not eligible for a refund. If there's an issue with the quality or accuracy of a finished commission, contact us and we'll work with you to make it right.\n\nTo start a return or refund request, contact us with your order reference and we'll guide you through the next steps."
+      "content": "Ready-made items may be returned within 14 days of delivery if unused and in their original condition. If you'd like to return an item, please send it back first — once we receive it, we'll process your refund. Return shipping costs are the customer's responsibility unless the item arrived damaged or defective.\n\nSemi Order and Custom Commission items are made specifically for you, so once production has begun they are generally not eligible for a refund. If there's an issue with the quality or content of the finished piece, please contact us — we'll work with you to resolve it.\n\nFor any return or refund inquiries, please contact us with your order reference number, and our team will guide you through the next steps."
     },
     "cookies": {
       "title": "Cookies Policy",
       "content": "This policy explains what cookies are, which ones we use, and how you can control them. \"Cookies\" here also covers similar technologies, such as local storage used by your browser.\n\n## What Is a Cookie?\nA cookie is a small text file that a website asks your browser to store on your device. It lets the site remember information about your visit — such as your preferences or whether you're signed in — the next time you load a page.\n\n## Why We Use Cookies\nWe use cookies to keep the site working the way you'd expect: remembering your language and currency choice, keeping you signed in as you move between pages, and helping us tell real visitors from automated abuse on our forms and checkout.\n\n## Types of Cookies We Use\nSession cookies are temporary and are deleted when you close your browser; we use these to help protect our forms and checkout from automated abuse. Persistent cookies remain on your device for longer and are used to keep you signed in across visits and remember your language and currency preference.\n\n## Third-Party Cookies\nWhen you complete a purchase, our payment providers (Stripe or PayPal) may set their own cookies on their hosted checkout pages to process your payment securely and prevent fraud. These cookies are set and controlled by the payment provider, not by us — please refer to their own privacy and cookie policies for details.\n\n## Cookies We Don't Use\nWe do not use cookies for third-party advertising, ad retargeting, or cross-site tracking, and we do not sell any information collected through cookies.\n\n## Managing Cookies\nMost browsers let you view, delete, or block cookies through their settings. Because we rely on a small number of essential cookies to keep you signed in and remember your preferences, blocking them may prevent some parts of the site — such as sign-in or checkout — from working correctly.\n\n## Changes to This Policy\nWe may update this policy from time to time as our services change. We'll post the current version on this page."
     }
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search products…",
+    "submit": "Search",
+    "prompt": "Enter a search term to find products.",
+    "empty": "No products found for “{query}”."
   }
 }

@@ -1,19 +1,18 @@
 import { useTranslations } from "next-intl";
+import PaymentBadges from "@/components/shared/PaymentBadges";
 import { Link } from "@/i18n/navigation";
 import { SOCIAL_LINKS } from "@/lib/social";
 import { InstagramIcon, MailIcon, TwitterIcon } from "./SocialIcons";
 
 const BRAND_LINKS = [
   { href: "/", key: "home" },
-  { href: "/commission", key: "commission" },
   { href: "/shop", key: "shop" },
   { href: "/preorder", key: "preorder" },
+  { href: "/commission", key: "commission" },
 ] as const;
 
 const HELP_LINKS = [
-  { href: "/faq", key: "faq" },
   { href: "/fursuit-care", key: "fursuitCare" },
-  { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
 ] as const;
 
@@ -92,9 +91,14 @@ export default function Footer() {
           </nav>
         </div>
       </div>
+      <div className="border-t border-border/15 px-6 py-6">
+        <div className="mx-auto max-w-6xl">
+          <PaymentBadges />
+        </div>
+      </div>
       <div className="border-t border-border/15 px-6 py-6 text-sm text-foreground/70">
         <p className="mx-auto max-w-6xl">
-          © {year} Fursuit Studio. {t("rights")}
+          © {year} R Furstudio. {t("rights")}
         </p>
       </div>
     </footer>

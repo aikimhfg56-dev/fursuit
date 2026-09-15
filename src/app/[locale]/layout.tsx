@@ -10,7 +10,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "../globals.css";
 
-const SITE_NAME = "Fursuit Studio";
+const SITE_NAME = "R Furstudio";
 const SITE_DESCRIPTION =
   "Handcrafted fursuits, made to order and ready to ship, for fursuiters around the world.";
 

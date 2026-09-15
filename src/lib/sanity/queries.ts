@@ -24,12 +24,17 @@ export type TaxonomyTerm = {
   slug: string;
 };
 
+/** A plain URL string is a seller-uploaded image (see lib/seller/store.ts) rather than a Sanity asset reference. */
+export type ProductImage = SanityImageRef | string;
+
 export type ProductSummary = {
   _id: string;
   name: LocaleString;
   slug: string;
-  images: SanityImageRef[];
+  images: ProductImage[];
   basePrice: number;
+  /** Used to calculate real EMS international shipping rates (see lib/shipping/emsRates.ts). */
+  weightKg?: number;
   stockStatus: ProductStockStatus;
   flags?: ProductFlag[];
   speciesTag?: string;

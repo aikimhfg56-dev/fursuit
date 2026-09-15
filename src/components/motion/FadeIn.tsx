@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useAnimation, useReducedMotion, type Variants } from "motion/react";
-import { useEffect, useRef, type ReactNode } from "react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type FadeInProps = {
   children: ReactNode;
@@ -18,10 +18,14 @@ type FadeInProps = {
  * after a short timeout: some in-app browsers (e.g. LINE's) don't reliably
  * fire the viewport IntersectionObserver, which would otherwise leave the
  * content permanently invisible.
+ *
+ * Uses a plain visible/hidden boolean rather than useAnimation() + imperative
+ * .start() — the imperative controls API was unreliable here (the returned
+ * promise never settled and the element stayed stuck at opacity 0).
  */
 export default function FadeIn({ children, delay = 0, y = 24, className, onMount = false }: FadeInProps) {
   const shouldReduceMotion = useReducedMotion();
-  const controls = useAnimation();
+  const [visible, setVisible] = useState(false);
   const revealedRef = useRef(false);
 
   const variants: Variants = {
@@ -32,7 +36,7 @@ export default function FadeIn({ children, delay = 0, y = 24, className, onMount
   function reveal() {
     if (revealedRef.current) return;
     revealedRef.current = true;
-    controls.start("visible");
+    setVisible(true);
   }
 
   useEffect(() => {
@@ -42,14 +46,13 @@ export default function FadeIn({ children, delay = 0, y = 24, className, onMount
     }
     const timeout = setTimeout(reveal, 1000);
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onMount]);
 
   return (
     <motion.div
       className={className}
       initial="hidden"
-      animate={controls}
+      animate={visible ? "visible" : "hidden"}
       viewport={onMount ? undefined : { once: true, margin: "-80px" }}
       onViewportEnter={onMount ? undefined : reveal}
       variants={variants}
