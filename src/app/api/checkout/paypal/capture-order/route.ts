@@ -12,6 +12,9 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const orderId = typeof body?.orderId === "string" ? body.orderId : "";
   const referenceCode = typeof body?.referenceCode === "string" ? body.referenceCode : undefined;
+  const productKind = body?.productKind === "preorder" ? "preorder" : undefined;
+  const productSlug = typeof body?.productSlug === "string" ? body.productSlug : undefined;
+  const productName = typeof body?.productName === "string" ? body.productName : undefined;
 
   if (!orderId) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
@@ -25,6 +28,10 @@ export async function POST(request: Request) {
       customerEmail: user?.primaryEmailAddress?.emailAddress,
       customerName: profile.fullName,
       shippingAddress: profile.address,
+      buyerUserId: user?.id,
+      productKind,
+      productSlug,
+      productName,
     });
     return NextResponse.json(result);
   } catch (error) {

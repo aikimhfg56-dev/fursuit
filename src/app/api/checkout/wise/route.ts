@@ -7,6 +7,7 @@ import { isClerkConfigured, isWiseConfigured } from "@/lib/env";
 import { getWiseBankDetails } from "@/lib/payments/wise";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
 import { createOrder } from "@/lib/orders/createOrder";
+import { createThread } from "@/lib/messages/store";
 import { validatePromoCode } from "@/lib/promo/validatePromoCode";
 import { sendNotificationEmail } from "@/lib/email/resend";
 import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
@@ -44,6 +45,16 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json().catch(() => null);
+
+  // Mirrors the UI gate on the terms-agreement checkbox — enforced again
+  // here since the client can't be trusted to have honored it.
+  if (body?.agreedToTerms !== true) {
+    return NextResponse.json({ error: "terms_not_agreed" }, { status: 400 });
+  }
+
+  const productName = typeof body?.productName === "string" ? body.productName : "";
+  const productKind = body?.productKind === "preorder" ? "preorder" : "shop";
+  const productSlug = typeof body?.productSlug === "string" ? body.productSlug : "";
   const amountUsd = Number(body?.amountUsd);
   const shippingUsd = Number(body?.shippingUsd) || 0;
   const currency = typeof body?.currency === "string" ? body.currency.toUpperCase() : "USD";
@@ -76,6 +87,20 @@ export async function POST(request: Request) {
     customerName: profile.fullName,
     shippingAddress: profile.address,
   });
+
+  // Only preorder (semi-order) purchases get a post-purchase chat thread —
+  // finished Shop goods have no color/size left to discuss.
+  if (productKind === "preorder") {
+    await createThread({
+      kind: "preorder",
+      buyerUserId: user.id,
+      buyerName: profile.fullName,
+      buyerEmail: user.primaryEmailAddress?.emailAddress,
+      productName,
+      productSlug,
+      referenceCode,
+    });
+  }
 
   await sendNotificationEmail({
     subject: `Wise bank transfer expected — ${referenceCode}`,

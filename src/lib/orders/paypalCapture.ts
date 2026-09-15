@@ -1,6 +1,7 @@
 import type { AccountAddress } from "@/lib/account/profile";
 import { capturePaypalOrder } from "@/lib/payments/paypal";
 import { createOrder } from "@/lib/orders/createOrder";
+import { createThread } from "@/lib/messages/store";
 import { sendNotificationEmail } from "@/lib/email/resend";
 
 type PaypalCaptureResponse = {
@@ -24,11 +25,20 @@ export type PaypalCaptureResult = {
 export async function processPaypalCapture(
   orderId: string,
   referenceCode?: string,
-  shopper?: { customerEmail?: string; customerName?: string; shippingAddress?: AccountAddress },
+  shopper?: {
+    customerEmail?: string;
+    customerName?: string;
+    shippingAddress?: AccountAddress;
+    buyerUserId?: string;
+    productKind?: "shop" | "preorder";
+    productSlug?: string;
+    productName?: string;
+  },
 ): Promise<PaypalCaptureResult> {
   const capture = (await capturePaypalOrder(orderId)) as PaypalCaptureResponse;
   const captureDetails = capture.purchase_units?.[0]?.payments?.captures?.[0];
   const finalReference = referenceCode ?? orderId;
+  const customerEmail = shopper?.customerEmail ?? capture.payer?.email_address;
 
   await createOrder({
     paymentMethod: "paypal",
@@ -37,10 +47,24 @@ export async function processPaypalCapture(
     providerReference: orderId,
     amountTotal: Number(captureDetails?.amount?.value ?? 0),
     currency: captureDetails?.amount?.currency_code ?? "USD",
-    customerEmail: shopper?.customerEmail ?? capture.payer?.email_address,
+    customerEmail,
     customerName: shopper?.customerName,
     shippingAddress: shopper?.shippingAddress,
   });
+
+  // Only preorder (semi-order) purchases get a post-purchase chat thread —
+  // finished Shop goods have no color/size left to discuss.
+  if (capture.status === "COMPLETED" && shopper?.buyerUserId && shopper.productKind === "preorder") {
+    await createThread({
+      kind: "preorder",
+      buyerUserId: shopper.buyerUserId,
+      buyerName: shopper.customerName,
+      buyerEmail: customerEmail,
+      productName: shopper.productName ?? "",
+      productSlug: shopper.productSlug,
+      referenceCode: finalReference,
+    });
+  }
 
   await sendNotificationEmail({
     subject: `New order — ${finalReference}`,

@@ -40,12 +40,16 @@ export async function sendNotificationEmail(input: NotificationEmailInput): Prom
     return;
   }
 
-  await client.emails.send({
-    from: "Fursuit Studio <onboarding@resend.dev>",
+  const { error } = await client.emails.send({
+    from: "R Furstudio <noreply@r-furstudio.com>",
     to,
     subject: input.subject,
     text: input.text,
     replyTo: input.replyTo,
     attachments: input.attachments,
   });
+
+  if (error) {
+    console.error("[email] Resend failed to send notification:", error, input);
+  }
 }

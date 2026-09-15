@@ -11,6 +11,9 @@ import type { WiseBankDetails } from "@/lib/payments/wise";
 
 type CheckoutPanelProps = {
   productName: string;
+  /** Shop purchases are finished goods with no order-time customization; only preorder purchases get a post-purchase chat thread. */
+  productKind: "shop" | "preorder";
+  productSlug: string;
   /** Base product price in USD — sent to the checkout APIs, which re-validate any promo and convert currency server-side. */
   amountUsd: number;
   /** Same price already converted to `currency`, for on-screen display only. */
@@ -23,6 +26,8 @@ type CheckoutPanelProps = {
 
 export default function CheckoutPanel({
   productName,
+  productKind,
+  productSlug,
   amountUsd,
   displayAmount,
   shippingUsd,
@@ -100,11 +105,14 @@ export default function CheckoutPanel({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             productName,
+            productKind,
+            productSlug,
             amountUsd,
             shippingUsd,
             currency: currency.toLowerCase(),
             promoCode: appliedPromo?.code,
             paymentMethods,
+            agreedToTerms,
             // Stripe substitutes this literal placeholder with the real session id.
             successUrl: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
             cancelUrl,
@@ -122,10 +130,14 @@ export default function CheckoutPanel({
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            productName,
+            productKind,
+            productSlug,
             amountUsd,
             shippingUsd,
             currency,
             promoCode: appliedPromo?.code,
+            agreedToTerms,
             returnUrl: successUrl,
             cancelUrl,
           }),
@@ -141,7 +153,16 @@ export default function CheckoutPanel({
         const response = await fetch("/api/checkout/wise", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amountUsd, shippingUsd, currency, promoCode: appliedPromo?.code }),
+          body: JSON.stringify({
+            productName,
+            productKind,
+            productSlug,
+            amountUsd,
+            shippingUsd,
+            currency,
+            promoCode: appliedPromo?.code,
+            agreedToTerms,
+          }),
         });
         const data = await response.json();
 
@@ -156,10 +177,13 @@ export default function CheckoutPanel({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             productName,
+            productKind,
+            productSlug,
             amountUsd,
             shippingUsd,
             currency,
             promoCode: appliedPromo?.code,
+            agreedToTerms,
             successUrl,
             cancelUrl,
           }),

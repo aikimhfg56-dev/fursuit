@@ -2,10 +2,15 @@ import { isWiseConfigured } from "@/lib/env";
 
 export type WiseBankDetails = {
   accountHolder: string;
-  iban: string;
-  bic: string;
+  /** EU-style accounts. */
+  iban?: string;
+  /** US/UK/etc-style accounts — account number paired with a routing number (US) or sort code (UK). */
   accountNumber?: string;
+  routingNumber?: string;
   sortCode?: string;
+  bic?: string;
+  /** Needed for SWIFT wires on US-style accounts (Wise shows this alongside the routing/account number). */
+  bankAddress?: string;
   bankCountry: string;
 };
 
@@ -20,10 +25,12 @@ export function getWiseBankDetails(): WiseBankDetails | null {
 
   return {
     accountHolder: process.env.WISE_ACCOUNT_HOLDER!,
-    iban: process.env.WISE_IBAN!,
-    bic: process.env.WISE_BIC ?? "",
-    accountNumber: process.env.WISE_ACCOUNT_NUMBER,
-    sortCode: process.env.WISE_SORT_CODE,
+    iban: process.env.WISE_IBAN || undefined,
+    accountNumber: process.env.WISE_ACCOUNT_NUMBER || undefined,
+    routingNumber: process.env.WISE_ROUTING_NUMBER || undefined,
+    sortCode: process.env.WISE_SORT_CODE || undefined,
+    bic: process.env.WISE_BIC || undefined,
+    bankAddress: process.env.WISE_BANK_ADDRESS || undefined,
     bankCountry: process.env.WISE_BANK_COUNTRY ?? "",
   };
 }

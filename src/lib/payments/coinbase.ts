@@ -11,6 +11,9 @@ type CreateChargeInput = {
   redirectUrl: string;
   cancelUrl: string;
   clerkUserId: string;
+  /** Stashed in metadata so the webhook can open a post-purchase chat thread for preorder purchases. */
+  productKind: "shop" | "preorder";
+  productSlug: string;
 };
 
 export type CoinbaseCharge = {
@@ -41,7 +44,13 @@ export async function createCoinbaseCharge(input: CreateChargeInput): Promise<Co
       local_price: { amount: input.amount.toFixed(2), currency: input.currency.toUpperCase() },
       redirect_url: input.redirectUrl,
       cancel_url: input.cancelUrl,
-      metadata: { referenceCode: input.referenceCode, clerkUserId: input.clerkUserId },
+      metadata: {
+        referenceCode: input.referenceCode,
+        clerkUserId: input.clerkUserId,
+        productKind: input.productKind,
+        productSlug: input.productSlug,
+        productName: input.name,
+      },
     }),
   });
 

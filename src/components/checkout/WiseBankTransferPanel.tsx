@@ -22,10 +22,15 @@ export default function WiseBankTransferPanel({
     );
   }
 
-  const rows: [string, string | undefined][] = [
+  const rows: [string, string][] = [
     [t("accountHolder"), bankDetails.accountHolder],
-    [t("iban"), bankDetails.iban],
-    [t("bic"), bankDetails.bic],
+    ...(bankDetails.iban ? ([[t("iban"), bankDetails.iban]] as [string, string][]) : []),
+    ...(bankDetails.routingNumber ? ([[t("routingNumber"), bankDetails.routingNumber]] as [string, string][]) : []),
+    ...(bankDetails.accountNumber ? ([[t("accountNumber"), bankDetails.accountNumber]] as [string, string][]) : []),
+    ...(bankDetails.sortCode ? ([[t("sortCode"), bankDetails.sortCode]] as [string, string][]) : []),
+    ...(bankDetails.bic ? ([[t("bic"), bankDetails.bic]] as [string, string][]) : []),
+    ...(bankDetails.bankAddress ? ([[t("bankAddress"), bankDetails.bankAddress]] as [string, string][]) : []),
+    ...(bankDetails.bankCountry ? ([[t("bankCountry"), bankDetails.bankCountry]] as [string, string][]) : []),
     ...(referenceCode ? ([[t("reference"), referenceCode]] as [string, string][]) : []),
   ];
 

@@ -6,12 +6,19 @@ import { processPaypalCapture } from "@/lib/orders/paypalCapture";
 import { retrieveStripeCheckoutSession } from "@/lib/payments/stripe";
 
 type CheckoutSuccessPageProps = {
-  searchParams: Promise<{ session_id?: string; token?: string; reference?: string }>;
+  searchParams: Promise<{
+    session_id?: string;
+    token?: string;
+    reference?: string;
+    productKind?: string;
+    productSlug?: string;
+    productName?: string;
+  }>;
 };
 
 export default async function CheckoutSuccessPage({ searchParams }: CheckoutSuccessPageProps) {
   const t = await getTranslations("checkoutResult");
-  const { session_id: sessionId, token, reference } = await searchParams;
+  const { session_id: sessionId, token, reference, productKind, productSlug, productName } = await searchParams;
 
   let referenceCode = reference;
   let paid = false;
@@ -28,6 +35,10 @@ export default async function CheckoutSuccessPage({ searchParams }: CheckoutSucc
         customerEmail: user?.primaryEmailAddress?.emailAddress,
         customerName: profile.fullName,
         shippingAddress: profile.address,
+        buyerUserId: user?.id,
+        productKind: productKind === "preorder" ? "preorder" : undefined,
+        productSlug,
+        productName,
       });
       paid = result.status === "COMPLETED";
     } catch (error) {

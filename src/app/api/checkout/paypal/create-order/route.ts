@@ -41,6 +41,16 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json().catch(() => null);
+
+  // Mirrors the UI gate on the terms-agreement checkbox — enforced again
+  // here since the client can't be trusted to have honored it.
+  if (body?.agreedToTerms !== true) {
+    return NextResponse.json({ error: "terms_not_agreed" }, { status: 400 });
+  }
+
+  const productName = typeof body?.productName === "string" ? body.productName : "";
+  const productKind = body?.productKind === "preorder" ? "preorder" : "shop";
+  const productSlug = typeof body?.productSlug === "string" ? body.productSlug : "";
   const amountUsd = Number(body?.amountUsd);
   const shippingUsd = Number(body?.shippingUsd) || 0;
   const currency = typeof body?.currency === "string" ? body.currency.toUpperCase() : "USD";
@@ -65,8 +75,15 @@ export async function POST(request: Request) {
 
   const referenceCode = generateReferenceCode();
   // PayPal appends its own token/PayerID params when redirecting back — ours
-  // rides along so the success page can show a human-readable reference.
-  const returnUrlWithReference = `${returnUrl}${returnUrl.includes("?") ? "&" : "?"}reference=${encodeURIComponent(referenceCode)}`;
+  // ride along too, so the success page can show a human-readable reference
+  // and (for preorder purchases) open a post-purchase chat thread.
+  const returnParams = new URLSearchParams({ reference: referenceCode });
+  if (productKind === "preorder") {
+    returnParams.set("productKind", productKind);
+    if (productSlug) returnParams.set("productSlug", productSlug);
+    if (productName) returnParams.set("productName", productName);
+  }
+  const returnUrlWithReference = `${returnUrl}${returnUrl.includes("?") ? "&" : "?"}${returnParams.toString()}`;
 
   try {
     const order = await createPaypalOrder({

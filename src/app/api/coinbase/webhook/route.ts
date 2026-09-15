@@ -4,6 +4,7 @@ import { getAccountProfile } from "@/lib/account/profile";
 import { isClerkConfigured, isCoinbaseConfigured } from "@/lib/env";
 import { verifyCoinbaseWebhookSignature } from "@/lib/payments/coinbase";
 import { createOrder } from "@/lib/orders/createOrder";
+import { createThread } from "@/lib/messages/store";
 import { sendNotificationEmail } from "@/lib/email/resend";
 
 type CoinbaseChargeEvent = {
@@ -11,7 +12,13 @@ type CoinbaseChargeEvent = {
     type: string;
     data: {
       id: string;
-      metadata?: { referenceCode?: string; clerkUserId?: string };
+      metadata?: {
+        referenceCode?: string;
+        clerkUserId?: string;
+        productKind?: string;
+        productSlug?: string;
+        productName?: string;
+      };
       pricing?: { local?: { amount?: string; currency?: string } };
     };
   };
@@ -61,6 +68,20 @@ export async function POST(request: Request) {
       customerName,
       shippingAddress,
     });
+
+    // Only preorder (semi-order) purchases get a post-purchase chat thread —
+    // finished Shop goods have no color/size left to discuss.
+    if (clerkUserId && charge.metadata?.productKind === "preorder") {
+      await createThread({
+        kind: "preorder",
+        buyerUserId: clerkUserId,
+        buyerName: customerName,
+        buyerEmail: customerEmail,
+        productName: charge.metadata?.productName ?? "",
+        productSlug: charge.metadata?.productSlug,
+        referenceCode,
+      });
+    }
 
     await sendNotificationEmail({
       subject: `New order — ${referenceCode}`,

@@ -42,7 +42,16 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json().catch(() => null);
+
+  // Mirrors the UI gate on the terms-agreement checkbox — enforced again
+  // here since the client can't be trusted to have honored it.
+  if (body?.agreedToTerms !== true) {
+    return NextResponse.json({ error: "terms_not_agreed" }, { status: 400 });
+  }
+
   const productName = typeof body?.productName === "string" ? body.productName : "";
+  const productKind = body?.productKind === "preorder" ? "preorder" : "shop";
+  const productSlug = typeof body?.productSlug === "string" ? body.productSlug : "";
   const amountUsd = Number(body?.amountUsd);
   const shippingUsd = Number(body?.shippingUsd) || 0;
   const currency = typeof body?.currency === "string" ? body.currency.toUpperCase() : "USD";
@@ -76,6 +85,8 @@ export async function POST(request: Request) {
       redirectUrl: successUrl,
       cancelUrl,
       clerkUserId: user.id,
+      productKind,
+      productSlug,
     });
 
     if (!charge) {

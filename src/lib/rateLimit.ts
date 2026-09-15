@@ -1,6 +1,6 @@
 import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
 import { isRateLimitConfigured } from "@/lib/env";
+import { getRedisClient } from "@/lib/upstash";
 
 /** Matches @upstash/ratelimit's own Duration type (e.g. "10 m", "60 s"). */
 type Duration = `${number} ${"ms" | "s" | "m" | "h" | "d"}`;
@@ -8,18 +8,6 @@ type Duration = `${number} ${"ms" | "s" | "m" | "h" | "d"}`;
 type LimiterLike = {
   limit(identifier: string): Promise<{ success: boolean }>;
 };
-
-let redisClient: Redis | null = null;
-
-function getRedisClient(): Redis {
-  if (!redisClient) {
-    redisClient = new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL!,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-    });
-  }
-  return redisClient;
-}
 
 const DURATION_MULTIPLIERS_MS: Record<string, number> = {
   ms: 1,

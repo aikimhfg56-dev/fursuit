@@ -52,6 +52,9 @@ export type CreateStripeCheckoutSessionInput = {
   customerEmail?: string;
   /** Stashed in session metadata so the webhook can look the shopper's shipping details back up. */
   clerkUserId: string;
+  /** Stashed in metadata so the webhook can open a post-purchase chat thread for preorder purchases. */
+  productKind: "shop" | "preorder";
+  productSlug: string;
 };
 
 /**
@@ -85,7 +88,13 @@ export async function createStripeCheckoutSession(input: CreateStripeCheckoutSes
         },
       },
     ],
-    metadata: { referenceCode: input.referenceCode, clerkUserId: input.clerkUserId },
+    metadata: {
+      referenceCode: input.referenceCode,
+      clerkUserId: input.clerkUserId,
+      productKind: input.productKind,
+      productSlug: input.productSlug,
+      productName: input.productName,
+    },
     success_url: input.successUrl,
     cancel_url: input.cancelUrl,
   });

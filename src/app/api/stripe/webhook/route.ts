@@ -5,6 +5,7 @@ import { getAccountProfile } from "@/lib/account/profile";
 import { isClerkConfigured, isStripeConfigured } from "@/lib/env";
 import { getStripeClient } from "@/lib/payments/stripe";
 import { createOrder } from "@/lib/orders/createOrder";
+import { createThread } from "@/lib/messages/store";
 import { sendNotificationEmail } from "@/lib/email/resend";
 
 export async function POST(request: Request) {
@@ -54,6 +55,8 @@ export async function POST(request: Request) {
       }
     }
 
+    const customerEmail = session.customer_details?.email ?? undefined;
+
     await createOrder({
       paymentMethod,
       paymentStatus: "paid",
@@ -61,10 +64,24 @@ export async function POST(request: Request) {
       providerReference: session.id,
       amountTotal: (session.amount_total ?? 0) / (session.currency === "jpy" ? 1 : 100),
       currency: session.currency ?? "usd",
-      customerEmail: session.customer_details?.email ?? undefined,
+      customerEmail,
       customerName,
       shippingAddress,
     });
+
+    // Only preorder (semi-order) purchases get a post-purchase chat thread —
+    // finished Shop goods have no color/size left to discuss.
+    if (clerkUserId && session.metadata?.productKind === "preorder") {
+      await createThread({
+        kind: "preorder",
+        buyerUserId: clerkUserId,
+        buyerName: customerName,
+        buyerEmail: customerEmail,
+        productName: session.metadata?.productName ?? "",
+        productSlug: session.metadata?.productSlug,
+        referenceCode: session.metadata?.referenceCode ?? session.id,
+      });
+    }
 
     await sendNotificationEmail({
       subject: `New order — ${session.metadata?.referenceCode ?? session.id}`,
