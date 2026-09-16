@@ -57,7 +57,22 @@
       "noOrders": "Todavía no tienes pedidos.",
       "messagesHeading": "Mensajes",
       "messagesDescription": "Habla con nosotros sobre el color, la talla y otros detalles de tu pedido personalizado o semi-personalizado.",
-      "viewMessages": "Ver mensajes"
+      "viewMessages": "Ver mensajes",
+      "paymentMethods": {
+        "stripe_card": "Tarjeta de crédito",
+        "stripe_alipay": "Alipay",
+        "stripe_revolut_pay": "Revolut Pay",
+        "paypal": "PayPal",
+        "wise": "Transferencia bancaria (Wise)",
+        "coinbase": "Cripto (Coinbase)"
+      },
+      "paymentStatuses": {
+        "pending": "Pendiente",
+        "awaiting_bank_transfer": "Esperando transferencia",
+        "paid": "Pagado",
+        "failed": "Fallido",
+        "refunded": "Reembolsado"
+      }
     },
     "messages": {
       "title": "Mensajes",
@@ -248,7 +263,8 @@
     },
     "notConfigured": "Este método de pago aún no está conectado.",
     "errors": {
-      "generic": "Algo salió mal. Inténtalo de nuevo."
+      "generic": "Algo salió mal. Inténtalo de nuevo.",
+      "soldOut": "Lo sentimos, este artículo se acaba de agotar."
     }
   },
   "product": {
@@ -276,7 +292,8 @@
     "imageComingSoon": "Foto próximamente",
     "catalogNotConnected": {
       "description": "El catálogo de productos aún no está conectado."
-    }
+    },
+    "soldOutMessage": "Este artículo está agotado y ya no se puede comprar."
   },
   "trustBadges": {
     "shipping": {

@@ -57,7 +57,22 @@
       "noOrders": "Aucune commande pour le moment.",
       "messagesHeading": "Messages",
       "messagesDescription": "Discutez avec nous de la couleur, de la taille et d'autres détails pour votre commande sur mesure ou semi-personnalisée.",
-      "viewMessages": "Voir les messages"
+      "viewMessages": "Voir les messages",
+      "paymentMethods": {
+        "stripe_card": "Carte bancaire",
+        "stripe_alipay": "Alipay",
+        "stripe_revolut_pay": "Revolut Pay",
+        "paypal": "PayPal",
+        "wise": "Virement bancaire (Wise)",
+        "coinbase": "Crypto (Coinbase)"
+      },
+      "paymentStatuses": {
+        "pending": "En attente",
+        "awaiting_bank_transfer": "En attente de virement",
+        "paid": "Payé",
+        "failed": "Échoué",
+        "refunded": "Remboursé"
+      }
     },
     "messages": {
       "title": "Messages",
@@ -248,7 +263,8 @@
     },
     "notConfigured": "Ce mode de paiement n'est pas encore activé.",
     "errors": {
-      "generic": "Une erreur est survenue. Merci de réessayer."
+      "generic": "Une erreur est survenue. Merci de réessayer.",
+      "soldOut": "Désolé, cet article vient d'être épuisé."
     }
   },
   "product": {
@@ -276,7 +292,8 @@
     "imageComingSoon": "Photo à venir",
     "catalogNotConnected": {
       "description": "Le catalogue produits n'est pas encore connecté."
-    }
+    },
+    "soldOutMessage": "Cet article est épuisé et ne peut plus être acheté."
   },
   "trustBadges": {
     "shipping": {

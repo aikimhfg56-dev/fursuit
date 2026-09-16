@@ -57,7 +57,22 @@
       "noOrders": "Noch keine Bestellungen.",
       "messagesHeading": "Nachrichten",
       "messagesDescription": "Besprechen Sie Farbe, Größe und weitere Details zu Ihrer Sonderanfertigung oder Semi-Order mit uns.",
-      "viewMessages": "Nachrichten ansehen"
+      "viewMessages": "Nachrichten ansehen",
+      "paymentMethods": {
+        "stripe_card": "Kreditkarte",
+        "stripe_alipay": "Alipay",
+        "stripe_revolut_pay": "Revolut Pay",
+        "paypal": "PayPal",
+        "wise": "Banküberweisung (Wise)",
+        "coinbase": "Krypto (Coinbase)"
+      },
+      "paymentStatuses": {
+        "pending": "Ausstehend",
+        "awaiting_bank_transfer": "Überweisung ausstehend",
+        "paid": "Bezahlt",
+        "failed": "Fehlgeschlagen",
+        "refunded": "Erstattet"
+      }
     },
     "messages": {
       "title": "Nachrichten",
@@ -248,7 +263,8 @@
     },
     "notConfigured": "Diese Zahlungsart ist noch nicht angebunden.",
     "errors": {
-      "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+      "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+      "soldOut": "Dieser Artikel ist leider gerade ausverkauft."
     }
   },
   "product": {
@@ -276,7 +292,8 @@
     "imageComingSoon": "Foto folgt in Kürze",
     "catalogNotConnected": {
       "description": "Der Produktkatalog ist noch nicht angebunden."
-    }
+    },
+    "soldOutMessage": "Dieser Artikel ist ausverkauft und kann nicht mehr gekauft werden."
   },
   "trustBadges": {
     "shipping": {

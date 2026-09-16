@@ -57,7 +57,22 @@
       "noOrders": "No orders yet.",
       "messagesHeading": "Messages",
       "messagesDescription": "Chat with us about color, size, and other details for your custom or semi order.",
-      "viewMessages": "View Messages"
+      "viewMessages": "View Messages",
+      "paymentMethods": {
+        "stripe_card": "Credit card",
+        "stripe_alipay": "Alipay",
+        "stripe_revolut_pay": "Revolut Pay",
+        "paypal": "PayPal",
+        "wise": "Bank transfer (Wise)",
+        "coinbase": "Crypto (Coinbase)"
+      },
+      "paymentStatuses": {
+        "pending": "Pending",
+        "awaiting_bank_transfer": "Awaiting bank transfer",
+        "paid": "Paid",
+        "failed": "Failed",
+        "refunded": "Refunded"
+      }
     },
     "messages": {
       "title": "Messages",
@@ -248,7 +263,8 @@
     },
     "notConfigured": "This payment method isn't connected yet.",
     "errors": {
-      "generic": "Something went wrong. Please try again."
+      "generic": "Something went wrong. Please try again.",
+      "soldOut": "Sorry, this item just sold out."
     }
   },
   "product": {
@@ -276,7 +292,8 @@
     "imageComingSoon": "Photo coming soon",
     "catalogNotConnected": {
       "description": "The product catalog isn't connected yet."
-    }
+    },
+    "soldOutMessage": "This item is sold out and can no longer be purchased."
   },
   "trustBadges": {
     "shipping": {

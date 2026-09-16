@@ -57,7 +57,22 @@
       "noOrders": "まだご注文はありません。",
       "messagesHeading": "メッセージ",
       "messagesDescription": "オーダーメイド・セミオーダーのカラーやサイズなど、細かい相談ができます。",
-      "viewMessages": "メッセージを見る"
+      "viewMessages": "メッセージを見る",
+      "paymentMethods": {
+        "stripe_card": "クレジットカード",
+        "stripe_alipay": "Alipay",
+        "stripe_revolut_pay": "Revolut Pay",
+        "paypal": "PayPal",
+        "wise": "銀行振込 (Wise)",
+        "coinbase": "暗号資産 (Coinbase)"
+      },
+      "paymentStatuses": {
+        "pending": "保留中",
+        "awaiting_bank_transfer": "振込待ち",
+        "paid": "支払い済み",
+        "failed": "失敗",
+        "refunded": "返金済み"
+      }
     },
     "messages": {
       "title": "メッセージ",
@@ -248,7 +263,8 @@
     },
     "notConfigured": "この支払い方法はまだ利用できません。",
     "errors": {
-      "generic": "エラーが発生しました。もう一度お試しください。"
+      "generic": "エラーが発生しました。もう一度お試しください。",
+      "soldOut": "申し訳ございません、この商品はちょうど売り切れてしまいました。"
     }
   },
   "product": {
@@ -276,7 +292,8 @@
     "imageComingSoon": "写真は準備中です",
     "catalogNotConnected": {
       "description": "商品カタログはまだ接続されていません。"
-    }
+    },
+    "soldOutMessage": "この商品は売り切れのため、現在ご購入いただけません。"
   },
   "trustBadges": {
     "shipping": {
