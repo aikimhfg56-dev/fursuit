@@ -56,7 +56,7 @@
       "ordersHeading": "Bestellhistorie",
       "noOrders": "Noch keine Bestellungen.",
       "messagesHeading": "Nachrichten",
-      "messagesDescription": "Besprechen Sie Farbe, Größe und weitere Details zu Ihrer Sonderanfertigung oder Semi-Order mit uns.",
+      "messagesDescription": "Chatten Sie mit uns über Ihre Bestellungen — Farbe, Größe, Versand oder andere Fragen.",
       "viewMessages": "Nachrichten ansehen",
       "paymentMethods": {
         "stripe_card": "Kreditkarte",
@@ -90,7 +90,8 @@
       },
       "shipped": "Versandt",
       "trackingNumber": "Sendungsverfolgungsnummer"
-    }
+    },
+    "activeOrderBadge": "Sie haben eine Bestellung in Bearbeitung"
   },
   "commission": {
     "title": "Maßanfertigung",

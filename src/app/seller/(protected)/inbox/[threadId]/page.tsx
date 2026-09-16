@@ -7,6 +7,7 @@ import { getThread, listMessages } from "@/lib/messages/store";
 const KIND_LABELS: Record<string, string> = {
   commission: "オーダーメイド",
   preorder: "セミオーダー",
+  shop: "ショップ",
   contact: "お問い合わせ",
 };
 

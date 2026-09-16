@@ -56,7 +56,7 @@
       "ordersHeading": "注文履歴",
       "noOrders": "まだご注文はありません。",
       "messagesHeading": "メッセージ",
-      "messagesDescription": "オーダーメイド・セミオーダーのカラーやサイズなど、細かい相談ができます。",
+      "messagesDescription": "ご注文についてのご相談（カラー・サイズ・配送状況など）はこちらからどうぞ。",
       "viewMessages": "メッセージを見る",
       "paymentMethods": {
         "stripe_card": "クレジットカード",
@@ -90,7 +90,8 @@
       },
       "shipped": "発送済み",
       "trackingNumber": "追跡番号"
-    }
+    },
+    "activeOrderBadge": "ご注文の商品を準備中です"
   },
   "commission": {
     "title": "オーダーメイド",

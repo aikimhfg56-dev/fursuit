@@ -90,11 +90,10 @@ export async function processPaypalCapture(
     await decrementStock(shopper.productKind === "preorder" ? "preorder" : "shop", shopper.productSlug);
   }
 
-  // Only preorder (semi-order) purchases get a post-purchase chat thread —
-  // finished Shop goods have no color/size left to discuss.
-  if (capture.status === "COMPLETED" && shopper?.buyerUserId && shopper.productKind === "preorder") {
+  // Every completed purchase gets a post-purchase chat thread with the seller.
+  if (capture.status === "COMPLETED" && shopper?.buyerUserId) {
     await createThread({
-      kind: "preorder",
+      kind: shopper.productKind ?? "shop",
       buyerUserId: shopper.buyerUserId,
       buyerName: shopper.customerName,
       buyerEmail: customerEmail,

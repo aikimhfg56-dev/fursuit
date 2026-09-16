@@ -56,7 +56,7 @@
       "ordersHeading": "Historial de pedidos",
       "noOrders": "Todavía no tienes pedidos.",
       "messagesHeading": "Mensajes",
-      "messagesDescription": "Habla con nosotros sobre el color, la talla y otros detalles de tu pedido personalizado o semi-personalizado.",
+      "messagesDescription": "Chatea con nosotros sobre tus pedidos: color, talla, envío o cualquier otra pregunta.",
       "viewMessages": "Ver mensajes",
       "paymentMethods": {
         "stripe_card": "Tarjeta de crédito",
@@ -90,7 +90,8 @@
       },
       "shipped": "Enviado",
       "trackingNumber": "Número de seguimiento"
-    }
+    },
+    "activeOrderBadge": "Tienes un pedido en proceso"
   },
   "commission": {
     "title": "Encargo a medida",

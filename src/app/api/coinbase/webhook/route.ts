@@ -80,11 +80,10 @@ export async function POST(request: Request) {
       await decrementStock(productKind, productSlug);
     }
 
-    // Only preorder (semi-order) purchases get a post-purchase chat thread —
-    // finished Shop goods have no color/size left to discuss.
-    if (clerkUserId && productKind === "preorder") {
+    // Every completed purchase gets a post-purchase chat thread with the seller.
+    if (clerkUserId) {
       await createThread({
-        kind: "preorder",
+        kind: productKind,
         buyerUserId: clerkUserId,
         buyerName: customerName,
         buyerEmail: customerEmail,

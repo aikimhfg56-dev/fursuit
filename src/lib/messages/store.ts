@@ -1,6 +1,6 @@
 import { getRedisClient } from "@/lib/upstash";
 
-export type ThreadKind = "commission" | "preorder" | "contact";
+export type ThreadKind = "commission" | "preorder" | "shop" | "contact";
 export type MessageSender = "buyer" | "seller";
 
 export type ThreadRecord = {

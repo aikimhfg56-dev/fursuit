@@ -4,13 +4,15 @@ import { isThreadUnread, listThreadsForSeller, type ThreadRecord } from "@/lib/m
 const KIND_LABELS: Record<string, string> = {
   commission: "オーダーメイド",
   preorder: "セミオーダー",
+  shop: "ショップ",
   contact: "お問い合わせ",
 };
 
 export default async function SellerInboxPage() {
   const threads = await listThreadsForSeller();
   const contactThreads = threads.filter((thread) => thread.kind === "contact");
-  const orderThreads = threads.filter((thread) => thread.kind !== "contact");
+  const orderThreads = threads.filter((thread) => thread.kind === "commission" || thread.kind === "preorder");
+  const shopThreads = threads.filter((thread) => thread.kind === "shop");
 
   return (
     <div className="space-y-12">
@@ -18,6 +20,7 @@ export default async function SellerInboxPage() {
 
       <ThreadSection title="お問い合わせ" threads={contactThreads} />
       <ThreadSection title="オーダーメイド・セミオーダー" threads={orderThreads} />
+      <ThreadSection title="ショップ" threads={shopThreads} />
     </div>
   );
 }

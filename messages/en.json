@@ -56,7 +56,7 @@
       "ordersHeading": "Order history",
       "noOrders": "No orders yet.",
       "messagesHeading": "Messages",
-      "messagesDescription": "Chat with us about color, size, and other details for your custom or semi order.",
+      "messagesDescription": "Chat with us about your orders — color, size, shipping, or any other questions.",
       "viewMessages": "View Messages",
       "paymentMethods": {
         "stripe_card": "Credit card",
@@ -90,7 +90,8 @@
       },
       "shipped": "Shipped",
       "trackingNumber": "Tracking number"
-    }
+    },
+    "activeOrderBadge": "You have an order being processed"
   },
   "commission": {
     "title": "Custom Commission",

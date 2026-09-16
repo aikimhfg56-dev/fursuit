@@ -102,20 +102,17 @@ export async function POST(request: Request) {
     await decrementStock(productKind, productSlug);
   }
 
-  // Only preorder (semi-order) purchases get a post-purchase chat thread —
-  // finished Shop goods have no color/size left to discuss.
-  if (productKind === "preorder") {
-    await createThread({
-      kind: "preorder",
-      buyerUserId: user.id,
-      buyerName: profile.fullName,
-      buyerEmail: user.primaryEmailAddress?.emailAddress,
-      customerNumber: order.customerNumber,
-      productName,
-      productSlug,
-      referenceCode,
-    });
-  }
+  // Every completed purchase gets a post-purchase chat thread with the seller.
+  await createThread({
+    kind: productKind,
+    buyerUserId: user.id,
+    buyerName: profile.fullName,
+    buyerEmail: user.primaryEmailAddress?.emailAddress,
+    customerNumber: order.customerNumber,
+    productName,
+    productSlug,
+    referenceCode,
+  });
 
   await sendNotificationEmail({
     subject: `Wise bank transfer expected — ${referenceCode}`,
