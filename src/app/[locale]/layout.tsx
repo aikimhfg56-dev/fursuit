@@ -61,7 +61,12 @@ export default async function LocaleLayout({ children, params }: Props) {
     >
       <body className="flex min-h-full flex-col">
         {isClerkConfigured() ? (
-          <ClerkProvider signInUrl={`/${locale}/sign-in`} signUpUrl={`/${locale}/sign-up`} afterSignOutUrl={`/${locale}`}>
+          <ClerkProvider
+            dynamic
+            signInUrl={`/${locale}/sign-in`}
+            signUpUrl={`/${locale}/sign-up`}
+            afterSignOutUrl={`/${locale}`}
+          >
             {body}
           </ClerkProvider>
         ) : (

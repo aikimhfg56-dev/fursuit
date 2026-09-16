@@ -29,17 +29,24 @@ function localeFromPathname(pathname: string): Locale {
 // [locale] tree with its own root layout and its own (passphrase-based)
 // auth, not part of the localized storefront.
 const proxy = isClerkConfigured()
-  ? clerkMiddleware(async (auth, req) => {
-      if (isAccountRoute(req)) {
-        // Without this, auth.protect() sends unauthenticated visitors to
-        // Clerk's own hosted accounts.dev sign-in instead of our localized page.
-        const signInUrl = new URL(`/${localeFromPathname(req.nextUrl.pathname)}/sign-in`, req.url);
-        await auth.protect({ unauthenticatedUrl: signInUrl.toString() });
-      }
-      if (!req.nextUrl.pathname.startsWith("/api") && !req.nextUrl.pathname.startsWith("/seller")) {
-        return intlMiddleware(req);
-      }
-    })
+  ? clerkMiddleware(
+      async (auth, req) => {
+        if (isAccountRoute(req)) {
+          // Without this, auth.protect() sends unauthenticated visitors to
+          // Clerk's own hosted accounts.dev sign-in instead of our localized page.
+          const signInUrl = new URL(`/${localeFromPathname(req.nextUrl.pathname)}/sign-in`, req.url);
+          await auth.protect({ unauthenticatedUrl: signInUrl.toString() });
+        }
+        if (!req.nextUrl.pathname.startsWith("/api") && !req.nextUrl.pathname.startsWith("/seller")) {
+          return intlMiddleware(req);
+        }
+      },
+      // Adds a Content-Security-Policy header sized to exactly what Clerk
+      // needs (its own domains, Cloudflare bot-check, fraud protection) —
+      // this app loads no other third-party scripts, so no extra directives
+      // are needed on top of Clerk's own defaults.
+      { contentSecurityPolicy: { strict: true } },
+    )
   : (req: NextRequest) => {
       if (!req.nextUrl.pathname.startsWith("/api") && !req.nextUrl.pathname.startsWith("/seller")) {
         return intlMiddleware(req);
