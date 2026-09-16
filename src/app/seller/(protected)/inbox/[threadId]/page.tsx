@@ -24,7 +24,12 @@ export default async function SellerInboxThreadPage({ params }: PageParams) {
       <Link href="/seller/inbox" className="text-sm text-foreground/60 hover:underline">
         ← メッセージ一覧に戻る
       </Link>
-      <h1 className="mt-2 text-2xl font-bold tracking-tight">
+      <h1 className="mt-2 flex flex-wrap items-center gap-2 text-2xl font-bold tracking-tight">
+        {thread.customerNumber && (
+          <span className="rounded-full bg-accent/10 px-2 py-0.5 text-sm font-semibold text-accent">
+            {thread.customerNumber}
+          </span>
+        )}
         {thread.buyerName ?? thread.buyerEmail ?? thread.buyerUserId}
       </h1>
       <p className="mt-1 text-sm text-foreground/60">

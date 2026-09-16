@@ -9,6 +9,8 @@ export type ThreadRecord = {
   buyerUserId: string;
   buyerName?: string;
   buyerEmail?: string;
+  /** "RF-039", etc. — shared with preorder/commission orders' customer-number sequence. Absent for "contact" threads. */
+  customerNumber?: string;
   productName: string;
   productSlug?: string;
   referenceCode?: string;
@@ -47,6 +49,8 @@ export type CreateThreadInput = {
   buyerUserId?: string;
   buyerName?: string;
   buyerEmail?: string;
+  /** Assign via lib/customerNumber.ts before calling — for preorder, reuse the number already assigned to its order rather than assigning a second one. */
+  customerNumber?: string;
   productName: string;
   productSlug?: string;
   referenceCode?: string;
@@ -62,6 +66,7 @@ export async function createThread(input: CreateThreadInput): Promise<ThreadReco
     buyerUserId,
     buyerName: input.buyerName,
     buyerEmail: input.buyerEmail,
+    customerNumber: input.customerNumber,
     productName: input.productName,
     productSlug: input.productSlug,
     referenceCode: input.referenceCode,

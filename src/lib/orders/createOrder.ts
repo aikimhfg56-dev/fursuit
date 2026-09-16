@@ -1,7 +1,11 @@
 import type { AccountAddress } from "@/lib/account/profile";
+import { recordOrder, type OrderRecord } from "@/lib/orders/store";
 import { getSanityWriteClient } from "@/lib/sanity/client";
 
 export type OrderInput = {
+  buyerUserId?: string;
+  /** Determines which customer-number sequence this order draws from — see lib/customerNumber.ts. */
+  productKind?: "shop" | "preorder";
   paymentMethod:
     | "stripe_card"
     | "stripe_alipay"
@@ -16,25 +20,29 @@ export type OrderInput = {
   currency: string;
   customerEmail?: string;
   customerName?: string;
+  productName?: string;
   shippingAddress?: AccountAddress;
 };
 
 /**
- * Writes an order record if Sanity is connected; otherwise just logs, so
- * checkout still completes for the shopper while CMS setup is pending.
+ * Always records the order in Redis (what actually powers the seller
+ * admin's order list), and additionally writes to Sanity if it's connected
+ * — Sanity isn't required for checkout to complete or for the seller to see
+ * the order. Returns the Redis record (including its assigned customer
+ * number) so callers can pass it along — e.g. into the preorder chat thread.
  */
-export async function createOrder(input: OrderInput): Promise<void> {
-  const client = getSanityWriteClient();
+export async function createOrder(input: OrderInput): Promise<OrderRecord> {
+  const record = await recordOrder(input);
 
-  if (!client) {
-    console.warn("[order] Sanity not configured yet, order not persisted:", input);
-    return;
+  const client = getSanityWriteClient();
+  if (client) {
+    await client.create({
+      _type: "order",
+      shippingStatus: "not_shipped",
+      createdAt: new Date().toISOString(),
+      ...input,
+    });
   }
 
-  await client.create({
-    _type: "order",
-    shippingStatus: "not_shipped",
-    createdAt: new Date().toISOString(),
-    ...input,
-  });
+  return record;
 }

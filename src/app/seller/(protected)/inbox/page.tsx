@@ -40,6 +40,11 @@ function ThreadSection({ title, threads }: { title: string; threads: ThreadRecor
                 >
                   <div className="min-w-0">
                     <p className={`truncate text-sm ${unread ? "font-semibold" : "font-medium"}`}>
+                      {thread.customerNumber && (
+                        <span className="mr-2 rounded-full bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">
+                          {thread.customerNumber}
+                        </span>
+                      )}
                       {thread.buyerName ?? thread.buyerEmail ?? thread.buyerUserId} ・ {thread.productName}
                     </p>
                     <p className="mt-0.5 truncate text-xs text-foreground/60">

@@ -1,7 +1,7 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { AccountAddress } from "@/lib/account/profile";
-import type { OrderSummary } from "@/lib/sanity/queries";
+import type { OrderRecord } from "@/lib/orders/store";
 import BillingPortalButton from "./BillingPortalButton";
 import ShippingDetailsSection from "./ShippingDetailsSection";
 
@@ -10,7 +10,7 @@ type AccountOverviewProps = {
   email: string;
   fullName?: string;
   address?: AccountAddress;
-  orders: OrderSummary[];
+  orders: OrderRecord[];
   unreadMessagesCount: number;
 };
 
@@ -23,6 +23,19 @@ export default async function AccountOverview({
   unreadMessagesCount,
 }: AccountOverviewProps) {
   const t = await getTranslations("account.overview");
+  const locale = await getLocale();
+  const currencyFormatters = new Map<string, Intl.NumberFormat>();
+  const dateFormatter = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
+
+  function formatAmount(amount: number, currency: string) {
+    const key = currency.toUpperCase();
+    let formatter = currencyFormatters.get(key);
+    if (!formatter) {
+      formatter = new Intl.NumberFormat(locale, { style: "currency", currency: key });
+      currencyFormatters.set(key, formatter);
+    }
+    return formatter.format(amount);
+  }
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-16">
@@ -77,14 +90,26 @@ export default async function AccountOverview({
       <section className="mt-6 rounded-xl border border-black/10 p-6">
         <h2 className="text-lg font-semibold">{t("ordersHeading")}</h2>
         {orders.length > 0 ? (
-          <ul className="mt-4 space-y-3 text-sm">
+          <ul className="mt-4 space-y-4 text-sm">
             {orders.map((order) => (
-              <li
-                key={order._id}
-                className="flex justify-between border-b border-black/10 pb-2"
-              >
-                <span>{order.referenceCode ?? order._id}</span>
-                <span className="text-black/60">{order.paymentStatus}</span>
+              <li key={order.id} className="border-b border-black/10 pb-4 last:border-b-0 last:pb-0">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="font-medium">
+                    {order.customerNumber && (
+                      <span className="mr-2 rounded-full bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">
+                        {order.customerNumber}
+                      </span>
+                    )}
+                    {order.productName || order.referenceCode}
+                  </span>
+                  <span className="font-semibold">{formatAmount(order.amountTotal, order.currency)}</span>
+                </div>
+                <p className="mt-1 text-black/60">
+                  {t(`paymentMethods.${order.paymentMethod}`)} ・ {t(`paymentStatuses.${order.paymentStatus}`)}
+                </p>
+                <p className="mt-1 text-xs text-black/45">
+                  {order.referenceCode} ・ {dateFormatter.format(new Date(order.createdAt))}
+                </p>
               </li>
             ))}
           </ul>

@@ -36,7 +36,7 @@ export default async function CheckoutSuccessPage({ searchParams }: CheckoutSucc
         customerName: profile.fullName,
         shippingAddress: profile.address,
         buyerUserId: user?.id,
-        productKind: productKind === "preorder" ? "preorder" : undefined,
+        productKind: productKind === "preorder" ? "preorder" : "shop",
         productSlug,
         productName,
       });

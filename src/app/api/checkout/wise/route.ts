@@ -11,6 +11,7 @@ import { createThread } from "@/lib/messages/store";
 import { validatePromoCode } from "@/lib/promo/validatePromoCode";
 import { sendNotificationEmail } from "@/lib/email/resend";
 import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
+import { decrementStock, isProductSoldOut } from "@/lib/seller/store";
 
 const rateLimiter = getRateLimiter("checkout-wise", 10, "1 m");
 
@@ -64,6 +65,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
+  // The storefront hides the "Pay" button for sold-out items — re-checked
+  // here since the client can't be trusted to have honored it.
+  if (productSlug && (await isProductSoldOut(productKind, productSlug))) {
+    return NextResponse.json({ error: "sold_out" }, { status: 409 });
+  }
+
   let discountedSubtotalUsd = amountUsd;
   if (promoCode) {
     const promoResult = await validatePromoCode(promoCode, amountUsd);
@@ -77,7 +84,9 @@ export async function POST(request: Request) {
 
   const referenceCode = generateReferenceCode();
 
-  await createOrder({
+  const order = await createOrder({
+    buyerUserId: user.id,
+    productKind,
     paymentMethod: "wise",
     paymentStatus: "awaiting_bank_transfer",
     referenceCode,
@@ -85,8 +94,13 @@ export async function POST(request: Request) {
     currency,
     customerEmail: user.primaryEmailAddress?.emailAddress,
     customerName: profile.fullName,
+    productName,
     shippingAddress: profile.address,
   });
+
+  if (productSlug) {
+    await decrementStock(productKind, productSlug);
+  }
 
   // Only preorder (semi-order) purchases get a post-purchase chat thread —
   // finished Shop goods have no color/size left to discuss.
@@ -96,6 +110,7 @@ export async function POST(request: Request) {
       buyerUserId: user.id,
       buyerName: profile.fullName,
       buyerEmail: user.primaryEmailAddress?.emailAddress,
+      customerNumber: order.customerNumber,
       productName,
       productSlug,
       referenceCode,

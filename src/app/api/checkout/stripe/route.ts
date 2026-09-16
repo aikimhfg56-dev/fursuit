@@ -12,6 +12,7 @@ import {
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
 import { validatePromoCode } from "@/lib/promo/validatePromoCode";
 import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
+import { isProductSoldOut } from "@/lib/seller/store";
 
 const STRIPE_METHODS: StripePaymentMethod[] = ["card", "alipay", "revolut_pay"];
 // Also guards against card-testing abuse (many rapid checkout attempts from one IP).
@@ -73,6 +74,12 @@ export async function POST(request: Request) {
 
   if (!productName || !Number.isFinite(amountUsd) || amountUsd <= 0 || !successUrl || !cancelUrl) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
+  }
+
+  // The storefront hides the "Pay" button for sold-out items — re-checked
+  // here since the client can't be trusted to have honored it.
+  if (productSlug && (await isProductSoldOut(productKind, productSlug))) {
+    return NextResponse.json({ error: "sold_out" }, { status: 409 });
   }
 
   let discountedSubtotalUsd = amountUsd;

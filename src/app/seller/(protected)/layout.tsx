@@ -32,6 +32,9 @@ export default async function ProtectedSellerLayout({ children }: ProtectedSelle
                 </span>
               )}
             </Link>
+            <Link href="/seller/orders" className="text-sm font-medium text-foreground/70 hover:text-foreground">
+              注文一覧
+            </Link>
           </div>
           <SellerLogoutButton />
         </div>

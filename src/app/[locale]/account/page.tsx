@@ -5,7 +5,7 @@ import AuthNotConfigured from "@/components/account/AuthNotConfigured";
 import { isClerkConfigured } from "@/lib/env";
 import { getAccountProfile } from "@/lib/account/profile";
 import { isThreadUnread, listThreadsForBuyer } from "@/lib/messages/store";
-import { fetchOrdersByEmail } from "@/lib/sanity/queries";
+import { listOrdersForBuyer } from "@/lib/orders/store";
 
 export default async function AccountPage() {
   if (!isClerkConfigured()) return <AuthNotConfigured />;
@@ -16,7 +16,7 @@ export default async function AccountPage() {
   const profile = getAccountProfile(user);
   const email = user.primaryEmailAddress?.emailAddress ?? "";
   const username = user.username ?? email;
-  const orders = email ? await fetchOrdersByEmail(email) : [];
+  const orders = await listOrdersForBuyer(user.id);
   const threads = await listThreadsForBuyer(user.id);
   const unreadMessagesCount = threads.filter((thread) => isThreadUnread(thread, "buyer")).length;
 

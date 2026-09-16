@@ -1,6 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { getAccountProfile, hasShippingDetails } from "@/lib/account/profile";
+import { assignCustomerNumber } from "@/lib/customerNumber";
 import { isClerkConfigured } from "@/lib/env";
 import { sendNotificationEmail, type NotificationEmailAttachment } from "@/lib/email/resend";
 import {
@@ -120,11 +121,15 @@ export async function POST(request: Request) {
     parts: "Parts Commission",
   };
 
+  // Shares the "order" customer-number sequence with Semi Order purchases.
+  const customerNumber = await assignCustomerNumber("order");
+
   const thread = await createThread({
     kind: "commission",
     buyerUserId: user.id,
     buyerName: profile.fullName,
     buyerEmail: email,
+    customerNumber,
     productName: ORDER_TYPE_LABELS[orderType] ?? "Custom Commission",
   });
   await addMessage(thread.id, { sender: "buyer", text: designNotes });

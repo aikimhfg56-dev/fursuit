@@ -114,23 +114,31 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
         )}
 
         <div className="mt-8 space-y-4">
-          <ShippingGateSection
-            state={gateState}
-            returnPath={`/${kind}/${product.slug}`}
-            signInDescription={tAccount("signInToPurchase")}
-            profile={profile}
-          />
-          {gateState === "ready" && (
-            <CheckoutPanel
-              productName={name}
-              productKind={kind}
-              productSlug={product.slug}
-              amountUsd={product.basePrice}
-              displayAmount={displayAmount}
-              shippingUsd={shippingUsd}
-              currency={currency}
-              configuredMethods={configuredMethods}
-            />
+          {product.stockStatus === "sold_out" ? (
+            <p className="rounded-xl border border-black/10 bg-black/5 px-4 py-3 text-sm text-black/60">
+              {t("soldOutMessage")}
+            </p>
+          ) : (
+            <>
+              <ShippingGateSection
+                state={gateState}
+                returnPath={`/${kind}/${product.slug}`}
+                signInDescription={tAccount("signInToPurchase")}
+                profile={profile}
+              />
+              {gateState === "ready" && (
+                <CheckoutPanel
+                  productName={name}
+                  productKind={kind}
+                  productSlug={product.slug}
+                  amountUsd={product.basePrice}
+                  displayAmount={displayAmount}
+                  shippingUsd={shippingUsd}
+                  currency={currency}
+                  configuredMethods={configuredMethods}
+                />
+              )}
+            </>
           )}
         </div>
       </FadeIn>

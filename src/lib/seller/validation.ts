@@ -41,6 +41,12 @@ export function validateProductPayload(body: unknown): ValidationResult {
     ? (b.stockStatus as ProductStockStatus)
     : "in_stock";
 
+  const stockQuantityRaw = b.stockQuantity === "" || b.stockQuantity == null ? undefined : Number(b.stockQuantity);
+  if (stockQuantityRaw !== undefined && (!Number.isInteger(stockQuantityRaw) || stockQuantityRaw < 0)) {
+    return { error: "invalid_stock_quantity" };
+  }
+  const stockQuantity = stockQuantityRaw;
+
   const category =
     typeof b.category === "string" && SELLER_CATEGORY_OPTIONS.some((option) => option.slug === b.category)
       ? b.category
@@ -66,6 +72,7 @@ export function validateProductPayload(body: unknown): ValidationResult {
     basePrice,
     weightKg,
     stockStatus,
+    stockQuantity,
     category,
     speciesTag,
     styleTags,

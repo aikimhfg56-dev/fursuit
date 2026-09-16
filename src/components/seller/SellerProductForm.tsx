@@ -50,6 +50,7 @@ export default function SellerProductForm({ kind, initialProduct }: SellerProduc
   const [basePrice, setBasePrice] = useState(initialProduct?.basePrice?.toString() ?? "");
   const [weightKg, setWeightKg] = useState(initialProduct?.weightKg?.toString() ?? "");
   const [stockStatus, setStockStatus] = useState(initialProduct?.stockStatus ?? "in_stock");
+  const [stockQuantity, setStockQuantity] = useState(initialProduct?.stockQuantity?.toString() ?? "");
   const [category, setCategory] = useState(initialProduct?.category ?? "");
   const [speciesTag, setSpeciesTag] = useState(initialProduct?.speciesTag ?? "");
   const [flags, setFlags] = useState<string[]>(initialProduct?.flags ?? []);
@@ -108,6 +109,11 @@ export default function SellerProductForm({ kind, initialProduct }: SellerProduc
       setError("重量は0より大きい数値で入力してください(例: 1.2)。");
       return;
     }
+    const stockQuantityNumber = stockQuantity.trim() === "" ? undefined : Number(stockQuantity);
+    if (stockQuantityNumber !== undefined && (!Number.isInteger(stockQuantityNumber) || stockQuantityNumber < 0)) {
+      setError("在庫数は0以上の整数で入力してください。");
+      return;
+    }
 
     setSubmitting(true);
     const payload = {
@@ -119,6 +125,7 @@ export default function SellerProductForm({ kind, initialProduct }: SellerProduc
       basePrice: priceNumber,
       weightKg: weightNumber,
       stockStatus,
+      stockQuantity: stockQuantityNumber,
       category: category || undefined,
       speciesTag: speciesTag || undefined,
       flags,
@@ -264,6 +271,21 @@ export default function SellerProductForm({ kind, initialProduct }: SellerProduc
               </option>
             ))}
           </select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium">在庫数(任意)</label>
+          <input
+            type="number"
+            min="0"
+            step="1"
+            value={stockQuantity}
+            onChange={(event) => setStockQuantity(event.target.value)}
+            placeholder="例: 3"
+            className="mt-1 w-full rounded-lg border border-black/15 px-3 py-2 text-sm"
+          />
+          <p className="mt-1 text-xs text-black/50">
+            入力すると、購入されるたびに自動で1つ減り、0になると自動で「売り切れ」になります。空欄のままなら在庫状況は上の欄で手動管理します。
+          </p>
         </div>
       </div>
 

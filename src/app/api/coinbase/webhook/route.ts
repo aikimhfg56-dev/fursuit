@@ -6,6 +6,7 @@ import { verifyCoinbaseWebhookSignature } from "@/lib/payments/coinbase";
 import { createOrder } from "@/lib/orders/createOrder";
 import { createThread } from "@/lib/messages/store";
 import { sendNotificationEmail } from "@/lib/email/resend";
+import { decrementStock } from "@/lib/seller/store";
 
 type CoinbaseChargeEvent = {
   event: {
@@ -57,7 +58,11 @@ export async function POST(request: Request) {
       }
     }
 
-    await createOrder({
+    const productKind = charge.metadata?.productKind === "preorder" ? "preorder" : "shop";
+
+    const order = await createOrder({
+      buyerUserId: clerkUserId,
+      productKind,
       paymentMethod: "coinbase",
       paymentStatus: "paid",
       referenceCode,
@@ -66,17 +71,24 @@ export async function POST(request: Request) {
       currency: charge.pricing?.local?.currency ?? "usd",
       customerEmail,
       customerName,
+      productName: charge.metadata?.productName,
       shippingAddress,
     });
 
+    const productSlug = charge.metadata?.productSlug;
+    if (productSlug) {
+      await decrementStock(productKind, productSlug);
+    }
+
     // Only preorder (semi-order) purchases get a post-purchase chat thread —
     // finished Shop goods have no color/size left to discuss.
-    if (clerkUserId && charge.metadata?.productKind === "preorder") {
+    if (clerkUserId && productKind === "preorder") {
       await createThread({
         kind: "preorder",
         buyerUserId: clerkUserId,
         buyerName: customerName,
         buyerEmail: customerEmail,
+        customerNumber: order.customerNumber,
         productName: charge.metadata?.productName ?? "",
         productSlug: charge.metadata?.productSlug,
         referenceCode,

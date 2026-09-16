@@ -18,6 +18,8 @@ export type SellerProductInput = {
   /** Used to calculate real EMS international shipping rates. */
   weightKg?: number;
   stockStatus: ProductStockStatus;
+  /** Optional — when set, stockStatus is force-flipped to "sold_out" as soon as this hits 0 (see decrementStock). Leave unset to manage stockStatus by hand instead. */
+  stockQuantity?: number;
   category?: string;
   speciesTag?: string;
   styleTags?: string[];
@@ -54,6 +56,12 @@ export async function getSellerProduct(kind: SellerProductKind, id: string): Pro
   return (await redis.get<SellerProductRecord>(PRODUCT_KEY(kind, id))) ?? null;
 }
 
+/** Server-side re-check for checkout routes — the client's "Sold out" badge can't be trusted to have stopped the request. Products not found here (e.g. Sanity-managed ones) are treated as available, since we have nothing to check against. */
+export async function isProductSoldOut(kind: SellerProductKind, id: string): Promise<boolean> {
+  const product = await getSellerProduct(kind, id);
+  return product?.stockStatus === "sold_out";
+}
+
 export async function saveSellerProduct(
   kind: SellerProductKind,
   id: string,
@@ -72,6 +80,22 @@ export async function saveSellerProduct(
   await redis.set(PRODUCT_KEY(kind, id), record);
   await redis.sadd(PRODUCT_IDS_KEY(kind), id);
   return record;
+}
+
+/**
+ * Called once per confirmed sale — decrements stockQuantity by 1 and,
+ * once it reaches 0, force-flips stockStatus to "sold_out" regardless of
+ * what the seller had manually selected. A no-op for products that don't
+ * track a quantity (stockStatus stays fully manual for those).
+ */
+export async function decrementStock(kind: SellerProductKind, id: string): Promise<void> {
+  const product = await getSellerProduct(kind, id);
+  if (!product || product.stockQuantity == null) return;
+
+  const stockQuantity = Math.max(0, product.stockQuantity - 1);
+  const stockStatus = stockQuantity === 0 ? "sold_out" : product.stockStatus;
+
+  await getRedisClient().set(PRODUCT_KEY(kind, id), { ...product, stockQuantity, stockStatus });
 }
 
 export async function deleteSellerProduct(kind: SellerProductKind, id: string): Promise<void> {

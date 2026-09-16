@@ -85,6 +85,10 @@ export default function CheckoutPanel({
     }
   }
 
+  function resolveErrorMessage(data: { error?: string } | null | undefined) {
+    return data?.error === "sold_out" ? t("errors.soldOut") : t("errors.generic");
+  }
+
   async function handlePay() {
     if (!agreedToTerms) return;
 
@@ -123,7 +127,7 @@ export default function CheckoutPanel({
         if (data.url) {
           window.location.href = data.url;
         } else {
-          setErrorMessage(t("errors.generic"));
+          setErrorMessage(resolveErrorMessage(data));
         }
       } else if (method === "paypal") {
         const response = await fetch("/api/checkout/paypal/create-order", {
@@ -147,7 +151,7 @@ export default function CheckoutPanel({
         if (data.approveUrl) {
           window.location.href = data.approveUrl;
         } else {
-          setErrorMessage(t("errors.generic"));
+          setErrorMessage(resolveErrorMessage(data));
         }
       } else if (method === "wise") {
         const response = await fetch("/api/checkout/wise", {
@@ -169,7 +173,7 @@ export default function CheckoutPanel({
         if (data.referenceCode) {
           setWiseResult({ referenceCode: data.referenceCode, bankDetails: data.bankDetails });
         } else {
-          setErrorMessage(t("errors.generic"));
+          setErrorMessage(resolveErrorMessage(data));
         }
       } else if (method === "crypto") {
         const response = await fetch("/api/checkout/coinbase", {
@@ -193,7 +197,7 @@ export default function CheckoutPanel({
         if (data.url) {
           window.location.href = data.url;
         } else {
-          setErrorMessage(t("errors.generic"));
+          setErrorMessage(resolveErrorMessage(data));
         }
       }
     } catch {

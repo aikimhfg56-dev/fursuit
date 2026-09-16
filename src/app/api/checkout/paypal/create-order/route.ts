@@ -8,6 +8,7 @@ import { createPaypalOrder } from "@/lib/payments/paypal";
 import { generateReferenceCode } from "@/lib/orders/referenceCode";
 import { validatePromoCode } from "@/lib/promo/validatePromoCode";
 import { getClientIp, getRateLimiter } from "@/lib/rateLimit";
+import { isProductSoldOut } from "@/lib/seller/store";
 
 const rateLimiter = getRateLimiter("checkout-paypal", 10, "1 m");
 
@@ -62,6 +63,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
+  // The storefront hides the "Pay" button for sold-out items — re-checked
+  // here since the client can't be trusted to have honored it.
+  if (productSlug && (await isProductSoldOut(productKind, productSlug))) {
+    return NextResponse.json({ error: "sold_out" }, { status: 409 });
+  }
+
   let discountedSubtotalUsd = amountUsd;
   if (promoCode) {
     const promoResult = await validatePromoCode(promoCode, amountUsd);
@@ -75,14 +82,13 @@ export async function POST(request: Request) {
 
   const referenceCode = generateReferenceCode();
   // PayPal appends its own token/PayerID params when redirecting back — ours
-  // ride along too, so the success page can show a human-readable reference
-  // and (for preorder purchases) open a post-purchase chat thread.
-  const returnParams = new URLSearchParams({ reference: referenceCode });
-  if (productKind === "preorder") {
-    returnParams.set("productKind", productKind);
-    if (productSlug) returnParams.set("productSlug", productSlug);
-    if (productName) returnParams.set("productName", productName);
-  }
+  // ride along too, so the success page can show a human-readable reference,
+  // record the order against the right product, and (for preorder purchases
+  // specifically) open a post-purchase chat thread. Included for every
+  // purchase kind, not just preorder — Shop orders need productName too.
+  const returnParams = new URLSearchParams({ reference: referenceCode, productKind });
+  if (productSlug) returnParams.set("productSlug", productSlug);
+  if (productName) returnParams.set("productName", productName);
   const returnUrlWithReference = `${returnUrl}${returnUrl.includes("?") ? "&" : "?"}${returnParams.toString()}`;
 
   try {

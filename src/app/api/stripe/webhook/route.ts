@@ -7,6 +7,7 @@ import { getStripeClient } from "@/lib/payments/stripe";
 import { createOrder } from "@/lib/orders/createOrder";
 import { createThread } from "@/lib/messages/store";
 import { sendNotificationEmail } from "@/lib/email/resend";
+import { decrementStock } from "@/lib/seller/store";
 
 export async function POST(request: Request) {
   if (!isStripeConfigured()) {
@@ -56,27 +57,41 @@ export async function POST(request: Request) {
     }
 
     const customerEmail = session.customer_details?.email ?? undefined;
+    const productKind = session.metadata?.productKind === "preorder" ? "preorder" : "shop";
+    // Redirect-based methods (Alipay, Revolut Pay) can in principle complete
+    // checkout without the payment itself succeeding — don't assume "paid"
+    // just because the session finished.
+    const paymentStatus = session.payment_status === "paid" ? "paid" : "failed";
 
-    await createOrder({
+    const order = await createOrder({
+      buyerUserId: clerkUserId,
+      productKind: paymentStatus === "paid" ? productKind : undefined,
       paymentMethod,
-      paymentStatus: "paid",
+      paymentStatus,
       referenceCode: session.metadata?.referenceCode ?? session.id,
       providerReference: session.id,
       amountTotal: (session.amount_total ?? 0) / (session.currency === "jpy" ? 1 : 100),
       currency: session.currency ?? "usd",
       customerEmail,
       customerName,
+      productName: session.metadata?.productName,
       shippingAddress,
     });
 
+    const productSlug = session.metadata?.productSlug;
+    if (paymentStatus === "paid" && productSlug) {
+      await decrementStock(productKind, productSlug);
+    }
+
     // Only preorder (semi-order) purchases get a post-purchase chat thread —
     // finished Shop goods have no color/size left to discuss.
-    if (clerkUserId && session.metadata?.productKind === "preorder") {
+    if (paymentStatus === "paid" && clerkUserId && productKind === "preorder") {
       await createThread({
         kind: "preorder",
         buyerUserId: clerkUserId,
         buyerName: customerName,
         buyerEmail: customerEmail,
+        customerNumber: order.customerNumber,
         productName: session.metadata?.productName ?? "",
         productSlug: session.metadata?.productSlug,
         referenceCode: session.metadata?.referenceCode ?? session.id,
@@ -84,8 +99,8 @@ export async function POST(request: Request) {
     }
 
     await sendNotificationEmail({
-      subject: `New order — ${session.metadata?.referenceCode ?? session.id}`,
-      text: `Stripe checkout completed. Session: ${session.id}, amount: ${session.amount_total}, currency: ${session.currency}.`,
+      subject: `${paymentStatus === "paid" ? "New order" : "Payment failed"} — ${session.metadata?.referenceCode ?? session.id}`,
+      text: `Stripe checkout session ${session.id} completed with payment_status="${session.payment_status}". Amount: ${session.amount_total}, currency: ${session.currency}.`,
     });
   }
 

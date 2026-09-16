@@ -26,7 +26,14 @@ export default async function AccountMessageThreadPage({ params }: PageParams) {
       <Link href="/account/messages" className="text-sm text-black/60 hover:underline">
         {t("back")}
       </Link>
-      <h1 className="mt-2 text-2xl font-bold tracking-tight">{thread.productName}</h1>
+      <h1 className="mt-2 flex flex-wrap items-center gap-2 text-2xl font-bold tracking-tight">
+        {thread.customerNumber && (
+          <span className="rounded-full bg-accent/10 px-2 py-0.5 text-sm font-semibold text-accent">
+            {thread.customerNumber}
+          </span>
+        )}
+        {thread.productName}
+      </h1>
 
       {thread.trackingNumber && (
         <div className="mt-6 rounded-xl border border-accent/30 bg-accent/5 p-4 text-sm">
