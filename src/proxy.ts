@@ -41,11 +41,15 @@ const proxy = isClerkConfigured()
           return intlMiddleware(req);
         }
       },
-      // Adds a Content-Security-Policy header sized to exactly what Clerk
-      // needs (its own domains, Cloudflare bot-check, fraud protection) —
-      // this app loads no other third-party scripts, so no extra directives
-      // are needed on top of Clerk's own defaults.
-      { contentSecurityPolicy: { strict: true } },
+      // Adds a Content-Security-Policy header sized to what Clerk needs
+      // (its own domains, Cloudflare bot-check, fraud protection) plus
+      // img-src for Sanity's asset CDN, which serves all product images.
+      {
+        contentSecurityPolicy: {
+          strict: true,
+          directives: { "img-src": ["https://cdn.sanity.io"] },
+        },
+      },
     )
   : (req: NextRequest) => {
       if (!req.nextUrl.pathname.startsWith("/api") && !req.nextUrl.pathname.startsWith("/seller")) {
