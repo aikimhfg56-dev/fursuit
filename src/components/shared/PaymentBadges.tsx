@@ -3,6 +3,7 @@ const PAYMENT_METHODS = [
   { label: "Mastercard", src: "/payment-logos/mastercard.svg" },
   { label: "American Express", src: "/payment-logos/amex.png" },
   { label: "Discover", src: "/payment-logos/discover.jpg" },
+  { label: "JCB", src: "/payment-logos/jcb.svg" },
   { label: "PayPal", src: "/payment-logos/paypal.png" },
   { label: "Alipay", src: "/payment-logos/alipay.png" },
   { label: "Revolut Pay", src: "/payment-logos/revolut-pay.svg" },
