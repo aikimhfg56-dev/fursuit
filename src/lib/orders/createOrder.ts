@@ -9,7 +9,6 @@ export type OrderInput = {
   paymentMethod:
     | "stripe_card"
     | "stripe_alipay"
-    | "stripe_revolut_pay"
     | "paypal"
     | "wise"
     | "coinbase";

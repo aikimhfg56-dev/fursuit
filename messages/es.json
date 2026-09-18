@@ -61,7 +61,6 @@
       "paymentMethods": {
         "stripe_card": "Tarjeta de crédito",
         "stripe_alipay": "Alipay",
-        "stripe_revolut_pay": "Revolut Pay",
         "paypal": "PayPal",
         "wise": "Transferencia bancaria (Wise)",
         "coinbase": "Cripto (Coinbase)"
@@ -229,7 +228,6 @@
       "card": "Tarjeta",
       "paypal": "PayPal",
       "alipay": "Alipay",
-      "revolutPay": "Revolut Pay",
       "wise": "Transferencia bancaria (Wise)",
       "crypto": "Cripto (Bitcoin, etc.)"
     },

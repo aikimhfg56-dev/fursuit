@@ -34,12 +34,7 @@ export async function POST(request: Request) {
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
     const paymentMethodType = session.payment_method_types?.[0] ?? "card";
-    const paymentMethod =
-      paymentMethodType === "alipay"
-        ? "stripe_alipay"
-        : paymentMethodType === "revolut_pay"
-          ? "stripe_revolut_pay"
-          : "stripe_card";
+    const paymentMethod = paymentMethodType === "alipay" ? "stripe_alipay" : "stripe_card";
 
     // Shipping details live on the shopper's Clerk profile, not the Stripe
     // session — look them up via the clerkUserId stashed in metadata.

@@ -17,7 +17,6 @@ import {
   isWiseConfigured,
 } from "@/lib/env";
 import { pickLocaleValue } from "@/lib/i18n/pickLocaleValue";
-import { isRevolutPayEligible } from "@/lib/payments/stripe";
 import type { PreorderProductDetail, ProductDetail } from "@/lib/sanity/queries";
 import { getEmsRateJpy, getEmsZoneForCountry } from "@/lib/shipping/emsRates";
 import { getShippingRateUsd, getShippingRegionForLocale } from "@/lib/shipping/rates";
@@ -47,11 +46,8 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
   const currency = await getPreferredCurrency(locale);
   const displayAmount = await convertFromUsd(product.basePrice, currency);
 
-  // Revolut Pay is presentment-currency-restricted at Stripe (GBP/EUR only) —
-  // hiding it otherwise avoids offering a method that would fail at checkout.
   const configuredMethods: PaymentMethodId[] = [
     ...(isStripeConfigured() ? (["card", "alipay"] as const) : []),
-    ...(isStripeConfigured() && isRevolutPayEligible(currency) ? (["revolutPay"] as const) : []),
     ...(isPaypalConfigured() ? (["paypal"] as const) : []),
     ...(isWiseConfigured() ? (["wise"] as const) : []),
     ...(isCoinbaseConfigured() ? (["crypto"] as const) : []),

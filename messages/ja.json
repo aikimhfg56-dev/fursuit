@@ -61,7 +61,6 @@
       "paymentMethods": {
         "stripe_card": "クレジットカード",
         "stripe_alipay": "Alipay",
-        "stripe_revolut_pay": "Revolut Pay",
         "paypal": "PayPal",
         "wise": "銀行振込 (Wise)",
         "coinbase": "暗号資産 (Coinbase)"
@@ -229,7 +228,6 @@
       "card": "カード",
       "paypal": "PayPal",
       "alipay": "Alipay",
-      "revolutPay": "Revolut Pay",
       "wise": "銀行振込(Wise)",
       "crypto": "暗号資産(ビットコインなど)"
     },

@@ -6,7 +6,6 @@ const PAYMENT_METHODS = [
   { label: "JCB", src: "/payment-logos/jcb.svg" },
   { label: "PayPal", src: "/payment-logos/paypal.png" },
   { label: "Alipay", src: "/payment-logos/alipay.png" },
-  { label: "Revolut Pay", src: "/payment-logos/revolut-pay.svg" },
   { label: "Apple Pay", src: "/payment-logos/apple-pay.svg" },
 ] as const;
 

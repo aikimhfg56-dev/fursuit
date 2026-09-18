@@ -100,9 +100,8 @@ export default function CheckoutPanel({
     const cancelUrl = `${origin}${window.location.pathname}?status=cancelled`;
 
     try {
-      if (method === "card" || method === "alipay" || method === "revolutPay") {
-        const paymentMethods =
-          method === "card" ? ["card"] : method === "alipay" ? ["alipay"] : ["revolut_pay"];
+      if (method === "card" || method === "alipay") {
+        const paymentMethods = method === "card" ? ["card"] : ["alipay"];
 
         const response = await fetch("/api/checkout/stripe", {
           method: "POST",

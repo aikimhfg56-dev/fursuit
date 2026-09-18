@@ -3,7 +3,6 @@ import { listOrders, type OrderRecord } from "@/lib/orders/store";
 const PAYMENT_METHOD_LABELS: Record<string, string> = {
   stripe_card: "クレジットカード",
   stripe_alipay: "Alipay",
-  stripe_revolut_pay: "Revolut Pay",
   paypal: "PayPal",
   wise: "銀行振込 (Wise)",
   coinbase: "暗号資産 (Coinbase)",
