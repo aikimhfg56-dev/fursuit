@@ -12,21 +12,16 @@ import {
   type ProductSummary,
   type TaxonomyTerm,
 } from "@/lib/sanity/queries";
-import {
-  SAMPLE_CATEGORIES,
-  SAMPLE_PREORDER_PRODUCTS,
-  SAMPLE_READY_MADE_PRODUCTS,
-  SAMPLE_STYLE_TAGS,
-} from "@/lib/sanity/sampleProducts";
+import { SAMPLE_CATEGORIES, SAMPLE_STYLE_TAGS } from "@/lib/sanity/sampleProducts";
 import { getSellerProduct, listSellerProducts, toProductDetail } from "@/lib/seller/store";
 
 export type Catalog<T> = { products: T[]; categories: TaxonomyTerm[]; styleTags: TaxonomyTerm[] };
 
 /**
- * Every listing page follows the same three-tier fallback: real Sanity data
+ * Every listing page follows the same two-tier fallback: real Sanity data
  * once it's connected, otherwise whatever the seller has added through
- * /seller, otherwise the static sample catalog so the layout still has
- * something to show.
+ * /seller. An empty result renders the "no products yet" state — never
+ * placeholder content.
  */
 export async function getShopCatalog(): Promise<Catalog<ProductSummary>> {
   if (isSanityConfigured()) {
@@ -38,8 +33,7 @@ export async function getShopCatalog(): Promise<Catalog<ProductSummary>> {
     return { products, categories, styleTags };
   }
 
-  const sellerProducts = isUpstashConfigured() ? await listSellerProducts("shop") : [];
-  const products = sellerProducts.length > 0 ? sellerProducts.map(toProductDetail) : SAMPLE_READY_MADE_PRODUCTS;
+  const products = isUpstashConfigured() ? (await listSellerProducts("shop")).map(toProductDetail) : [];
   return { products, categories: SAMPLE_CATEGORIES, styleTags: SAMPLE_STYLE_TAGS };
 }
 
@@ -53,11 +47,9 @@ export async function getPreorderCatalog(): Promise<Catalog<PreorderProductSumma
     return { products, categories, styleTags };
   }
 
-  const sellerProducts = isUpstashConfigured() ? await listSellerProducts("preorder") : [];
-  const products =
-    sellerProducts.length > 0
-      ? (sellerProducts.map(toProductDetail) as PreorderProductSummary[])
-      : SAMPLE_PREORDER_PRODUCTS;
+  const products = isUpstashConfigured()
+    ? ((await listSellerProducts("preorder")).map(toProductDetail) as PreorderProductSummary[])
+    : [];
   return { products, categories: SAMPLE_CATEGORIES, styleTags: SAMPLE_STYLE_TAGS };
 }
 
@@ -69,7 +61,7 @@ export async function getShopProductDetail(slug: string): Promise<ProductDetail 
     if (sellerProduct) return toProductDetail(sellerProduct) as ProductDetail;
   }
 
-  return SAMPLE_READY_MADE_PRODUCTS.find((product) => product.slug === slug) ?? null;
+  return null;
 }
 
 export async function getPreorderProductDetail(slug: string): Promise<PreorderProductDetail | null> {
@@ -80,5 +72,5 @@ export async function getPreorderProductDetail(slug: string): Promise<PreorderPr
     if (sellerProduct) return toProductDetail(sellerProduct) as PreorderProductDetail;
   }
 
-  return SAMPLE_PREORDER_PRODUCTS.find((product) => product.slug === slug) ?? null;
+  return null;
 }

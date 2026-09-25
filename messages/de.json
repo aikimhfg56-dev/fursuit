@@ -185,7 +185,22 @@
   },
   "preorder": {
     "title": "Semi Order",
-    "description": "Das Design ist festgelegt, kann aber in deiner bevorzugten Farbe und Größe angefertigt werden. Weitere Details findest du auf der jeweiligen Produktseite."
+    "description": "Das Design ist festgelegt, kann aber in deiner bevorzugten Farbe und Größe angefertigt werden. Weitere Details findest du auf der jeweiligen Produktseite.",
+    "request": {
+      "heading": "Diese Semi-Order anfragen",
+      "description": "Das Design ist festgelegt, aber Farbe und Größe passen wir auf Sie an. Senden Sie uns unten Ihre Wünsche — wir melden uns, um Details und Zahlung zu bestätigen.",
+      "colorPreference": "Bevorzugte Farbe",
+      "colorPreferencePlaceholder": "z. B. Schwarz und Weiß",
+      "sizePreference": "Bevorzugte Größe",
+      "sizePreferencePlaceholder": "Größe, Maße oder eine Referenzgröße",
+      "notes": "Zusätzliche Hinweise (optional)",
+      "notesPlaceholder": "Alles Weitere, das wir wissen sollten...",
+      "installmentPayment": "Ich möchte in Raten zahlen",
+      "submit": "Anfrage senden",
+      "submitting": "Wird gesendet...",
+      "success": "Danke! Wir haben Ihre Anfrage erhalten und melden uns in Kürze, um Details und Zahlung zu bestätigen.",
+      "error": "Beim Senden Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+    }
   },
   "contact": {
     "title": "Kontakt",

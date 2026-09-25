@@ -185,7 +185,22 @@
   },
   "preorder": {
     "title": "Semi Order",
-    "description": "El diseño es fijo, pero se puede fabricar en el color y la talla que prefieras. Consulta la página de cada producto para más detalles."
+    "description": "El diseño es fijo, pero se puede fabricar en el color y la talla que prefieras. Consulta la página de cada producto para más detalles.",
+    "request": {
+      "heading": "Solicitar este Semi Order",
+      "description": "El diseño es fijo, pero adaptamos el color y la talla a ti. Envía tus preferencias abajo y te contactaremos para confirmar los detalles y el pago.",
+      "colorPreference": "Color preferido",
+      "colorPreferencePlaceholder": "p. ej. Negro y blanco",
+      "sizePreference": "Talla preferida",
+      "sizePreferencePlaceholder": "Altura, medidas o una talla de referencia",
+      "notes": "Notas adicionales (opcional)",
+      "notesPlaceholder": "Cualquier otra cosa que debamos saber...",
+      "installmentPayment": "Me gustaría pagar en cuotas",
+      "submit": "Enviar solicitud",
+      "submitting": "Enviando...",
+      "success": "¡Gracias! Hemos recibido tu solicitud y te contactaremos pronto para confirmar los detalles y el pago.",
+      "error": "Algo salió mal al enviar tu solicitud. Por favor, inténtalo de nuevo."
+    }
   },
   "contact": {
     "title": "Contáctanos",

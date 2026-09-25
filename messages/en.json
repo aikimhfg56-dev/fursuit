@@ -185,7 +185,22 @@
   },
   "preorder": {
     "title": "Semi Order",
-    "description": "The design is fixed, but can be made in your preferred color and size. Please see each product page for full details."
+    "description": "The design is fixed, but can be made in your preferred color and size. Please see each product page for full details.",
+    "request": {
+      "heading": "Request this Semi Order",
+      "description": "This design is fixed, but we'll tailor the color and size to you. Send your preferences below and we'll follow up to confirm details and payment.",
+      "colorPreference": "Preferred color",
+      "colorPreferencePlaceholder": "e.g. Black and white",
+      "sizePreference": "Preferred size",
+      "sizePreferencePlaceholder": "Height, measurements, or a reference size",
+      "notes": "Additional notes (optional)",
+      "notesPlaceholder": "Anything else we should know...",
+      "installmentPayment": "I'd like to pay in installments",
+      "submit": "Send Request",
+      "submitting": "Sending...",
+      "success": "Thanks! We've received your request and will be in touch soon to confirm details and payment.",
+      "error": "Something went wrong sending your request. Please try again."
+    }
   },
   "contact": {
     "title": "Contact Us",

@@ -20,6 +20,7 @@ import { pickLocaleValue } from "@/lib/i18n/pickLocaleValue";
 import type { PreorderProductDetail, ProductDetail } from "@/lib/sanity/queries";
 import { getEmsRateJpy, getEmsZoneForCountry } from "@/lib/shipping/emsRates";
 import { getShippingRateUsd, getShippingRegionForLocale } from "@/lib/shipping/rates";
+import PreorderRequestForm from "./PreorderRequestForm";
 import PriceDisplay from "./PriceDisplay";
 import ProductGallery from "./ProductGallery";
 
@@ -43,29 +44,38 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
   else if (product.stockStatus === "low_stock") badges.push(t("stockStatus.low_stock"));
   for (const flag of product.flags ?? []) badges.push(t(`flags.${flag}`));
 
-  const currency = await getPreferredCurrency(locale);
-  const displayAmount = await convertFromUsd(product.basePrice, currency);
-
-  const configuredMethods: PaymentMethodId[] = [
-    ...(isStripeConfigured() ? (["card", "alipay"] as const) : []),
-    ...(isPaypalConfigured() ? (["paypal"] as const) : []),
-    ...(isWiseConfigured() ? (["wise"] as const) : []),
-    ...(isCoinbaseConfigured() ? (["crypto"] as const) : []),
-  ];
-
   // Purchases require an account; full name + address are collected lazily
   // here (not at sign-up) — see lib/account/shippingGate.ts.
   const user = isClerkConfigured() ? await currentUser() : null;
   const profile = user ? getAccountProfile(user) : {};
   const gateState = getShippingGateState(user?.id ?? null, profile);
 
-  // Real EMS rate once the buyer's country + the product's shipping weight
-  // are both known; otherwise fall back to the flat locale-region estimate.
-  const emsZone = profile.address?.country ? getEmsZoneForCountry(profile.address.country) : null;
-  const shippingUsd =
-    emsZone && product.weightKg
-      ? await convertJpyToUsd(getEmsRateJpy(emsZone, product.weightKg))
-      : getShippingRateUsd(getShippingRegionForLocale(locale));
+  // Semi Order has no direct checkout (see PreorderRequestForm) — currency,
+  // shipping cost, and payment methods are only needed for Shop's CheckoutPanel.
+  let currency: Awaited<ReturnType<typeof getPreferredCurrency>> | null = null;
+  let displayAmount = 0;
+  let shippingUsd = 0;
+  let configuredMethods: PaymentMethodId[] = [];
+
+  if (kind === "shop") {
+    currency = await getPreferredCurrency(locale);
+    displayAmount = await convertFromUsd(product.basePrice, currency);
+
+    configuredMethods = [
+      ...(isStripeConfigured() ? (["card", "alipay"] as const) : []),
+      ...(isPaypalConfigured() ? (["paypal"] as const) : []),
+      ...(isWiseConfigured() ? (["wise"] as const) : []),
+      ...(isCoinbaseConfigured() ? (["crypto"] as const) : []),
+    ];
+
+    // Real EMS rate once the buyer's country + the product's shipping weight
+    // are both known; otherwise fall back to the flat locale-region estimate.
+    const emsZone = profile.address?.country ? getEmsZoneForCountry(profile.address.country) : null;
+    shippingUsd =
+      emsZone && product.weightKg
+        ? await convertJpyToUsd(getEmsRateJpy(emsZone, product.weightKg))
+        : getShippingRateUsd(getShippingRegionForLocale(locale));
+  }
 
   const preorder = kind === "preorder" ? (product as PreorderProductDetail) : null;
   if (preorder?.preorderStatus) badges.push(t(`preorderStatus.${preorder.preorderStatus}`));
@@ -122,7 +132,7 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
                 signInDescription={tAccount("signInToPurchase")}
                 profile={profile}
               />
-              {gateState === "ready" && (
+              {gateState === "ready" && kind === "shop" && currency && (
                 <CheckoutPanel
                   productName={name}
                   productKind={kind}
@@ -133,6 +143,9 @@ export default async function ProductDetailView({ product, kind }: ProductDetail
                   currency={currency}
                   configuredMethods={configuredMethods}
                 />
+              )}
+              {gateState === "ready" && kind === "preorder" && (
+                <PreorderRequestForm productName={name} productSlug={product.slug} />
               )}
             </>
           )}

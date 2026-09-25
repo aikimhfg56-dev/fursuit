@@ -185,7 +185,22 @@
   },
   "preorder": {
     "title": "セミオーダー",
-    "description": "デザインは固定になりお客様の好みの色とサイズで制作可能です。詳しい詳細は各商品ページをご覧下さい。"
+    "description": "デザインは固定になりお客様の好みの色とサイズで制作可能です。詳しい詳細は各商品ページをご覧下さい。",
+    "request": {
+      "heading": "このセミオーダーをリクエストする",
+      "description": "デザインは固定ですが、色とサイズはご希望に合わせて製作します。以下にご希望をお送りください。詳細とお支払いについて追ってご連絡します。",
+      "colorPreference": "希望の色",
+      "colorPreferencePlaceholder": "例: 黒と白",
+      "sizePreference": "希望のサイズ",
+      "sizePreferencePlaceholder": "身長・採寸、または参考サイズ",
+      "notes": "その他のご要望(任意)",
+      "notesPlaceholder": "その他お伝えしたいことがあれば...",
+      "installmentPayment": "分割払いを希望する",
+      "submit": "リクエストを送信",
+      "submitting": "送信中...",
+      "success": "ありがとうございます。リクエストを受け付けました。詳細とお支払いについて追ってご連絡いたします。",
+      "error": "送信中にエラーが発生しました。もう一度お試しください。"
+    }
   },
   "contact": {
     "title": "お問い合わせ",
