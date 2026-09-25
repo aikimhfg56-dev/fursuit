@@ -1,5 +1,26 @@
+/**
+ * iPhones save Photos-library originals as HEIC/HEIF, which Chrome (and most
+ * non-Safari browsers) can't decode in an <img>/canvas — picking straight
+ * from Photos hands the browser that HEIC file, so it must be converted to
+ * JPEG first or the resize step below fails outright.
+ */
+function isHeic(file: File): boolean {
+  const type = file.type.toLowerCase();
+  return type === "image/heic" || type === "image/heif" || /\.hei[cf]$/i.test(file.name);
+}
+
+async function toDecodableBlob(file: File): Promise<Blob> {
+  if (!isHeic(file)) return file;
+
+  const heic2any = (await import("heic2any")).default;
+  const converted = await heic2any({ blob: file, toType: "image/jpeg", quality: 0.9 });
+  return Array.isArray(converted) ? converted[0] : converted;
+}
+
 /** Client-only: downscales/compresses an uploaded photo before it's sent to the server, since it ends up base64-encoded in Redis. */
-export function resizeImageToDataUrl(file: File, maxDimension = 1200, quality = 0.75): Promise<string> {
+export async function resizeImageToDataUrl(file: File, maxDimension = 1200, quality = 0.75): Promise<string> {
+  const decodableBlob = await toDecodableBlob(file);
+
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onerror = () => reject(new Error("failed to read file"));
@@ -23,6 +44,6 @@ export function resizeImageToDataUrl(file: File, maxDimension = 1200, quality = 
       };
       img.src = reader.result as string;
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(decodableBlob);
   });
 }
