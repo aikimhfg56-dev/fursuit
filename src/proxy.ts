@@ -42,15 +42,18 @@ const proxy = isClerkConfigured()
         }
       },
       // Adds a Content-Security-Policy header sized to what Clerk needs
-      // (its own domains, Cloudflare bot-check, fraud protection) plus
-      // img-src for Sanity's asset CDN (all product images), and
-      // wasm-unsafe-eval for heic2any's WebAssembly HEIC/HEIF decoder,
-      // used by the seller admin's image uploader.
+      // (its own domains, Cloudflare bot-check, fraud protection) plus:
+      // - img-src: Sanity's asset CDN (all product images), and data: —
+      //   the seller admin's image uploader loads a data: URL into an
+      //   <img> to resize it in a canvas before upload, which img-src
+      //   governs just like any other image source.
+      // - script-src: wasm-unsafe-eval, for heic2any's WebAssembly
+      //   HEIC/HEIF decoder (same uploader).
       {
         contentSecurityPolicy: {
           strict: true,
           directives: {
-            "img-src": ["https://cdn.sanity.io"],
+            "img-src": ["https://cdn.sanity.io", "data:"],
             "script-src": ["'wasm-unsafe-eval'"],
           },
         },
